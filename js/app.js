@@ -83,6 +83,84 @@ function classifyCrop(cropName) {
   return 'other';
 }
 
+// === Common name aliases (俗稱 → API品名關鍵字) ===
+const ALIASES = {
+  '高麗菜': '甘藍', '包心菜': '甘藍', '捲心菜': '甘藍',
+  '空心菜': '蕹菜', '甕菜': '蕹菜',
+  '地瓜': '甘薯', '番薯': '甘薯', '蕃薯': '甘薯',
+  '地瓜葉': '甘薯葉',
+  '紅蘿蔔': '胡蘿蔔',
+  '白蘿蔔': '蘿蔔',
+  '菜頭': '蘿蔔',
+  '蔥': '青蔥', '大蔥': '青蔥',
+  '蒜': '大蒜', '蒜頭': '大蒜',
+  '薯仔': '馬鈴薯', '土豆': '馬鈴薯',
+  '山藥': '薯蕷',
+  '香菜': '芫荽',
+  '大黃瓜': '胡瓜',
+  '小黃瓜': '花胡瓜',
+  'A菜': '萵苣菜', 'a菜': '萵苣菜', '鵝仔菜': '萵苣菜',
+  '美生菜': '萵苣菜', '蘿蔓': '萵苣菜', '羅美': '萵苣菜',
+  '花菜': '花椰菜', '白花菜': '花椰菜',
+  '青花菜': '青花苔', '綠花椰': '青花苔', '西蘭花': '青花苔',
+  '大白菜': '包心白', '白菜': '包心白',
+  '青江菜': '青江白菜',
+  '小松菜': '油菜',
+  '刈菜': '芥菜', '芥藍': '芥藍菜',
+  '菜心': '大心菜',
+  '豆芽': '芽菜類', '豆芽菜': '芽菜類', '銀芽': '芽菜類',
+  '金針菇': '金絲菇',
+  '四季豆': '敏豆',
+  '荷蘭豆': '豌豆', '碗豆': '豌豆',
+  '筊白筍': '茭白筍', '美人腿': '茭白筍',
+  '佛手瓜': '隼人瓜', '龍鬚菜': '隼人瓜',
+  '蒲瓜': '扁蒲', '蒲仔': '扁蒲', '菜瓜': '扁蒲',
+  '青椒': '甜椒', '彩椒': '甜椒',
+  '秋葵': '黃秋葵',
+  '木耳': '濕木耳', '黑木耳': '濕木耳',
+  '香菇': '濕香菇',
+  '過貓': '蕨菜', '山蘇': '蕨菜',
+  '花生': '落花生',
+  '皇帝菜': '茼蒿', '打某菜': '茼蒿',
+  '莧菜': '莧菜', '紅莧菜': '莧菜',
+  '水蓮': '海菜',
+  '川七': '藤川七',
+  '鮑魚菇': '蠔菇',
+  '杏鮑菇': '杏鮑菇',
+  '秀珍菇': '秀珍菇',
+  '大陸妹': '萵苣菜',
+};
+
+// Build reverse map: API name → list of aliases
+const REVERSE_ALIASES = {};
+for (const [alias, apiName] of Object.entries(ALIASES)) {
+  if (!REVERSE_ALIASES[apiName]) REVERSE_ALIASES[apiName] = [];
+  REVERSE_ALIASES[apiName].push(alias);
+}
+
+// Get display name with alias hint
+function getDisplayName(cropName) {
+  // Find the base name (before the dash)
+  const baseName = cropName.split('-')[0];
+  const aliases = REVERSE_ALIASES[baseName] || REVERSE_ALIASES[cropName];
+  if (aliases && aliases.length > 0) {
+    // Pick the most common alias (first one)
+    return `${cropName}（${aliases[0]}）`;
+  }
+  return cropName;
+}
+
+// Resolve search query: if user types an alias, return the API name
+function resolveAlias(query) {
+  // Exact alias match
+  if (ALIASES[query]) return ALIASES[query];
+  // Partial alias match
+  for (const [alias, apiName] of Object.entries(ALIASES)) {
+    if (alias.includes(query) || query.includes(alias)) return apiName;
+  }
+  return null;
+}
+
 // === DOM elements ===
 const searchInput = document.getElementById('searchInput');
 const suggestionsEl = document.getElementById('searchSuggestions');
@@ -203,7 +281,21 @@ function showSuggestions(query) {
     hideSuggestions();
     return;
   }
-  const matches = allCropNames.filter(n => n.includes(query)).slice(0, 8);
+
+  // Direct matches
+  let matches = allCropNames.filter(n => n.includes(query));
+
+  // Alias matches: if query matches an alias, add the corresponding API names
+  const resolved = resolveAlias(query);
+  if (resolved) {
+    const aliasMatches = allCropNames.filter(n => n.includes(resolved));
+    // Merge without duplicates, alias matches first
+    const matchSet = new Set([...aliasMatches, ...matches]);
+    matches = [...matchSet];
+  }
+
+  matches = matches.slice(0, 10);
+
   if (matches.length === 0) {
     hideSuggestions();
     return;
@@ -212,11 +304,26 @@ function showSuggestions(query) {
   suggestionsEl.innerHTML = '';
   for (const name of matches) {
     const li = document.createElement('li');
+    const displayName = getDisplayName(name);
+
+    // Highlight matching part
     const idx = name.indexOf(query);
-    li.innerHTML =
-      escapeHTML(name.substring(0, idx)) +
-      '<span class="match">' + escapeHTML(query) + '</span>' +
-      escapeHTML(name.substring(idx + query.length));
+    if (idx >= 0) {
+      li.innerHTML =
+        escapeHTML(name.substring(0, idx)) +
+        '<span class="match">' + escapeHTML(query) + '</span>' +
+        escapeHTML(name.substring(idx + query.length));
+    } else {
+      li.innerHTML = escapeHTML(name);
+    }
+
+    // Add alias hint if exists
+    const baseName = name.split('-')[0];
+    const aliases = REVERSE_ALIASES[baseName] || REVERSE_ALIASES[name];
+    if (aliases) {
+      li.innerHTML += ' <span class="alias-hint">（' + escapeHTML(aliases[0]) + '）</span>';
+    }
+
     li.addEventListener('mousedown', (e) => {
       e.preventDefault();
       selectSuggestion(name);
@@ -263,10 +370,13 @@ function filterAndAggregate(data) {
     filtered = filtered.filter(d => classifyCrop(d.CropName) === activeCategory);
   }
 
-  // Search filter
+  // Search filter (supports aliases)
   const query = searchInput.value.trim();
   if (query) {
-    filtered = filtered.filter(d => d.CropName.includes(query));
+    const resolved = resolveAlias(query);
+    filtered = filtered.filter(d =>
+      d.CropName.includes(query) || (resolved && d.CropName.includes(resolved))
+    );
   }
 
   // Aggregate by crop name
@@ -347,10 +457,20 @@ function handleSearch() {
   hideSuggestions();
   const query = searchInput.value.trim();
   if (query) {
+    // Direct exact match
     const exactMatch = todayData.some(d => d.CropName === query);
     if (exactMatch) {
       navigateToDetail(query);
       return;
+    }
+    // Alias exact match — if user typed "高麗菜", find "甘藍" items
+    const resolved = resolveAlias(query);
+    if (resolved) {
+      const aliasMatch = todayData.find(d => d.CropName === resolved);
+      if (aliasMatch) {
+        navigateToDetail(aliasMatch.CropName);
+        return;
+      }
     }
   }
   refreshTable();
