@@ -15,7 +15,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Fetch today's vegetable prices
+      - name: Fetch today's vegetable prices (all 17 markets)
         run: |
           # ROC date calculation
           YEAR=$(date -u +%Y -d '+8 hours')
@@ -25,11 +25,47 @@ jobs:
 
           echo "Fetching data for ROC date: ${ROC_DATE}"
 
-          # Fetch today's vegetable data
-          curl -s "https://data.moa.gov.tw/api/v1/AgriProductsTransType/?Start_time=${ROC_DATE}&End_time=${ROC_DATE}&TcType=N04" \
-            -o data/today.json
+          # All 17 market codes
+          MARKETS="109 104 220 241 260 338 400 420 512 514 540 648 800 830 900 930 950"
 
-          # Fetch last 30 days for history
+          # Fetch each market and merge into one JSON
+          echo '{"RS":"OK","Data":[' > data/today_tmp.json
+          FIRST=true
+          for CODE in $MARKETS; do
+            echo "Fetching market ${CODE}..."
+            RESULT=$(curl -s "https://data.moa.gov.tw/api/v1/AgriProductsTransType/?Start_time=${ROC_DATE}&End_time=${ROC_DATE}&TcType=N04&MarketCode=${CODE}" 2>/dev/null)
+            ITEMS=$(echo "$RESULT" | python3 -c "
+          import json, sys
+          try:
+            data = json.load(sys.stdin)
+            items = [i for i in data.get('Data', []) if i.get('CropName') != '休市']
+            for item in items:
+              print(json.dumps(item, ensure_ascii=False))
+          except: pass
+          " 2>/dev/null)
+            while IFS= read -r line; do
+              if [ -n "$line" ]; then
+                if [ "$FIRST" = true ]; then
+                  FIRST=false
+                else
+                  echo ',' >> data/today_tmp.json
+                fi
+                echo "$line" >> data/today_tmp.json
+              fi
+            done <<< "$ITEMS"
+          done
+          echo '],"Next":false}' >> data/today_tmp.json
+
+          # Validate and move
+          if python3 -c "import json; json.load(open('data/today_tmp.json'))" 2>/dev/null; then
+            mv data/today_tmp.json data/today.json
+            echo "today.json: $(wc -c < data/today.json) bytes"
+          else
+            echo "Failed to create valid JSON, keeping old file"
+            rm -f data/today_tmp.json
+          fi
+
+          # Fetch last 30 days history (single request, for chart)
           START_DATE=$(date -u +'%Y-%m-%d' -d '+8 hours -30 days')
           START_YEAR=$(date -d "${START_DATE}" +%Y)
           START_ROC=$((START_YEAR - 1911))
@@ -37,12 +73,9 @@ jobs:
           ROC_START="${START_ROC}.${START_MD}"
 
           echo "Fetching history from ${ROC_START} to ${ROC_DATE}"
-
           curl -s "https://data.moa.gov.tw/api/v1/AgriProductsTransType/?Start_time=${ROC_START}&End_time=${ROC_DATE}&TcType=N04" \
             -o data/history.json
 
-          # Log data sizes
-          echo "today.json: $(wc -c < data/today.json) bytes"
           echo "history.json: $(wc -c < data/history.json) bytes"
 
       - name: Commit and push data

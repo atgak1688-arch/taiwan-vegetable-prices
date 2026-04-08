@@ -247,25 +247,36 @@ async function findLatestDate() {
 }
 
 async function fetchTodayVegetables(onPartialData) {
+  // Strategy: static JSON first (fast), then API in background (complete)
+
+  // Phase 1: Try static JSON for instant display
+  const staticData = await fetchStaticJSON('today.json');
+  if (staticData && staticData.length > 0 && onPartialData) {
+    onPartialData(staticData, staticData[0].TransDate);
+  }
+
+  // Phase 2: Fetch fresh data from API
   try {
     const rocDate = await findLatestDate();
-    if (!rocDate) throw new Error('No recent data found');
-
-    // Phase 1: Quick load — fetch first 4 big markets fast
-    const quickCodes = [109, 104, 800, 400];
-    const quickData = await fetchMarketBatch(rocDate, quickCodes);
-    if (quickData.length > 0 && onPartialData) {
-      onPartialData(quickData, rocDate);
+    if (!rocDate) {
+      // API found nothing, use static data if we have it
+      if (staticData && staticData.length > 0) return staticData;
+      throw new Error('No recent data found');
     }
 
-    // Phase 2: Fetch remaining markets in background
+    // Fetch all markets
+    const quickCodes = [109, 104, 800, 400];
+    const quickData = await fetchMarketBatch(rocDate, quickCodes);
     const remainingCodes = ALL_MARKET_CODES.filter(c => !quickCodes.includes(c));
     const restData = await fetchMarketBatch(rocDate, remainingCodes);
-    return [...quickData, ...restData];
+    const allData = [...quickData, ...restData];
+
+    if (allData.length > 0) return allData;
   } catch (err) {
-    console.warn('Live API failed, trying static data:', err.message);
+    console.warn('Live API failed:', err.message);
   }
-  const staticData = await fetchStaticJSON('today.json');
+
+  // Fallback to static data
   if (staticData && staticData.length > 0) return staticData;
   return [];
 }
@@ -565,23 +576,43 @@ themeToggle.addEventListener('change', () => {
   localStorage.setItem('theme', next);
 });
 
+// === Data info display ===
+const dataInfo = document.getElementById('dataInfo');
+
+function showDataInfo(rocDate, source) {
+  const dateStr = rocToDisplay(rocDate);
+  dataInfo.innerHTML = `<span class="info-icon">&#x1F4C5;</span> 最新資料：${dateStr}（每週日及國定假日休市）`;
+  if (source === 'static') {
+    dataInfo.innerHTML += ' <span style="opacity:0.6">· 背景更新中...</span>';
+  }
+  dataInfo.classList.remove('hidden');
+}
+
+function updateDataInfo(rocDate) {
+  const dateStr = rocToDisplay(rocDate);
+  dataInfo.innerHTML = `<span class="info-icon">&#x1F4C5;</span> 最新資料：${dateStr}（每週日及國定假日休市）`;
+}
+
 // === Init ===
 async function init() {
   showLoading(true);
   try {
     todayData = await fetchTodayVegetables((partialData, rocDate) => {
-      // Show partial results immediately while rest loads
+      // Static JSON loaded — show instantly
       todayData = partialData;
       buildCropNames(partialData);
-      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(rocDate)}）— 載入中...`;
+      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(rocDate)}）`;
+      showDataInfo(rocDate, 'static');
       showLoading(false);
       refreshTable();
     });
 
-    // Full data ready
+    // Full API data ready
     buildCropNames(todayData);
     if (todayData.length > 0) {
-      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(todayData[0].TransDate)}）`;
+      const rocDate = todayData[0].TransDate;
+      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(rocDate)}）`;
+      updateDataInfo(rocDate);
     }
     refreshTable();
   } catch (err) {
