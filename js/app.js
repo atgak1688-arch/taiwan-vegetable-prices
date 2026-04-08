@@ -366,7 +366,10 @@ function hideSuggestions() {
 }
 
 function selectSuggestion(name) {
-  navigateToDetail(name);
+  searchInput.value = name;
+  hideSuggestions();
+  refreshTable();
+  updateClearBtn();
 }
 
 function navigateToDetail(cropName) {
@@ -482,31 +485,30 @@ function refreshTable() {
 // === Event handlers ===
 function handleSearch() {
   hideSuggestions();
-  const query = searchInput.value.trim();
-  if (query) {
-    // Direct exact match
-    const exactMatch = todayData.some(d => d.CropName === query);
-    if (exactMatch) {
-      navigateToDetail(query);
-      return;
-    }
-    // Alias exact match — if user typed "高麗菜", find "甘藍" items
-    const resolved = resolveAlias(query);
-    if (resolved) {
-      const aliasMatch = todayData.find(d => d.CropName === resolved);
-      if (aliasMatch) {
-        navigateToDetail(aliasMatch.CropName);
-        return;
-      }
-    }
-  }
   refreshTable();
+  updateClearBtn();
 }
+
+// Clear button
+const clearBtn = document.getElementById('clearSearch');
+
+function updateClearBtn() {
+  clearBtn.classList.toggle('hidden', searchInput.value.trim() === '');
+}
+
+clearBtn.addEventListener('click', () => {
+  searchInput.value = '';
+  hideSuggestions();
+  refreshTable();
+  updateClearBtn();
+  searchInput.focus();
+});
 
 searchInput.addEventListener('input', () => {
   const query = searchInput.value.trim();
   showSuggestions(query);
   refreshTable();
+  updateClearBtn();
 });
 
 searchInput.addEventListener('keydown', e => {

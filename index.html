@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>台灣蔬菜即時價格查詢</title>
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
   <header>
@@ -25,6 +25,7 @@
     <section class="search-section">
       <div class="search-wrapper">
         <input type="text" id="searchInput" placeholder="輸入蔬菜名稱，例如：高麗菜、空心菜..." autocomplete="off">
+        <button id="clearSearch" class="clear-btn hidden" aria-label="清除搜尋">&times;</button>
         <ul id="searchSuggestions" class="suggestions hidden"></ul>
       </div>
     </section>
@@ -91,6 +92,6 @@
        本站僅供參考，實際價格以市場公告為準</p>
   </footer>
 
-  <script src="js/app.js?v=8"></script>
+  <script src="js/app.js?v=9"></script>
 </body>
 </html>
