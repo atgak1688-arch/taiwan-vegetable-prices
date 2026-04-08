@@ -210,7 +210,8 @@ function selectSuggestion(name) {
 }
 
 function navigateToDetail(cropName) {
-  window.location.href = `detail.html?crop=${encodeURIComponent(cropName)}`;
+  const regionParam = activeRegion !== 'all' ? `&region=${activeRegion}` : '';
+  window.location.href = `detail.html?crop=${encodeURIComponent(cropName)}${regionParam}`;
 }
 
 // === Rendering ===
@@ -222,7 +223,7 @@ function showNoData(show) {
   noDataEl.classList.toggle('hidden', !show);
 }
 
-function filterData(data) {
+function filterAndAggregate(data) {
   let filtered = data;
 
   // Region filter
@@ -242,7 +243,26 @@ function filterData(data) {
     filtered = filtered.filter(d => d.CropName.includes(query));
   }
 
-  return filtered;
+  // Aggregate by crop name
+  const map = {};
+  for (const item of filtered) {
+    const key = item.CropName;
+    if (!map[key]) {
+      map[key] = { CropName: key, totalQty: 0, weightedPrice: 0, upper: 0, lower: Infinity };
+    }
+    map[key].totalQty += item.Trans_Quantity;
+    map[key].weightedPrice += item.Avg_Price * item.Trans_Quantity;
+    map[key].upper = Math.max(map[key].upper, item.Upper_Price);
+    map[key].lower = Math.min(map[key].lower, item.Lower_Price);
+  }
+
+  return Object.values(map).map(d => ({
+    CropName: d.CropName,
+    Avg_Price: d.totalQty > 0 ? d.weightedPrice / d.totalQty : 0,
+    Upper_Price: d.upper,
+    Lower_Price: d.lower === Infinity ? 0 : d.lower,
+    Trans_Quantity: d.totalQty,
+  }));
 }
 
 function sortData(data) {
@@ -271,10 +291,9 @@ function renderTable(data) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td class="crop-name">${escapeHTML(item.CropName)}</td>
-      <td class="hide-mobile">${escapeHTML(item.MarketName)}</td>
       <td class="price-avg">${item.Avg_Price.toFixed(1)}</td>
-      <td class="hide-mobile">${item.Upper_Price.toFixed(1)}</td>
-      <td class="hide-mobile">${item.Lower_Price.toFixed(1)}</td>
+      <td>${item.Upper_Price.toFixed(1)}</td>
+      <td>${item.Lower_Price.toFixed(1)}</td>
       <td>${numberFormat(item.Trans_Quantity)}</td>
     `;
     tr.addEventListener('click', () => navigateToDetail(item.CropName));
@@ -293,8 +312,8 @@ function numberFormat(n) {
 }
 
 function refreshTable() {
-  const filtered = filterData(todayData);
-  renderTable(filtered);
+  const aggregated = filterAndAggregate(todayData);
+  renderTable(aggregated);
 }
 
 // === Event handlers ===

@@ -1,9 +1,60 @@
 const API_BASE = 'https://data.moa.gov.tw/api/v1/AgriProductsTransType/';
 const VEG_TYPE = 'N04';
 
-// Get crop name from URL
-const params = new URLSearchParams(window.location.search);
-const cropName = params.get('crop');
+// === Markets by region (same as app.js) ===
+const MARKETS = {
+  north: [
+    { code: 109, name: '台北一' },
+    { code: 104, name: '台北二' },
+    { code: 220, name: '板橋區' },
+    { code: 241, name: '三重區' },
+    { code: 260, name: '宜蘭市' },
+    { code: 338, name: '桃農' },
+  ],
+  central: [
+    { code: 400, name: '台中市' },
+    { code: 420, name: '豐原區' },
+    { code: 512, name: '永靖鄉' },
+    { code: 514, name: '溪湖鎮' },
+    { code: 540, name: '南投市' },
+  ],
+  south: [
+    { code: 648, name: '西螺鎮' },
+    { code: 800, name: '高雄市' },
+    { code: 830, name: '鳳山區' },
+    { code: 900, name: '屏東市' },
+  ],
+  east: [
+    { code: 930, name: '台東市' },
+    { code: 950, name: '花蓮市' },
+  ],
+};
+
+const REGION_NAMES = {
+  north: '北部',
+  central: '中部',
+  south: '南部',
+  east: '東部',
+};
+
+// Get params from URL
+const urlParams = new URLSearchParams(window.location.search);
+const cropName = urlParams.get('crop');
+const regionParam = urlParams.get('region'); // null = all
+
+function getMarketCodes() {
+  if (regionParam && MARKETS[regionParam]) {
+    return MARKETS[regionParam].map(m => m.code);
+  }
+  return Object.values(MARKETS).flat().map(m => m.code);
+}
+
+function getMarketNames() {
+  if (regionParam && MARKETS[regionParam]) {
+    return MARKETS[regionParam].map(m => m.name);
+  }
+  return Object.values(MARKETS).flat().map(m => m.name);
+}
 
 // DOM
 const cropTitle = document.getElementById('cropTitle');
@@ -51,17 +102,23 @@ async function fetchAPI(params) {
   return (json.Data || []).filter(d => d.CropName !== '休市');
 }
 
-async function fetchToday(name) {
+async function fetchTodayForCrop(name) {
+  const codes = getMarketCodes();
   for (let offset = 0; offset < 5; offset++) {
     const date = new Date();
     date.setDate(date.getDate() - offset);
     const rocDate = toROCDate(date);
-    const data = await fetchAPI({
-      Start_time: rocDate,
-      End_time: rocDate,
-      CropName: name,
-      TcType: VEG_TYPE,
-    });
+    const promises = codes.map(code =>
+      fetchAPI({
+        Start_time: rocDate,
+        End_time: rocDate,
+        CropName: name,
+        TcType: VEG_TYPE,
+        MarketCode: code,
+      }).catch(() => [])
+    );
+    const results = await Promise.all(promises);
+    const data = results.flat();
     if (data.length > 0) return data;
   }
   return [];
@@ -69,12 +126,18 @@ async function fetchToday(name) {
 
 async function fetchHistory(name, days) {
   const { start, end } = getDateRange(days);
-  return fetchAPI({
-    Start_time: start,
-    End_time: end,
-    CropName: name,
-    TcType: VEG_TYPE,
-  });
+  const codes = getMarketCodes();
+  const promises = codes.map(code =>
+    fetchAPI({
+      Start_time: start,
+      End_time: end,
+      CropName: name,
+      TcType: VEG_TYPE,
+      MarketCode: code,
+    }).catch(() => [])
+  );
+  const results = await Promise.all(promises);
+  return results.flat();
 }
 
 function numberFormat(n) {
@@ -167,8 +230,8 @@ async function renderChart(days) {
         {
           label: '平均價',
           data: avgPrices,
-          borderColor: '#4caf50',
-          backgroundColor: 'rgba(76, 175, 80, 0.1)',
+          borderColor: '#b5845a',
+          backgroundColor: 'rgba(181, 132, 90, 0.1)',
           borderWidth: 2.5,
           fill: true,
           tension: 0.3,
@@ -252,6 +315,14 @@ themeToggle.addEventListener('change', () => {
   localStorage.setItem('theme', next);
 });
 
+// === Update back link with region ===
+function updateBackLink() {
+  const backLink = document.querySelector('.back-link');
+  if (backLink) {
+    backLink.href = 'index.html';
+  }
+}
+
 // === Init ===
 async function init() {
   if (!cropName) {
@@ -261,11 +332,23 @@ async function init() {
     return;
   }
 
-  cropTitle.textContent = cropName;
+  const regionLabel = regionParam ? REGION_NAMES[regionParam] : '全部地區';
+  cropTitle.textContent = `${cropName}`;
   document.title = `${cropName} - 台灣蔬菜即時價格查詢`;
 
+  // Show region info in subtitle area
+  const subtitle = document.querySelector('.subtitle');
+  if (subtitle) {
+    const backLink = subtitle.querySelector('.back-link');
+    subtitle.innerHTML = '';
+    if (backLink) subtitle.appendChild(backLink);
+    subtitle.appendChild(document.createTextNode(` | ${regionLabel}市場`));
+  }
+
+  updateBackLink();
+
   try {
-    const todayData = await fetchToday(cropName);
+    const todayData = await fetchTodayForCrop(cropName);
     loadingEl.classList.add('hidden');
 
     if (todayData.length === 0) {
