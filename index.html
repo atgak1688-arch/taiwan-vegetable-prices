@@ -15,10 +15,11 @@
   </header>
 
   <main>
-    <section class="controls">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="搜尋蔬菜名稱，例如：高麗菜、空心菜..." autocomplete="off">
-        <button id="searchBtn">查詢</button>
+    <!-- Search -->
+    <section class="search-section">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" placeholder="輸入蔬菜名稱，例如：高麗菜、空心菜..." autocomplete="off">
+        <ul id="searchSuggestions" class="suggestions hidden"></ul>
       </div>
       <div class="filters">
         <select id="marketSelect">
@@ -31,6 +32,20 @@
       </div>
     </section>
 
+    <!-- Category tags -->
+    <section class="category-section">
+      <div class="category-tags" id="categoryTags">
+        <button class="tag active" data-category="all">全部</button>
+        <button class="tag" data-category="leafy">葉菜類</button>
+        <button class="tag" data-category="root">根莖類</button>
+        <button class="tag" data-category="gourd">瓜果類</button>
+        <button class="tag" data-category="bean">豆類</button>
+        <button class="tag" data-category="mushroom">菇類</button>
+        <button class="tag" data-category="other">其他</button>
+      </div>
+    </section>
+
+    <!-- Summary -->
     <section id="summary" class="summary hidden">
       <div class="summary-header">
         <h2 id="summaryTitle"></h2>
@@ -60,6 +75,7 @@
       </div>
     </section>
 
+    <!-- Chart -->
     <section id="chartSection" class="chart-section hidden">
       <h3>價格趨勢</h3>
       <div class="chart-container">
@@ -67,18 +83,22 @@
       </div>
     </section>
 
+    <!-- Table -->
     <section id="tableSection" class="table-section">
-      <h3 id="tableTitle">今日蔬菜價格一覽</h3>
+      <div class="table-header">
+        <h3 id="tableTitle">今日蔬菜價格一覽</h3>
+        <span id="resultCount" class="result-count"></span>
+      </div>
       <div class="table-wrapper">
         <table id="priceTable">
           <thead>
             <tr>
               <th data-sort="CropName">品名 &#x25B2;&#x25BC;</th>
-              <th data-sort="MarketName">市場 &#x25B2;&#x25BC;</th>
+              <th data-sort="MarketName" class="hide-mobile">市場 &#x25B2;&#x25BC;</th>
               <th data-sort="Avg_Price">平均價 &#x25B2;&#x25BC;</th>
-              <th data-sort="Upper_Price">上價</th>
-              <th data-sort="Lower_Price">下價</th>
-              <th data-sort="Trans_Quantity">交易量(公斤)</th>
+              <th data-sort="Upper_Price" class="hide-mobile">上價</th>
+              <th data-sort="Lower_Price" class="hide-mobile">下價</th>
+              <th data-sort="Trans_Quantity">交易量</th>
             </tr>
           </thead>
           <tbody id="priceTableBody">

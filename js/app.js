@@ -1,9 +1,53 @@
 const API_BASE = 'https://data.moa.gov.tw/api/v1/AgriProductsTransType/';
 const VEG_TYPE = 'N04';
 
-// DOM elements
+// === Category classification ===
+const CATEGORIES = {
+  leafy: {
+    keywords: [
+      '白菜','甘藍','菠菜','萵苣','油菜','芥菜','芥藍','茼蒿','蕹菜',
+      '莧菜','青江','包心白','大心菜','西洋菜','皇宮菜','紅鳳菜','雪里紅',
+      '榨菜','鹹菜','甘薯葉','芫荽','巴西利','九層塔','茴香','香茅',
+      '韭菜','藤川七','青蔥','石蓮花','芹菜','芽菜','水蓮'
+    ],
+  },
+  root: {
+    keywords: [
+      '蘿蔔','胡蘿蔔','馬鈴薯','甘薯','薑','牛蒡','洋蔥','芋','蓮藕',
+      '薯蕷','荸薺','菱角','竹筍','茭白筍','蘆筍','筍茸','熟筍','晚香玉筍',
+      '球莖甘藍','萵苣莖','大蒜','豆薯','金針筍'
+    ],
+  },
+  gourd: {
+    keywords: [
+      '花胡瓜','胡瓜','絲瓜','苦瓜','南瓜','冬瓜','扁蒲','隼人瓜',
+      '番茄','小番茄','茄子','甜椒','辣椒','玉米','黃秋葵','醃瓜',
+      '花椰菜','青花苔'
+    ],
+  },
+  bean: {
+    keywords: [
+      '毛豆','敏豆','菜豆','豌豆','萊豆','虎豆','鵲豆','落花生'
+    ],
+  },
+  mushroom: {
+    keywords: [
+      '杏鮑菇','秀珍菇','金絲菇','柳松菇','洋菇','木耳','香菇',
+      '草菇','鴻喜菇','蠔菇','珊瑚菇','菇類','蕨菜','海菜'
+    ],
+  },
+};
+
+function classifyCrop(cropName) {
+  for (const [cat, { keywords }] of Object.entries(CATEGORIES)) {
+    if (keywords.some(kw => cropName.includes(kw))) return cat;
+  }
+  return 'other';
+}
+
+// === DOM elements ===
 const searchInput = document.getElementById('searchInput');
-const searchBtn = document.getElementById('searchBtn');
+const suggestionsEl = document.getElementById('searchSuggestions');
 const marketSelect = document.getElementById('marketSelect');
 const dateRange = document.getElementById('dateRange');
 const summarySection = document.getElementById('summary');
@@ -14,8 +58,8 @@ const upperPriceEl = document.getElementById('upperPrice');
 const lowerPriceEl = document.getElementById('lowerPrice');
 const transQtyEl = document.getElementById('transQty');
 const chartSection = document.getElementById('chartSection');
-const tableSection = document.getElementById('tableSection');
 const tableTitle = document.getElementById('tableTitle');
+const resultCount = document.getElementById('resultCount');
 const priceTableBody = document.getElementById('priceTableBody');
 const loadingEl = document.getElementById('loading');
 const noDataEl = document.getElementById('noData');
@@ -23,7 +67,9 @@ const noDataEl = document.getElementById('noData');
 let priceChart = null;
 let currentSort = { field: 'Avg_Price', desc: true };
 let todayData = [];
-let allMarkets = new Set();
+let allCropNames = [];
+let activeCategory = 'all';
+let suggestionIndex = -1;
 
 // === Date helpers (ROC calendar) ===
 function toROCDate(date) {
@@ -34,7 +80,6 @@ function toROCDate(date) {
 }
 
 function rocToDisplay(rocDate) {
-  // "115.04.08" -> "2026/04/08"
   const parts = rocDate.split('.');
   const year = parseInt(parts[0]) + 1911;
   return `${year}/${parts[1]}/${parts[2]}`;
@@ -71,7 +116,6 @@ async function fetchStaticJSON(filename) {
 }
 
 async function fetchTodayVegetables() {
-  // Try live API first
   try {
     for (let offset = 0; offset < 5; offset++) {
       const date = new Date();
@@ -87,7 +131,6 @@ async function fetchTodayVegetables() {
   } catch (err) {
     console.warn('Live API failed, trying static data:', err.message);
   }
-  // Fallback to static JSON from GitHub Actions
   const staticData = await fetchStaticJSON('today.json');
   if (staticData && staticData.length > 0) return staticData;
   return [];
@@ -104,13 +147,55 @@ async function fetchHistory(cropName, days) {
     });
   } catch (err) {
     console.warn('Live API failed for history, trying static data:', err.message);
-    // Fallback to static history
     const staticData = await fetchStaticJSON('history.json');
-    if (staticData) {
-      return staticData.filter(d => d.CropName === cropName);
-    }
+    if (staticData) return staticData.filter(d => d.CropName === cropName);
     return [];
   }
+}
+
+// === Autocomplete / Suggestions ===
+function buildCropNames(data) {
+  const names = new Set(data.map(d => d.CropName));
+  allCropNames = [...names].sort((a, b) => a.localeCompare(b, 'zh-TW'));
+}
+
+function showSuggestions(query) {
+  if (!query) {
+    hideSuggestions();
+    return;
+  }
+  const matches = allCropNames.filter(n => n.includes(query)).slice(0, 8);
+  if (matches.length === 0) {
+    hideSuggestions();
+    return;
+  }
+  suggestionIndex = -1;
+  suggestionsEl.innerHTML = '';
+  for (const name of matches) {
+    const li = document.createElement('li');
+    const idx = name.indexOf(query);
+    li.innerHTML =
+      escapeHTML(name.substring(0, idx)) +
+      '<span class="match">' + escapeHTML(query) + '</span>' +
+      escapeHTML(name.substring(idx + query.length));
+    li.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      selectSuggestion(name);
+    });
+    suggestionsEl.appendChild(li);
+  }
+  suggestionsEl.classList.remove('hidden');
+}
+
+function hideSuggestions() {
+  suggestionsEl.classList.add('hidden');
+  suggestionIndex = -1;
+}
+
+function selectSuggestion(name) {
+  searchInput.value = name;
+  hideSuggestions();
+  handleSearch();
 }
 
 // === Rendering ===
@@ -123,9 +208,9 @@ function showNoData(show) {
 }
 
 function populateMarkets(data) {
-  allMarkets = new Set(data.map(d => d.MarketName));
+  const markets = new Set(data.map(d => d.MarketName));
   marketSelect.innerHTML = '<option value="">全部市場</option>';
-  for (const m of [...allMarkets].sort()) {
+  for (const m of [...markets].sort()) {
     const opt = document.createElement('option');
     opt.value = m;
     opt.textContent = m;
@@ -135,14 +220,24 @@ function populateMarkets(data) {
 
 function filterData(data) {
   let filtered = data;
+
+  // Category filter
+  if (activeCategory !== 'all') {
+    filtered = filtered.filter(d => classifyCrop(d.CropName) === activeCategory);
+  }
+
+  // Search filter
   const query = searchInput.value.trim();
   if (query) {
     filtered = filtered.filter(d => d.CropName.includes(query));
   }
+
+  // Market filter
   const market = marketSelect.value;
   if (market) {
     filtered = filtered.filter(d => d.MarketName === market);
   }
+
   return filtered;
 }
 
@@ -160,19 +255,22 @@ function sortData(data) {
 function renderTable(data) {
   const sorted = sortData(data);
   priceTableBody.innerHTML = '';
+  resultCount.textContent = `共 ${sorted.length} 筆`;
+
   if (sorted.length === 0) {
     showNoData(true);
     return;
   }
   showNoData(false);
+
   for (const item of sorted) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td class="crop-name">${escapeHTML(item.CropName)}</td>
-      <td>${escapeHTML(item.MarketName)}</td>
+      <td class="hide-mobile">${escapeHTML(item.MarketName)}</td>
       <td class="price-avg">${item.Avg_Price.toFixed(1)}</td>
-      <td>${item.Upper_Price.toFixed(1)}</td>
-      <td>${item.Lower_Price.toFixed(1)}</td>
+      <td class="hide-mobile">${item.Upper_Price.toFixed(1)}</td>
+      <td class="hide-mobile">${item.Lower_Price.toFixed(1)}</td>
       <td>${numberFormat(item.Trans_Quantity)}</td>
     `;
     tr.addEventListener('click', () => showDetail(item.CropName));
@@ -190,21 +288,25 @@ function numberFormat(n) {
   return Math.round(n).toLocaleString('zh-TW');
 }
 
-// === Detail view (summary + chart) ===
+function refreshTable() {
+  const filtered = filterData(todayData);
+  renderTable(filtered);
+}
+
+// === Detail view ===
 async function showDetail(cropName) {
   searchInput.value = cropName;
+  hideSuggestions();
   summarySection.classList.remove('hidden');
   chartSection.classList.remove('hidden');
   summaryTitle.textContent = cropName;
 
-  // Show today's summary (aggregate across markets)
   const todayFiltered = todayData.filter(d => d.CropName === cropName);
   if (todayFiltered.length > 0) {
-    const avgP = todayFiltered.reduce((s, d) => s + d.Avg_Price * d.Trans_Quantity, 0) /
-                 todayFiltered.reduce((s, d) => s + d.Trans_Quantity, 0);
+    const totalQ = todayFiltered.reduce((s, d) => s + d.Trans_Quantity, 0);
+    const avgP = todayFiltered.reduce((s, d) => s + d.Avg_Price * d.Trans_Quantity, 0) / totalQ;
     const upperP = Math.max(...todayFiltered.map(d => d.Upper_Price));
     const lowerP = Math.min(...todayFiltered.map(d => d.Lower_Price));
-    const totalQ = todayFiltered.reduce((s, d) => s + d.Trans_Quantity, 0);
     avgPriceEl.textContent = avgP.toFixed(1);
     upperPriceEl.textContent = upperP.toFixed(1);
     lowerPriceEl.textContent = lowerP.toFixed(1);
@@ -212,11 +314,9 @@ async function showDetail(cropName) {
     updateTime.textContent = `交易日期：${rocToDisplay(todayFiltered[0].TransDate)}`;
   }
 
-  // Fetch history for chart
   const days = parseInt(dateRange.value);
   const history = await fetchHistory(cropName, days);
 
-  // Aggregate by date
   const byDate = {};
   for (const item of history) {
     const date = item.TransDate;
@@ -236,10 +336,7 @@ async function showDetail(cropName) {
   const lowerPrices = dates.map(d => byDate[d].lower.toFixed(1));
 
   renderChart(labels, avgPrices, upperPrices, lowerPrices);
-
-  // Also filter table
-  const filtered = filterData(todayData);
-  renderTable(filtered);
+  refreshTable();
 }
 
 function renderChart(labels, avgPrices, upperPrices, lowerPrices) {
@@ -257,7 +354,7 @@ function renderChart(labels, avgPrices, upperPrices, lowerPrices) {
           borderColor: '#4caf50',
           backgroundColor: 'rgba(76, 175, 80, 0.1)',
           borderWidth: 2.5,
-          fill: false,
+          fill: true,
           tension: 0.3,
           pointRadius: 3,
         },
@@ -286,6 +383,7 @@ function renderChart(labels, avgPrices, upperPrices, lowerPrices) {
     options: {
       responsive: true,
       maintainAspectRatio: false,
+      interaction: { intersect: false, mode: 'index' },
       plugins: {
         tooltip: {
           callbacks: {
@@ -299,10 +397,7 @@ function renderChart(labels, avgPrices, upperPrices, lowerPrices) {
           beginAtZero: false,
         },
         x: {
-          ticks: {
-            maxRotation: 45,
-            maxTicksLimit: 15,
-          },
+          ticks: { maxRotation: 45, maxTicksLimit: 15 },
         },
       },
     },
@@ -311,38 +406,77 @@ function renderChart(labels, avgPrices, upperPrices, lowerPrices) {
 
 // === Event handlers ===
 function handleSearch() {
+  hideSuggestions();
   const query = searchInput.value.trim();
   if (query) {
-    // Check if it's an exact crop name
     const exactMatch = todayData.some(d => d.CropName === query);
     if (exactMatch) {
       showDetail(query);
       return;
     }
-    // Partial match - just filter table
     summarySection.classList.add('hidden');
     chartSection.classList.add('hidden');
   } else {
     summarySection.classList.add('hidden');
     chartSection.classList.add('hidden');
   }
-  const filtered = filterData(todayData);
-  renderTable(filtered);
+  refreshTable();
 }
 
-searchBtn.addEventListener('click', handleSearch);
+// Autocomplete: live search as user types
+searchInput.addEventListener('input', () => {
+  const query = searchInput.value.trim();
+  showSuggestions(query);
+  // Live filter table
+  summarySection.classList.add('hidden');
+  chartSection.classList.add('hidden');
+  refreshTable();
+});
+
 searchInput.addEventListener('keydown', e => {
-  if (e.key === 'Enter') handleSearch();
+  const items = suggestionsEl.querySelectorAll('li');
+  if (e.key === 'ArrowDown') {
+    e.preventDefault();
+    suggestionIndex = Math.min(suggestionIndex + 1, items.length - 1);
+    items.forEach((li, i) => li.classList.toggle('active', i === suggestionIndex));
+  } else if (e.key === 'ArrowUp') {
+    e.preventDefault();
+    suggestionIndex = Math.max(suggestionIndex - 1, 0);
+    items.forEach((li, i) => li.classList.toggle('active', i === suggestionIndex));
+  } else if (e.key === 'Enter') {
+    e.preventDefault();
+    if (suggestionIndex >= 0 && items[suggestionIndex]) {
+      const name = allCropNames.filter(n => n.includes(searchInput.value.trim()))[suggestionIndex];
+      if (name) selectSuggestion(name);
+    } else {
+      handleSearch();
+    }
+  } else if (e.key === 'Escape') {
+    hideSuggestions();
+  }
 });
-marketSelect.addEventListener('change', () => {
-  const filtered = filterData(todayData);
-  renderTable(filtered);
+
+searchInput.addEventListener('blur', () => {
+  setTimeout(hideSuggestions, 150);
 });
+
+marketSelect.addEventListener('change', refreshTable);
+
 dateRange.addEventListener('change', () => {
   const query = searchInput.value.trim();
   if (query && todayData.some(d => d.CropName === query)) {
     showDetail(query);
   }
+});
+
+// Category tags
+document.getElementById('categoryTags').addEventListener('click', e => {
+  const tag = e.target.closest('.tag');
+  if (!tag) return;
+  document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+  tag.classList.add('active');
+  activeCategory = tag.dataset.category;
+  refreshTable();
 });
 
 // Table sorting
@@ -354,29 +488,9 @@ document.querySelectorAll('th[data-sort]').forEach(th => {
     } else {
       currentSort = { field, desc: field !== 'CropName' };
     }
-    const filtered = filterData(todayData);
-    renderTable(filtered);
+    refreshTable();
   });
 });
-
-// === Init ===
-async function init() {
-  showLoading(true);
-  try {
-    todayData = await fetchTodayVegetables();
-    populateMarkets(todayData);
-    if (todayData.length > 0) {
-      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(todayData[0].TransDate)}）`;
-    }
-    renderTable(todayData);
-  } catch (err) {
-    console.error('Failed to load data:', err);
-    noDataEl.textContent = '載入失敗，請稍後重試';
-    showNoData(true);
-  } finally {
-    showLoading(false);
-  }
-}
 
 // === Theme toggle ===
 const themeToggle = document.getElementById('themeToggle');
@@ -390,7 +504,6 @@ function applyTheme(theme) {
   themeToggle.textContent = theme === 'dark' ? 'Light' : 'Dark';
 }
 
-// Init theme
 const savedTheme = localStorage.getItem('theme');
 if (savedTheme) {
   applyTheme(savedTheme);
@@ -405,5 +518,25 @@ themeToggle.addEventListener('click', () => {
   applyTheme(next);
   localStorage.setItem('theme', next);
 });
+
+// === Init ===
+async function init() {
+  showLoading(true);
+  try {
+    todayData = await fetchTodayVegetables();
+    buildCropNames(todayData);
+    populateMarkets(todayData);
+    if (todayData.length > 0) {
+      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(todayData[0].TransDate)}）`;
+    }
+    renderTable(todayData);
+  } catch (err) {
+    console.error('Failed to load data:', err);
+    noDataEl.textContent = '載入失敗，請稍後重試';
+    showNoData(true);
+  } finally {
+    showLoading(false);
+  }
+}
 
 init();
