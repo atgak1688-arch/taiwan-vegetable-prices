@@ -114,34 +114,78 @@ header h1 {
   position: relative;
 }
 
-.theme-toggle {
+/* Theme toggle switch */
+.theme-switch {
   position: absolute;
   top: 50%;
   right: 1.5rem;
   transform: translateY(-50%);
-  padding: 0.4rem 1rem;
-  border: 1.5px solid currentColor;
-  border-radius: 20px;
-  background: rgba(255,255,255,0.3);
-  color: inherit;
-  opacity: 0.8;
-  font-size: 0.8rem;
   z-index: 10;
-  font-weight: 600;
   cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-  letter-spacing: 0.5px;
+  display: block;
+}
+
+.theme-switch input {
+  display: none;
+}
+
+.switch-track {
+  display: flex;
+  align-items: center;
+  width: 52px;
+  height: 28px;
+  background: rgba(255,255,255,0.25);
+  border-radius: 14px;
   position: relative;
+  padding: 0 4px;
+  justify-content: space-between;
+  transition: background 0.3s;
+  border: 1.5px solid rgba(255,255,255,0.3);
 }
 
-.theme-toggle:hover {
-  background: rgba(255,255,255,0.45);
-  transform: translateY(-50%) scale(1.05);
-  opacity: 1;
+.switch-track:hover {
+  background: rgba(255,255,255,0.35);
 }
 
-.theme-toggle:active {
-  transform: translateY(-50%) scale(0.95);
+.switch-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px;
+  height: 14px;
+  color: rgba(255,255,255,0.7);
+  z-index: 1;
+}
+
+.switch-thumb {
+  position: absolute;
+  left: 3px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 22px;
+  height: 22px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  transition: left 0.3s ease;
+}
+
+/* When checked (dark mode) */
+.theme-switch input:checked ~ .switch-track .switch-thumb {
+  left: 27px;
+}
+
+.theme-switch input:checked ~ .switch-track {
+  background: rgba(0,0,0,0.3);
+  border-color: rgba(255,255,255,0.15);
+}
+
+.theme-switch input:checked ~ .switch-track .sun {
+  color: rgba(255,255,255,0.4);
+}
+
+.theme-switch input:checked ~ .switch-track .moon {
+  color: #ffd54f;
 }
 
 /* ===== Main ===== */

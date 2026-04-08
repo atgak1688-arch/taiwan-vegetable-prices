@@ -232,13 +232,9 @@ document.querySelectorAll('.range-btn').forEach(btn => {
 // === Theme toggle ===
 const themeToggle = document.getElementById('themeToggle');
 
-function getTheme() {
-  return document.documentElement.getAttribute('data-theme') || 'light';
-}
-
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
-  themeToggle.textContent = theme === 'dark' ? 'Light' : 'Dark';
+  themeToggle.checked = theme === 'dark';
 }
 
 const savedTheme = localStorage.getItem('theme');
@@ -250,8 +246,8 @@ if (savedTheme) {
   applyTheme('light');
 }
 
-themeToggle.addEventListener('click', () => {
-  const next = getTheme() === 'dark' ? 'light' : 'dark';
+themeToggle.addEventListener('change', () => {
+  const next = themeToggle.checked ? 'dark' : 'light';
   applyTheme(next);
   localStorage.setItem('theme', next);
 });
