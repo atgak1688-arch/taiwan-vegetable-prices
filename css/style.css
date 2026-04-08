@@ -23,8 +23,6 @@
   --tag-active-text: white;
   --suggestion-bg: white;
   --suggestion-hover: #f5f5f5;
-  --header-bg: linear-gradient(135deg, #d4a574, #c4956a, #e8c9a0);
-  --header-text: #3e2c1c;
 }
 
 [data-theme="dark"] {
@@ -52,8 +50,11 @@
   --tag-active-text: white;
   --suggestion-bg: #16213e;
   --suggestion-hover: #1e2a3e;
-  --header-bg: linear-gradient(135deg, #4a3828, #5c4633, #3e2c1c);
-  --header-text: #e8d5c0;
+}
+
+[data-theme="dark"] header {
+  background: linear-gradient(135deg, #4a3828, #5c4633, #3e2c1c);
+  color: #e8d5c0;
 }
 
 * {
@@ -74,8 +75,8 @@ body {
 
 /* ===== Header ===== */
 header {
-  background: var(--header-bg);
-  color: var(--header-text);
+  background: linear-gradient(135deg, #d4a574, #c4956a, #e8c9a0);
+  color: #3e2c1c;
   padding: 2.5rem 2rem 2rem;
   text-align: center;
   position: relative;
