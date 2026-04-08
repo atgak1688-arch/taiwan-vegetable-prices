@@ -70,27 +70,28 @@ header {
 .theme-toggle {
   position: absolute;
   right: 0;
-  width: 40px;
-  height: 40px;
-  border: none;
+  min-width: 40px;
+  min-height: 40px;
+  border: 2px solid rgba(255,255,255,0.4);
   border-radius: 50%;
-  background: rgba(255,255,255,0.2);
+  background: rgba(255,255,255,0.15);
   cursor: pointer;
-  font-size: 1.2rem;
   transition: background 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0;
+  line-height: 1;
 }
 
 .theme-toggle::after {
-  content: '\263E';
-  color: white;
-  font-size: 1.3rem;
+  content: '\1F319';
+  font-size: 1.2rem;
 }
 
 [data-theme="dark"] .theme-toggle::after {
-  content: '\2600';
+  content: '\2600\FE0F';
+  font-size: 1.2rem;
 }
 
 .theme-toggle:hover {
