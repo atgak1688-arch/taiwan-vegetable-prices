@@ -108,6 +108,7 @@ async function fetchTodayForCrop(name) {
     const date = new Date();
     date.setDate(date.getDate() - offset);
     const rocDate = toROCDate(date);
+    // Fetch all markets in parallel
     const promises = codes.map(code =>
       fetchAPI({
         Start_time: rocDate,
@@ -126,18 +127,32 @@ async function fetchTodayForCrop(name) {
 
 async function fetchHistory(name, days) {
   const { start, end } = getDateRange(days);
-  const codes = getMarketCodes();
-  const promises = codes.map(code =>
-    fetchAPI({
+  // For history, use a single request without MarketCode (faster)
+  // then filter by region market names
+  try {
+    const data = await fetchAPI({
       Start_time: start,
       End_time: end,
       CropName: name,
       TcType: VEG_TYPE,
-      MarketCode: code,
-    }).catch(() => [])
-  );
-  const results = await Promise.all(promises);
-  return results.flat();
+    });
+    const validMarkets = getMarketNames();
+    return data.filter(d => validMarkets.includes(d.MarketName));
+  } catch {
+    // Fallback: fetch per market
+    const codes = getMarketCodes();
+    const promises = codes.map(code =>
+      fetchAPI({
+        Start_time: start,
+        End_time: end,
+        CropName: name,
+        TcType: VEG_TYPE,
+        MarketCode: code,
+      }).catch(() => [])
+    );
+    const results = await Promise.all(promises);
+    return results.flat();
+  }
 }
 
 function numberFormat(n) {

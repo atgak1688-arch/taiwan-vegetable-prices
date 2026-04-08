@@ -136,8 +136,9 @@ async function fetchStaticJSON(filename) {
   }
 }
 
-async function fetchAllMarkets(rocDate) {
-  const promises = ALL_MARKET_CODES.map(code =>
+// Fetch a batch of market codes in parallel
+async function fetchMarketBatch(rocDate, codes) {
+  const promises = codes.map(code =>
     fetchAPI({
       Start_time: rocDate,
       End_time: rocDate,
@@ -149,15 +150,40 @@ async function fetchAllMarkets(rocDate) {
   return results.flat();
 }
 
-async function fetchTodayVegetables() {
+// Find the latest trading date (try today, then go back)
+async function findLatestDate() {
+  for (let offset = 0; offset < 5; offset++) {
+    const date = new Date();
+    date.setDate(date.getDate() - offset);
+    const rocDate = toROCDate(date);
+    // Quick check with just one market
+    const test = await fetchAPI({
+      Start_time: rocDate,
+      End_time: rocDate,
+      TcType: VEG_TYPE,
+      MarketCode: 109,
+    }).catch(() => []);
+    if (test.length > 0) return rocDate;
+  }
+  return null;
+}
+
+async function fetchTodayVegetables(onPartialData) {
   try {
-    for (let offset = 0; offset < 5; offset++) {
-      const date = new Date();
-      date.setDate(date.getDate() - offset);
-      const rocDate = toROCDate(date);
-      const data = await fetchAllMarkets(rocDate);
-      if (data.length > 0) return data;
+    const rocDate = await findLatestDate();
+    if (!rocDate) throw new Error('No recent data found');
+
+    // Phase 1: Quick load — fetch first 4 big markets fast
+    const quickCodes = [109, 104, 800, 400];
+    const quickData = await fetchMarketBatch(rocDate, quickCodes);
+    if (quickData.length > 0 && onPartialData) {
+      onPartialData(quickData, rocDate);
     }
+
+    // Phase 2: Fetch remaining markets in background
+    const remainingCodes = ALL_MARKET_CODES.filter(c => !quickCodes.includes(c));
+    const restData = await fetchMarketBatch(rocDate, remainingCodes);
+    return [...quickData, ...restData];
   } catch (err) {
     console.warn('Live API failed, trying static data:', err.message);
   }
@@ -423,12 +449,21 @@ themeToggle.addEventListener('change', () => {
 async function init() {
   showLoading(true);
   try {
-    todayData = await fetchTodayVegetables();
+    todayData = await fetchTodayVegetables((partialData, rocDate) => {
+      // Show partial results immediately while rest loads
+      todayData = partialData;
+      buildCropNames(partialData);
+      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(rocDate)}）— 載入中...`;
+      showLoading(false);
+      refreshTable();
+    });
+
+    // Full data ready
     buildCropNames(todayData);
     if (todayData.length > 0) {
       tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(todayData[0].TransDate)}）`;
     }
-    renderTable(todayData);
+    refreshTable();
   } catch (err) {
     console.error('Failed to load data:', err);
     noDataEl.textContent = '載入失敗，請稍後重試';
