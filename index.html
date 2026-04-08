@@ -21,9 +21,7 @@
       </div>
       <div class="filters">
         <select id="marketSelect">
-          <option value="">全部地區</option>
-          <option value="北部">北部</option>
-          <option value="中部">中部</option>
+          <option value="">全部市場</option>
         </select>
         <select id="dateRange">
           <option value="7">近 7 天</option>
@@ -41,6 +39,16 @@
         <div class="card">
           <span class="card-label">平均價</span>
           <span class="card-value" id="avgPrice">-</span>
+          <span class="card-unit">元/公斤</span>
+        </div>
+        <div class="card">
+          <span class="card-label">上價</span>
+          <span class="card-value" id="upperPrice">-</span>
+          <span class="card-unit">元/公斤</span>
+        </div>
+        <div class="card">
+          <span class="card-label">下價</span>
+          <span class="card-value" id="lowerPrice">-</span>
           <span class="card-unit">元/公斤</span>
         </div>
         <div class="card">
@@ -65,8 +73,11 @@
           <thead>
             <tr>
               <th data-sort="CropName">品名 &#x25B2;&#x25BC;</th>
-              <th data-sort="Avg_Price">平均價(元/公斤) &#x25B2;&#x25BC;</th>
-              <th data-sort="Trans_Quantity">交易量(公斤) &#x25B2;&#x25BC;</th>
+              <th data-sort="MarketName">市場 &#x25B2;&#x25BC;</th>
+              <th data-sort="Avg_Price">平均價 &#x25B2;&#x25BC;</th>
+              <th data-sort="Upper_Price">上價</th>
+              <th data-sort="Lower_Price">下價</th>
+              <th data-sort="Trans_Quantity">交易量(公斤)</th>
             </tr>
           </thead>
           <tbody id="priceTableBody">
