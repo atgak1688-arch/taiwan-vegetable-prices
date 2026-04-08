@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>蔬菜價格詳情 - 台灣蔬菜即時價格查詢</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/detail.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <header>
+    <button id="themeToggle" class="theme-toggle" aria-label="切換深淺模式" title="切換深淺模式">Dark</button>
+    <h1 id="cropTitle">載入中...</h1>
+    <p class="subtitle"><a href="index.html" class="back-link">< 返回價格總覽</a></p>
+  </header>
+
+  <main>
+    <!-- Summary cards -->
+    <section class="detail-summary">
+      <div class="detail-date" id="detailDate"></div>
+      <div class="summary-cards">
+        <div class="card card-primary">
+          <span class="card-label">平均價</span>
+          <span class="card-value" id="avgPrice">-</span>
+          <span class="card-unit">元/公斤</span>
+        </div>
+        <div class="card">
+          <span class="card-label">上價</span>
+          <span class="card-value" id="upperPrice">-</span>
+          <span class="card-unit">元/公斤</span>
+        </div>
+        <div class="card">
+          <span class="card-label">下價</span>
+          <span class="card-value" id="lowerPrice">-</span>
+          <span class="card-unit">元/公斤</span>
+        </div>
+        <div class="card">
+          <span class="card-label">總交易量</span>
+          <span class="card-value" id="transQty">-</span>
+          <span class="card-unit">公斤</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chart -->
+    <section class="detail-chart">
+      <div class="chart-header">
+        <h2>價格趨勢</h2>
+        <div class="chart-controls">
+          <button class="range-btn active" data-days="7">近 7 天</button>
+          <button class="range-btn" data-days="30">近 30 天</button>
+        </div>
+      </div>
+      <div class="chart-container">
+        <canvas id="priceChart"></canvas>
+      </div>
+    </section>
+
+    <!-- Market comparison -->
+    <section class="detail-markets">
+      <h2>各市場價格比較</h2>
+      <div class="market-cards" id="marketCards"></div>
+    </section>
+
+    <div id="loading" class="loading">載入中...</div>
+    <div id="noData" class="no-data hidden">查無此蔬菜資料</div>
+  </main>
+
+  <footer>
+    <p>資料來源：<a href="https://data.moa.gov.tw/" target="_blank" rel="noopener">農業部開放資料平台</a> |
+       本站僅供參考，實際價格以市場公告為準</p>
+  </footer>
+
+  <script src="js/detail.js"></script>
+</body>
+</html>

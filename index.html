@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>台灣蔬菜即時價格查詢</title>
   <link rel="stylesheet" href="css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 <body>
   <header>
@@ -25,10 +24,6 @@
         <select id="marketSelect">
           <option value="">全部市場</option>
         </select>
-        <select id="dateRange">
-          <option value="7">近 7 天</option>
-          <option value="30">近 30 天</option>
-        </select>
       </div>
     </section>
 
@@ -42,44 +37,6 @@
         <button class="tag" data-category="bean">豆類</button>
         <button class="tag" data-category="mushroom">菇類</button>
         <button class="tag" data-category="other">其他</button>
-      </div>
-    </section>
-
-    <!-- Summary -->
-    <section id="summary" class="summary hidden">
-      <div class="summary-header">
-        <h2 id="summaryTitle"></h2>
-        <span id="updateTime" class="update-time"></span>
-      </div>
-      <div class="summary-cards">
-        <div class="card">
-          <span class="card-label">平均價</span>
-          <span class="card-value" id="avgPrice">-</span>
-          <span class="card-unit">元/公斤</span>
-        </div>
-        <div class="card">
-          <span class="card-label">上價</span>
-          <span class="card-value" id="upperPrice">-</span>
-          <span class="card-unit">元/公斤</span>
-        </div>
-        <div class="card">
-          <span class="card-label">下價</span>
-          <span class="card-value" id="lowerPrice">-</span>
-          <span class="card-unit">元/公斤</span>
-        </div>
-        <div class="card">
-          <span class="card-label">交易量</span>
-          <span class="card-value" id="transQty">-</span>
-          <span class="card-unit">公斤</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- Chart -->
-    <section id="chartSection" class="chart-section hidden">
-      <h3>價格趨勢</h3>
-      <div class="chart-container">
-        <canvas id="priceChart"></canvas>
       </div>
     </section>
 

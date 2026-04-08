@@ -49,22 +49,12 @@ function classifyCrop(cropName) {
 const searchInput = document.getElementById('searchInput');
 const suggestionsEl = document.getElementById('searchSuggestions');
 const marketSelect = document.getElementById('marketSelect');
-const dateRange = document.getElementById('dateRange');
-const summarySection = document.getElementById('summary');
-const summaryTitle = document.getElementById('summaryTitle');
-const updateTime = document.getElementById('updateTime');
-const avgPriceEl = document.getElementById('avgPrice');
-const upperPriceEl = document.getElementById('upperPrice');
-const lowerPriceEl = document.getElementById('lowerPrice');
-const transQtyEl = document.getElementById('transQty');
-const chartSection = document.getElementById('chartSection');
 const tableTitle = document.getElementById('tableTitle');
 const resultCount = document.getElementById('resultCount');
 const priceTableBody = document.getElementById('priceTableBody');
 const loadingEl = document.getElementById('loading');
 const noDataEl = document.getElementById('noData');
 
-let priceChart = null;
 let currentSort = { field: 'Avg_Price', desc: true };
 let todayData = [];
 let allCropNames = [];
@@ -136,22 +126,6 @@ async function fetchTodayVegetables() {
   return [];
 }
 
-async function fetchHistory(cropName, days) {
-  const { start, end } = getDateRange(days);
-  try {
-    return await fetchAPI({
-      Start_time: start,
-      End_time: end,
-      CropName: cropName,
-      TcType: VEG_TYPE,
-    });
-  } catch (err) {
-    console.warn('Live API failed for history, trying static data:', err.message);
-    const staticData = await fetchStaticJSON('history.json');
-    if (staticData) return staticData.filter(d => d.CropName === cropName);
-    return [];
-  }
-}
 
 // === Autocomplete / Suggestions ===
 function buildCropNames(data) {
@@ -193,9 +167,11 @@ function hideSuggestions() {
 }
 
 function selectSuggestion(name) {
-  searchInput.value = name;
-  hideSuggestions();
-  handleSearch();
+  navigateToDetail(name);
+}
+
+function navigateToDetail(cropName) {
+  window.location.href = `detail.html?crop=${encodeURIComponent(cropName)}`;
 }
 
 // === Rendering ===
@@ -273,7 +249,7 @@ function renderTable(data) {
       <td class="hide-mobile">${item.Lower_Price.toFixed(1)}</td>
       <td>${numberFormat(item.Trans_Quantity)}</td>
     `;
-    tr.addEventListener('click', () => showDetail(item.CropName));
+    tr.addEventListener('click', () => navigateToDetail(item.CropName));
     priceTableBody.appendChild(tr);
   }
 }
@@ -293,117 +269,6 @@ function refreshTable() {
   renderTable(filtered);
 }
 
-// === Detail view ===
-async function showDetail(cropName) {
-  searchInput.value = cropName;
-  hideSuggestions();
-  summarySection.classList.remove('hidden');
-  chartSection.classList.remove('hidden');
-  summaryTitle.textContent = cropName;
-
-  const todayFiltered = todayData.filter(d => d.CropName === cropName);
-  if (todayFiltered.length > 0) {
-    const totalQ = todayFiltered.reduce((s, d) => s + d.Trans_Quantity, 0);
-    const avgP = todayFiltered.reduce((s, d) => s + d.Avg_Price * d.Trans_Quantity, 0) / totalQ;
-    const upperP = Math.max(...todayFiltered.map(d => d.Upper_Price));
-    const lowerP = Math.min(...todayFiltered.map(d => d.Lower_Price));
-    avgPriceEl.textContent = avgP.toFixed(1);
-    upperPriceEl.textContent = upperP.toFixed(1);
-    lowerPriceEl.textContent = lowerP.toFixed(1);
-    transQtyEl.textContent = numberFormat(totalQ);
-    updateTime.textContent = `交易日期：${rocToDisplay(todayFiltered[0].TransDate)}`;
-  }
-
-  const days = parseInt(dateRange.value);
-  const history = await fetchHistory(cropName, days);
-
-  const byDate = {};
-  for (const item of history) {
-    const date = item.TransDate;
-    if (!byDate[date]) {
-      byDate[date] = { totalQty: 0, weightedPrice: 0, upper: 0, lower: Infinity };
-    }
-    byDate[date].totalQty += item.Trans_Quantity;
-    byDate[date].weightedPrice += item.Avg_Price * item.Trans_Quantity;
-    byDate[date].upper = Math.max(byDate[date].upper, item.Upper_Price);
-    byDate[date].lower = Math.min(byDate[date].lower, item.Lower_Price);
-  }
-
-  const dates = Object.keys(byDate).sort();
-  const labels = dates.map(rocToDisplay);
-  const avgPrices = dates.map(d => (byDate[d].weightedPrice / byDate[d].totalQty).toFixed(1));
-  const upperPrices = dates.map(d => byDate[d].upper.toFixed(1));
-  const lowerPrices = dates.map(d => byDate[d].lower.toFixed(1));
-
-  renderChart(labels, avgPrices, upperPrices, lowerPrices);
-  refreshTable();
-}
-
-function renderChart(labels, avgPrices, upperPrices, lowerPrices) {
-  if (priceChart) priceChart.destroy();
-
-  const ctx = document.getElementById('priceChart').getContext('2d');
-  priceChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels,
-      datasets: [
-        {
-          label: '平均價',
-          data: avgPrices,
-          borderColor: '#4caf50',
-          backgroundColor: 'rgba(76, 175, 80, 0.1)',
-          borderWidth: 2.5,
-          fill: true,
-          tension: 0.3,
-          pointRadius: 3,
-        },
-        {
-          label: '上價',
-          data: upperPrices,
-          borderColor: '#ff7043',
-          borderWidth: 1.5,
-          borderDash: [5, 3],
-          fill: false,
-          tension: 0.3,
-          pointRadius: 2,
-        },
-        {
-          label: '下價',
-          data: lowerPrices,
-          borderColor: '#42a5f5',
-          borderWidth: 1.5,
-          borderDash: [5, 3],
-          fill: false,
-          tension: 0.3,
-          pointRadius: 2,
-        },
-      ],
-    },
-    options: {
-      responsive: true,
-      maintainAspectRatio: false,
-      interaction: { intersect: false, mode: 'index' },
-      plugins: {
-        tooltip: {
-          callbacks: {
-            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y} 元/公斤`,
-          },
-        },
-      },
-      scales: {
-        y: {
-          title: { display: true, text: '元/公斤' },
-          beginAtZero: false,
-        },
-        x: {
-          ticks: { maxRotation: 45, maxTicksLimit: 15 },
-        },
-      },
-    },
-  });
-}
-
 // === Event handlers ===
 function handleSearch() {
   hideSuggestions();
@@ -411,25 +276,16 @@ function handleSearch() {
   if (query) {
     const exactMatch = todayData.some(d => d.CropName === query);
     if (exactMatch) {
-      showDetail(query);
+      navigateToDetail(query);
       return;
     }
-    summarySection.classList.add('hidden');
-    chartSection.classList.add('hidden');
-  } else {
-    summarySection.classList.add('hidden');
-    chartSection.classList.add('hidden');
   }
   refreshTable();
 }
 
-// Autocomplete: live search as user types
 searchInput.addEventListener('input', () => {
   const query = searchInput.value.trim();
   showSuggestions(query);
-  // Live filter table
-  summarySection.classList.add('hidden');
-  chartSection.classList.add('hidden');
   refreshTable();
 });
 
@@ -461,13 +317,6 @@ searchInput.addEventListener('blur', () => {
 });
 
 marketSelect.addEventListener('change', refreshTable);
-
-dateRange.addEventListener('change', () => {
-  const query = searchInput.value.trim();
-  if (query && todayData.some(d => d.CropName === query)) {
-    showDetail(query);
-  }
-});
 
 // Category tags
 document.getElementById('categoryTags').addEventListener('click', e => {
