@@ -263,35 +263,31 @@ main {
   color: var(--green);
 }
 
-.filters {
+/* ===== Filter Section ===== */
+.filter-section {
   display: flex;
-  gap: 0.5rem;
-}
-
-.filters select {
-  padding: 0.75rem 1rem;
-  border: 2px solid var(--input-border);
-  border-radius: 8px;
-  font-size: 0.95rem;
-  background: var(--input-bg);
-  color: var(--text);
-  cursor: pointer;
-  outline: none;
-  transition: border-color 0.2s;
-}
-
-.filters select:focus {
-  border-color: var(--green);
-}
-
-/* ===== Category Tags ===== */
-.category-section {
+  flex-direction: column;
+  gap: 0.6rem;
   margin-bottom: 1.2rem;
 }
 
-.category-tags {
+.filter-group {
   display: flex;
-  gap: 0.5rem;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.filter-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  white-space: nowrap;
+  min-width: 2.5rem;
+}
+
+.filter-tags {
+  display: flex;
+  gap: 0.4rem;
   flex-wrap: wrap;
 }
 
@@ -538,31 +534,12 @@ footer a:hover {
     font-size: 1.5rem;
   }
 
-  .theme-toggle {
-    top: 0.8rem;
+  .theme-switch {
     right: 0.8rem;
-    padding: 0.3rem 0.7rem;
-    font-size: 0.75rem;
-  }
-
-  .search-section {
-    flex-direction: column;
-  }
-
-  .filters {
-    width: 100%;
-  }
-
-  .filters select {
-    flex: 1;
   }
 
   .summary-cards {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .category-tags {
-    gap: 0.4rem;
   }
 
   .tag {
@@ -596,12 +573,11 @@ footer a:hover {
     font-size: 0.95rem;
   }
 
-  .filters select {
-    padding: 0.6rem 0.6rem;
-    font-size: 0.85rem;
+  .filter-group {
+    flex-wrap: wrap;
   }
 
-  .category-tags {
+  .filter-tags {
     overflow-x: auto;
     flex-wrap: nowrap;
     -webkit-overflow-scrolling: touch;

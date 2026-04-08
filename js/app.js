@@ -1,6 +1,44 @@
 const API_BASE = 'https://data.moa.gov.tw/api/v1/AgriProductsTransType/';
 const VEG_TYPE = 'N04';
 
+// === All 17 markets grouped by region ===
+const MARKETS = {
+  north: [
+    { code: 109, name: '台北一' },
+    { code: 104, name: '台北二' },
+    { code: 220, name: '板橋區' },
+    { code: 241, name: '三重區' },
+    { code: 260, name: '宜蘭市' },
+    { code: 338, name: '桃農' },
+  ],
+  central: [
+    { code: 400, name: '台中市' },
+    { code: 420, name: '豐原區' },
+    { code: 512, name: '永靖鄉' },
+    { code: 514, name: '溪湖鎮' },
+    { code: 540, name: '南投市' },
+  ],
+  south: [
+    { code: 648, name: '西螺鎮' },
+    { code: 800, name: '高雄市' },
+    { code: 830, name: '鳳山區' },
+    { code: 900, name: '屏東市' },
+  ],
+  east: [
+    { code: 930, name: '台東市' },
+    { code: 950, name: '花蓮市' },
+  ],
+};
+
+const ALL_MARKET_CODES = Object.values(MARKETS).flat().map(m => m.code);
+
+function getRegion(marketName) {
+  for (const [region, markets] of Object.entries(MARKETS)) {
+    if (markets.some(m => m.name === marketName)) return region;
+  }
+  return null;
+}
+
 // === Category classification ===
 const CATEGORIES = {
   leafy: {
@@ -48,7 +86,6 @@ function classifyCrop(cropName) {
 // === DOM elements ===
 const searchInput = document.getElementById('searchInput');
 const suggestionsEl = document.getElementById('searchSuggestions');
-const marketSelect = document.getElementById('marketSelect');
 const tableTitle = document.getElementById('tableTitle');
 const resultCount = document.getElementById('resultCount');
 const priceTableBody = document.getElementById('priceTableBody');
@@ -59,6 +96,7 @@ let currentSort = { field: 'Avg_Price', desc: true };
 let todayData = [];
 let allCropNames = [];
 let activeCategory = 'all';
+let activeRegion = 'all';
 let suggestionIndex = -1;
 
 // === Date helpers (ROC calendar) ===
@@ -73,13 +111,6 @@ function rocToDisplay(rocDate) {
   const parts = rocDate.split('.');
   const year = parseInt(parts[0]) + 1911;
   return `${year}/${parts[1]}/${parts[2]}`;
-}
-
-function getDateRange(days) {
-  const end = new Date();
-  const start = new Date();
-  start.setDate(start.getDate() - days);
-  return { start: toROCDate(start), end: toROCDate(end) };
 }
 
 // === API ===
@@ -105,17 +136,26 @@ async function fetchStaticJSON(filename) {
   }
 }
 
+async function fetchAllMarkets(rocDate) {
+  const promises = ALL_MARKET_CODES.map(code =>
+    fetchAPI({
+      Start_time: rocDate,
+      End_time: rocDate,
+      TcType: VEG_TYPE,
+      MarketCode: code,
+    }).catch(() => [])
+  );
+  const results = await Promise.all(promises);
+  return results.flat();
+}
+
 async function fetchTodayVegetables() {
   try {
     for (let offset = 0; offset < 5; offset++) {
       const date = new Date();
       date.setDate(date.getDate() - offset);
       const rocDate = toROCDate(date);
-      const data = await fetchAPI({
-        Start_time: rocDate,
-        End_time: rocDate,
-        TcType: VEG_TYPE,
-      });
+      const data = await fetchAllMarkets(rocDate);
       if (data.length > 0) return data;
     }
   } catch (err) {
@@ -125,7 +165,6 @@ async function fetchTodayVegetables() {
   if (staticData && staticData.length > 0) return staticData;
   return [];
 }
-
 
 // === Autocomplete / Suggestions ===
 function buildCropNames(data) {
@@ -183,19 +222,14 @@ function showNoData(show) {
   noDataEl.classList.toggle('hidden', !show);
 }
 
-function populateMarkets(data) {
-  const markets = new Set(data.map(d => d.MarketName));
-  marketSelect.innerHTML = '<option value="">全部市場</option>';
-  for (const m of [...markets].sort()) {
-    const opt = document.createElement('option');
-    opt.value = m;
-    opt.textContent = m;
-    marketSelect.appendChild(opt);
-  }
-}
-
 function filterData(data) {
   let filtered = data;
+
+  // Region filter
+  if (activeRegion !== 'all') {
+    const regionMarkets = MARKETS[activeRegion].map(m => m.name);
+    filtered = filtered.filter(d => regionMarkets.includes(d.MarketName));
+  }
 
   // Category filter
   if (activeCategory !== 'all') {
@@ -206,12 +240,6 @@ function filterData(data) {
   const query = searchInput.value.trim();
   if (query) {
     filtered = filtered.filter(d => d.CropName.includes(query));
-  }
-
-  // Market filter
-  const market = marketSelect.value;
-  if (market) {
-    filtered = filtered.filter(d => d.MarketName === market);
   }
 
   return filtered;
@@ -316,13 +344,21 @@ searchInput.addEventListener('blur', () => {
   setTimeout(hideSuggestions, 150);
 });
 
-marketSelect.addEventListener('change', refreshTable);
+// Region tags
+document.getElementById('regionTags').addEventListener('click', e => {
+  const tag = e.target.closest('.tag');
+  if (!tag) return;
+  document.querySelectorAll('#regionTags .tag').forEach(t => t.classList.remove('active'));
+  tag.classList.add('active');
+  activeRegion = tag.dataset.region;
+  refreshTable();
+});
 
 // Category tags
 document.getElementById('categoryTags').addEventListener('click', e => {
   const tag = e.target.closest('.tag');
   if (!tag) return;
-  document.querySelectorAll('.tag').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('#categoryTags .tag').forEach(t => t.classList.remove('active'));
   tag.classList.add('active');
   activeCategory = tag.dataset.category;
   refreshTable();
@@ -370,7 +406,6 @@ async function init() {
   try {
     todayData = await fetchTodayVegetables();
     buildCropNames(todayData);
-    populateMarkets(todayData);
     if (todayData.length > 0) {
       tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(todayData[0].TransDate)}）`;
     }

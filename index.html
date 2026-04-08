@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>台灣蔬菜即時價格查詢</title>
-  <link rel="stylesheet" href="css/style.css?v=2">
+  <link rel="stylesheet" href="css/style.css?v=3">
 </head>
 <body>
   <header>
@@ -27,23 +27,31 @@
         <input type="text" id="searchInput" placeholder="輸入蔬菜名稱，例如：高麗菜、空心菜..." autocomplete="off">
         <ul id="searchSuggestions" class="suggestions hidden"></ul>
       </div>
-      <div class="filters">
-        <select id="marketSelect">
-          <option value="">全部市場</option>
-        </select>
-      </div>
     </section>
 
-    <!-- Category tags -->
-    <section class="category-section">
-      <div class="category-tags" id="categoryTags">
-        <button class="tag active" data-category="all">全部</button>
-        <button class="tag" data-category="leafy">葉菜類</button>
-        <button class="tag" data-category="root">根莖類</button>
-        <button class="tag" data-category="gourd">瓜果類</button>
-        <button class="tag" data-category="bean">豆類</button>
-        <button class="tag" data-category="mushroom">菇類</button>
-        <button class="tag" data-category="other">其他</button>
+    <!-- Region tags -->
+    <section class="filter-section">
+      <div class="filter-group">
+        <span class="filter-label">地區</span>
+        <div class="filter-tags" id="regionTags">
+          <button class="tag active" data-region="all">全部地區</button>
+          <button class="tag" data-region="north">北部</button>
+          <button class="tag" data-region="central">中部</button>
+          <button class="tag" data-region="south">南部</button>
+          <button class="tag" data-region="east">東部</button>
+        </div>
+      </div>
+      <div class="filter-group">
+        <span class="filter-label">分類</span>
+        <div class="filter-tags" id="categoryTags">
+          <button class="tag active" data-category="all">全部</button>
+          <button class="tag" data-category="leafy">葉菜類</button>
+          <button class="tag" data-category="root">根莖類</button>
+          <button class="tag" data-category="gourd">瓜果類</button>
+          <button class="tag" data-category="bean">豆類</button>
+          <button class="tag" data-category="mushroom">菇類</button>
+          <button class="tag" data-category="other">其他</button>
+        </div>
       </div>
     </section>
 
@@ -79,6 +87,6 @@
        本站僅供參考，實際價格以市場公告為準</p>
   </footer>
 
-  <script src="js/app.js?v=2"></script>
+  <script src="js/app.js?v=3"></script>
 </body>
 </html>
