@@ -36,13 +36,23 @@
 - 上價＝當天最高價、下價＝最低價、平均價＝加權平均
 
 ## 回答菜價問題：
-- 如果使用者問某種菜的價格，請根據「今日菜價資料」回答真實數據
-- 回答時說明是批發價，零售價通常會再高一些
-- 如果資料裡找不到那種菜，就告訴使用者目前沒有這個品項的資料
-- 品名可能帶有子分類（像「甘藍-初秋」），回答時用使用者熟悉的俗稱
+- 如果使用者問某種菜的價格，用以下固定表格格式回答（非常重要！）：
+  |品名|平均價|上價|下價|
+  |---|---|---|---|
+  |甘藍-初秋|10.5|15.0|7.0|
+- 表格上方或下方可以加一句簡短的說明（例如「今天高麗菜的批發價如下～」）
+- 如果有多種菜，全部放在同一個表格裡
+- 價格數字後面不要加「元」或「元/公斤」，表格標題已經有了
+- 只列出使用者問的菜，不要列一大堆
+
+## 回答操作問題：
+- 用最簡短的方式回答，2-3 句話就好
+- 不要列一大堆步驟，講重點就好
+- 可以用數字標記步驟，但最多 3 步
 
 ## 注意事項：
 - 一定要用繁體中文回答
+- 回答要盡量精簡，不要超過 5 行（表格不算）
 - 如果問到超出網站範圍的問題，親切地帶回來就好
 - 絕對不要編造價格數字，只根據提供的菜價資料回答`;
 
@@ -246,52 +256,67 @@
   }
 
   function formatReply(text) {
-    let html = escapeHTML(text);
+    const lines = text.split('\n');
+    const result = [];
+    let i = 0;
 
-    // Bold
-    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
-
-    // Detect price lines like "品名：平均XX元" or "品名 - 平均XX元" and convert to table
-    const lines = html.split('\n');
-    let tableRows = [];
-    let otherLines = [];
-    const pricePattern = /^(.+?)[：:]\s*平均\s*([\d.]+)\s*元?/;
-
-    for (const line of lines) {
-      const match = line.match(pricePattern);
-      if (match) {
-        // Extract more details if available
-        const name = match[1].trim();
-        const avg = match[2];
-        const upper = line.match(/上價\s*([\d.]+)/)?.[1] || '';
-        const lower = line.match(/下價\s*([\d.]+)/)?.[1] || '';
-        tableRows.push({ name, avg, upper, lower });
-      } else {
-        // Flush any accumulated table rows
-        if (tableRows.length > 0) {
-          otherLines.push(buildPriceTable(tableRows));
-          tableRows = [];
+    while (i < lines.length) {
+      // Detect markdown table: line with | chars, followed by separator |---|
+      if (lines[i].includes('|') && i + 1 < lines.length && /^\s*\|[-\s|]+\|\s*$/.test(lines[i + 1])) {
+        // Parse markdown table
+        const headerCells = lines[i].split('|').map(c => c.trim()).filter(c => c);
+        i += 2; // skip header + separator
+        const rows = [];
+        while (i < lines.length && lines[i].includes('|') && !/^\s*\|[-\s|]+\|\s*$/.test(lines[i])) {
+          const cells = lines[i].split('|').map(c => c.trim()).filter(c => c);
+          if (cells.length > 0) rows.push(cells);
+          i++;
         }
-        otherLines.push(line);
+        result.push(buildTable(headerCells, rows));
+        continue;
       }
+
+      // Detect plain list price lines: "* 品名：平均價格是 XX 元" or "品名：平均 XX 元"
+      const pricePattern = /^[*\-•]?\s*(.+?)[：:]\s*平均.*?([\d.]+)\s*元/;
+      const priceRows = [];
+      while (i < lines.length && pricePattern.test(lines[i])) {
+        const m = lines[i].match(pricePattern);
+        const name = m[1].trim();
+        const avg = m[2];
+        const upper = lines[i].match(/上價.*?([\d.]+)/)?.[1] || '';
+        const lower = lines[i].match(/下價.*?([\d.]+)/)?.[1] || '';
+        priceRows.push([name, avg, upper, lower].filter(v => v));
+        i++;
+      }
+      if (priceRows.length > 0) {
+        const hasDetail = priceRows.some(r => r.length > 2);
+        const headers = hasDetail ? ['品名', '平均價', '上價', '下價'] : ['品名', '平均價'];
+        result.push(buildTable(headers, priceRows));
+        continue;
+      }
+
+      // Normal line
+      let line = escapeHTML(lines[i]);
+      line = line.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+      result.push(line);
+      i++;
     }
 
-    // Flush remaining
-    if (tableRows.length > 0) {
-      otherLines.push(buildPriceTable(tableRows));
-    }
-
-    return otherLines.join('<br>').replace(/<br><br>/g, '<br>');
+    return result.join('<br>').replace(/(<br>){3,}/g, '<br><br>');
   }
 
-  function buildPriceTable(rows) {
-    let html = '<table class="chat-price-table"><thead><tr><th>品名</th><th>平均價</th>';
-    const hasDetail = rows.some(r => r.upper || r.lower);
-    if (hasDetail) html += '<th>上價</th><th>下價</th>';
+  function buildTable(headers, rows) {
+    let html = '<table class="chat-price-table"><thead><tr>';
+    for (const h of headers) html += `<th>${escapeHTML(h)}</th>`;
     html += '</tr></thead><tbody>';
-    for (const r of rows) {
-      html += `<tr><td>${r.name}</td><td class="price-col">${r.avg}</td>`;
-      if (hasDetail) html += `<td>${r.upper}</td><td>${r.lower}</td>`;
+    for (const row of rows) {
+      html += '<tr>';
+      row.forEach((cell, idx) => {
+        const cls = idx === 1 ? ' class="price-col"' : '';
+        html += `<td${cls}>${escapeHTML(cell)}</td>`;
+      });
+      // Fill empty cells if row is shorter than headers
+      for (let j = row.length; j < headers.length; j++) html += '<td></td>';
       html += '</tr>';
     }
     html += '</tbody></table>';
