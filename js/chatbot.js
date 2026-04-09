@@ -1,7 +1,6 @@
 // === Chatbot with Gemini API ===
 (function () {
-  const GEMINI_MODEL = 'gemini-2.5-flash';
-  const GEMINI_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent`;
+  const PROXY_URL = 'https://gemini-proxy.atgak1688.workers.dev';
 
   const SYSTEM_PROMPT = `你是「台灣蔬菜即時價格查詢」網站的智能助理，名字叫「菜價小幫手」。
 你的任務是幫助使用者了解如何操作這個網站，以及回答蔬菜相關的問題。
@@ -31,10 +30,6 @@
 
   let chatHistory = [];
 
-  // Get API key from config.js (injected by GitHub Actions)
-  function getApiKey() {
-    return window.GEMINI_API_KEY || '';
-  }
 
   // === Build UI ===
   function createChatbotUI() {
@@ -124,12 +119,6 @@
     const text = input.value.trim();
     if (!text) return;
 
-    const apiKey = getApiKey();
-    if (!apiKey) {
-      addMessage('抱歉，智能助理尚未設定完成，請稍後再試。', 'bot');
-      return;
-    }
-
     // Show user message
     addMessage(escapeHTML(text), 'user');
     input.value = '';
@@ -146,7 +135,7 @@
     chatHistory.push({ role: 'user', parts: [{ text }] });
 
     try {
-      const response = await fetch(`${GEMINI_URL}?key=${apiKey}`, {
+      const response = await fetch(PROXY_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
