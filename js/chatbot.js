@@ -246,10 +246,56 @@
   }
 
   function formatReply(text) {
-    // Basic markdown: **bold**, newlines
-    return escapeHTML(text)
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\n/g, '<br>');
+    let html = escapeHTML(text);
+
+    // Bold
+    html = html.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>');
+
+    // Detect price lines like "品名：平均XX元" or "品名 - 平均XX元" and convert to table
+    const lines = html.split('\n');
+    let tableRows = [];
+    let otherLines = [];
+    const pricePattern = /^(.+?)[：:]\s*平均\s*([\d.]+)\s*元?/;
+
+    for (const line of lines) {
+      const match = line.match(pricePattern);
+      if (match) {
+        // Extract more details if available
+        const name = match[1].trim();
+        const avg = match[2];
+        const upper = line.match(/上價\s*([\d.]+)/)?.[1] || '';
+        const lower = line.match(/下價\s*([\d.]+)/)?.[1] || '';
+        tableRows.push({ name, avg, upper, lower });
+      } else {
+        // Flush any accumulated table rows
+        if (tableRows.length > 0) {
+          otherLines.push(buildPriceTable(tableRows));
+          tableRows = [];
+        }
+        otherLines.push(line);
+      }
+    }
+
+    // Flush remaining
+    if (tableRows.length > 0) {
+      otherLines.push(buildPriceTable(tableRows));
+    }
+
+    return otherLines.join('<br>').replace(/<br><br>/g, '<br>');
+  }
+
+  function buildPriceTable(rows) {
+    let html = '<table class="chat-price-table"><thead><tr><th>品名</th><th>平均價</th>';
+    const hasDetail = rows.some(r => r.upper || r.lower);
+    if (hasDetail) html += '<th>上價</th><th>下價</th>';
+    html += '</tr></thead><tbody>';
+    for (const r of rows) {
+      html += `<tr><td>${r.name}</td><td class="price-col">${r.avg}</td>`;
+      if (hasDetail) html += `<td>${r.upper}</td><td>${r.lower}</td>`;
+      html += '</tr>';
+    }
+    html += '</tbody></table>';
+    return html;
   }
 
   function escapeHTML(str) {

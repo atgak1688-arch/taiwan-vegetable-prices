@@ -115,6 +115,10 @@
   border-bottom-left-radius: 4px;
 }
 
+.chat-msg.bot:has(.chat-price-table) {
+  max-width: 95%;
+}
+
 .chat-msg.user {
   align-self: flex-end;
   background: var(--tag-active-bg);
@@ -146,6 +150,47 @@
 @keyframes typingBounce {
   0%, 60%, 100% { transform: translateY(0); }
   30% { transform: translateY(-6px); }
+}
+
+/* Chat price table */
+.chat-price-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.78rem;
+  margin: 0.4rem 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.chat-price-table th {
+  background: var(--tag-active-bg);
+  color: white;
+  padding: 0.35rem 0.5rem;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.72rem;
+}
+
+.chat-price-table td {
+  padding: 0.3rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.chat-price-table tr:last-child td {
+  border-bottom: none;
+}
+
+.chat-price-table tr:nth-child(even) {
+  background: rgba(0,0,0,0.03);
+}
+
+[data-theme="dark"] .chat-price-table tr:nth-child(even) {
+  background: rgba(255,255,255,0.03);
+}
+
+.chat-price-table .price-col {
+  font-weight: 700;
+  color: var(--green);
 }
 
 /* Follow-up buttons (after bot reply) */
