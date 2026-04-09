@@ -99,6 +99,95 @@ function classifyCrop(cropName) {
   return 'other';
 }
 
+// === Seasonal data (盛產月份, based on 農業部蔬菜產期) ===
+// Each entry: keyword → array of peak months (1-12)
+const SEASONAL_DATA = {
+  // 青菜類
+  '甘藍':     [10,11,12,1,2,3],
+  '包心白':   [10,11,12,1,2,3],
+  '菠菜':     [10,11,12,1,2],
+  '茼蒿':     [11,12,1,2,3],
+  '芥菜':     [10,11,12,1,2],
+  '芥藍':     [10,11,12,1,2,3],
+  '油菜':     [10,11,12,1,2,3],
+  '蕹菜':     [4,5,6,7,8,9,10],
+  '莧菜':     [4,5,6,7,8,9],
+  '甘薯葉':   [4,5,6,7,8,9,10],
+  '皇宮菜':   [5,6,7,8,9],
+  '紅鳳菜':   [3,4,5,6,7,8,9,10],
+  '青江':     [10,11,12,1,2,3],
+  '萵苣':     [10,11,12,1,2,3,4],
+  '芹菜':     [10,11,12,1,2,3],
+  '花椰菜':   [11,12,1,2,3],
+  '青花苔':   [10,11,12,1,2,3],
+  '藤川七':   [4,5,6,7,8,9],
+  '海菜':     [3,4,5,6,7,8,9,10],
+  '蕨菜':     [3,4,5,6,7,8],
+  // 瓜類
+  '花胡瓜':   [3,4,5,6,7,8,9,10],
+  '胡瓜':     [3,4,5,6,7,8,9,10],
+  '絲瓜':     [4,5,6,7,8,9,10],
+  '苦瓜':     [4,5,6,7,8,9,10],
+  '南瓜':     [3,4,5,6,7,8],
+  '冬瓜':     [5,6,7,8,9,10],
+  '扁蒲':     [3,4,5,6,7,8,9],
+  '隼人瓜':   [10,11,12,1,2,3],
+  // 根莖筍類
+  '蘿蔔':     [10,11,12,1,2,3],
+  '胡蘿蔔':   [11,12,1,2,3,4],
+  '馬鈴薯':   [1,2,3,4,5],
+  '甘薯':     [7,8,9,10,11,12],
+  '芋':       [8,9,10,11,12],
+  '竹筍':     [4,5,6,7,8,9],
+  '茭白筍':   [4,5,6,9,10,11],
+  '蘆筍':     [3,4,5,6,7,8,9,10],
+  '牛蒡':     [10,11,12,1,2],
+  '蓮藕':     [7,8,9,10,11],
+  '薯蕷':     [10,11,12],
+  '菱角':     [8,9,10,11],
+  // 蔥薑蒜辛香
+  '青蔥':     [10,11,12,1,2,3],
+  '大蒜':     [2,3,4],
+  '薑':       [6,7,8,9,10],
+  '洋蔥':     [2,3,4,5],
+  '辣椒':     [3,4,5,6,7,8,9,10],
+  '韭菜':     [10,11,12,1,2,3,4],
+  '九層塔':   [3,4,5,6,7,8,9,10],
+  '芫荽':     [10,11,12,1,2],
+  // 瓜果茄類
+  '番茄':     [11,12,1,2,3,4],
+  '小番茄':   [11,12,1,2,3,4],
+  '茄子':     [3,4,5,6,7,8,9,10],
+  '甜椒':     [11,12,1,2,3,4,5],
+  '玉米':     [5,6,7,8,9,10],
+  '黃秋葵':   [5,6,7,8,9,10],
+  // 菇類（室內栽培，全年供應）
+  '杏鮑菇':   [1,2,3,4,5,6,7,8,9,10,11,12],
+  '秀珍菇':   [1,2,3,4,5,6,7,8,9,10,11,12],
+  '金絲菇':   [1,2,3,4,5,6,7,8,9,10,11,12],
+  '濕香菇':   [10,11,12,1,2,3],
+  '濕木耳':   [4,5,6,7,8,9,10],
+  '洋菇':     [10,11,12,1,2,3],
+  // 豆類
+  '毛豆':     [3,4,5,6,7,8,9,10],
+  '敏豆':     [10,11,12,1,2,3,4],
+  '菜豆':     [3,4,5,6,7,8,9,10],
+  '豌豆':     [11,12,1,2,3],
+  '落花生':   [5,6,7,8,9,10],
+};
+
+function getSeasonStatus(cropName) {
+  const month = new Date().getMonth() + 1; // 1-12
+  for (const [keyword, months] of Object.entries(SEASONAL_DATA)) {
+    if (cropName.includes(keyword)) {
+      return months.includes(month) ? 'in-season' : 'off-season';
+    }
+  }
+  return 'unknown';
+}
+
+let activeSeason = 'all';
+
 // === Common name aliases (俗稱 → API品名關鍵字) ===
 const ALIASES = {
   '高麗菜': '甘藍', '包心菜': '甘藍', '捲心菜': '甘藍',
@@ -416,6 +505,11 @@ function filterAndAggregate(data) {
     filtered = filtered.filter(d => classifyCrop(d.CropName) === activeCategory);
   }
 
+  // Season filter
+  if (activeSeason !== 'all') {
+    filtered = filtered.filter(d => getSeasonStatus(d.CropName) === activeSeason);
+  }
+
   // Search filter (supports aliases)
   const query = searchInput.value.trim();
   if (query) {
@@ -471,8 +565,14 @@ function renderTable(data) {
 
   for (const item of sorted) {
     const tr = document.createElement('tr');
+    const season = getSeasonStatus(item.CropName);
+    const seasonBadge = season === 'in-season'
+      ? ' <span class="season-badge in-season">當季</span>'
+      : season === 'off-season'
+      ? ' <span class="season-badge off-season">非當季</span>'
+      : '';
     tr.innerHTML = `
-      <td class="crop-name">${escapeHTML(item.CropName)}</td>
+      <td class="crop-name">${escapeHTML(item.CropName)}${seasonBadge}</td>
       <td class="price-avg">${convertPrice(item.Avg_Price).toFixed(1)}</td>
       <td>${convertPrice(item.Upper_Price).toFixed(1)}</td>
       <td>${convertPrice(item.Lower_Price).toFixed(1)}</td>
@@ -584,6 +684,16 @@ document.getElementById('unitTags').addEventListener('click', e => {
   tag.classList.add('active');
   activeUnit = tag.dataset.unit;
   localStorage.setItem('unit', activeUnit);
+  refreshTable();
+});
+
+// Season tags
+document.getElementById('seasonTags').addEventListener('click', e => {
+  const tag = e.target.closest('.tag');
+  if (!tag) return;
+  document.querySelectorAll('#seasonTags .tag').forEach(t => t.classList.remove('active'));
+  tag.classList.add('active');
+  activeSeason = tag.dataset.season;
   refreshTable();
 });
 

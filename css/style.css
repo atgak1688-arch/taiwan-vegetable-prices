@@ -506,6 +506,38 @@ tbody tr:hover {
   font-size: 1.05rem;
 }
 
+/* ===== Season Badge ===== */
+.season-badge {
+  display: inline-block;
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.15rem 0.4rem;
+  border-radius: 8px;
+  vertical-align: middle;
+  margin-left: 0.3rem;
+  white-space: nowrap;
+}
+
+.season-badge.in-season {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.season-badge.off-season {
+  background: #f3e5f5;
+  color: #7b1fa2;
+}
+
+[data-theme="dark"] .season-badge.in-season {
+  background: #1b3a1b;
+  color: #81c784;
+}
+
+[data-theme="dark"] .season-badge.off-season {
+  background: #2a1a2e;
+  color: #ce93d8;
+}
+
 /* ===== Data info ===== */
 .data-info {
   background: var(--card-bg);
