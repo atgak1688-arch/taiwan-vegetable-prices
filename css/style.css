@@ -57,6 +57,11 @@
   color: #e8d5c0;
 }
 
+[data-theme="dark"] header::before {
+  opacity: 0.2;
+  mix-blend-mode: screen;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -88,17 +93,19 @@ header::before {
   position: absolute;
   inset: 0;
   background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ctext x='5' y='40' font-size='36' opacity='0.18' transform='rotate(-15 30 30)'%3E%F0%9F%A5%95%3C/text%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ctext x='5' y='40' font-size='36' opacity='0.18' transform='rotate(10 30 30)'%3E%F0%9F%A5%A6%3C/text%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ctext x='5' y='40' font-size='36' opacity='0.18' transform='rotate(-5 30 30)'%3E%F0%9F%8D%85%3C/text%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ctext x='5' y='40' font-size='36' opacity='0.18' transform='rotate(20 30 30)'%3E%F0%9F%8C%BD%3C/text%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ctext x='5' y='40' font-size='36' opacity='0.18' transform='rotate(-10 30 30)'%3E%F0%9F%8D%86%3C/text%3E%3C/svg%3E"),
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Ctext x='5' y='40' font-size='36' opacity='0.18' transform='rotate(15 30 30)'%3E%F0%9F%A7%85%3C/text%3E%3C/svg%3E");
-  background-size: 140px 140px, 160px 160px, 120px 120px, 150px 150px, 130px 130px, 145px 145px;
+    url("../images/1.png"),
+    url("../images/5.png"),
+    url("../images/2.png"),
+    url("../images/6.png"),
+    url("../images/3.png"),
+    url("../images/4.png");
+  background-size: 120px, 100px, 110px, 95px, 90px, 115px;
   background-position:
-    2% 10%, 20% 65%, 42% 8%, 62% 55%, 78% 15%, 93% 70%;
+    2% 50%, 18% 20%, 38% 75%, 60% 15%, 80% 65%, 95% 40%;
   background-repeat: no-repeat;
   pointer-events: none;
+  opacity: 0.25;
+  mix-blend-mode: multiply;
 }
 
 header h1 {
@@ -673,6 +680,11 @@ footer a:hover {
 
 /* ===== RWD: Tablet (<=768px) ===== */
 @media (max-width: 768px) {
+  header::before {
+    background-size: 80px, 70px, 75px, 65px, 60px, 80px;
+    opacity: 0.2;
+  }
+
   header h1 {
     font-size: 1.5rem;
   }
@@ -695,6 +707,11 @@ footer a:hover {
 @media (max-width: 480px) {
   header {
     padding: 1.2rem 1rem;
+  }
+
+  header::before {
+    background-size: 55px, 50px, 50px, 45px, 40px, 55px;
+    opacity: 0.15;
   }
 
   header h1 {
