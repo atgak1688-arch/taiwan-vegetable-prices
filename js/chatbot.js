@@ -35,14 +35,47 @@
 - 每天大概下午會更新，週日跟國定假日休市沒有資料
 - 上價＝當天最高價、下價＝最低價、平均價＝加權平均
 
+## 回答菜價問題：
+- 如果使用者問某種菜的價格，請根據「今日菜價資料」回答真實數據
+- 回答時說明是批發價，零售價通常會再高一些
+- 如果資料裡找不到那種菜，就告訴使用者目前沒有這個品項的資料
+- 品名可能帶有子分類（像「甘藍-初秋」），回答時用使用者熟悉的俗稱
+
 ## 注意事項：
 - 一定要用繁體中文回答
 - 如果問到超出網站範圍的問題，親切地帶回來就好
-- 不要自己編菜價數字，請引導使用者去查
-- 如果使用者問具體菜價，告訴他們怎麼在網站上查到`;
+- 絕對不要編造價格數字，只根據提供的菜價資料回答`;
 
   let chatHistory = [];
 
+  // Get current price data from the page
+  function getPriceSummary() {
+    // Access todayData from app.js (global scope)
+    if (typeof todayData === 'undefined' || !todayData || todayData.length === 0) return '';
+
+    // Aggregate by crop name
+    const map = {};
+    for (const item of todayData) {
+      const key = item.CropName;
+      if (!map[key]) {
+        map[key] = { totalQty: 0, weightedPrice: 0, upper: 0, lower: Infinity };
+      }
+      map[key].totalQty += item.Trans_Quantity;
+      map[key].weightedPrice += item.Avg_Price * item.Trans_Quantity;
+      map[key].upper = Math.max(map[key].upper, item.Upper_Price);
+      map[key].lower = Math.min(map[key].lower, item.Lower_Price);
+    }
+
+    const lines = [];
+    const date = todayData[0]?.TransDate || '';
+    lines.push(`今日菜價資料（日期：${date}，單位：元/公斤）：`);
+    for (const [name, d] of Object.entries(map)) {
+      const avg = d.totalQty > 0 ? (d.weightedPrice / d.totalQty).toFixed(1) : 0;
+      const lower = d.lower === Infinity ? 0 : d.lower.toFixed(1);
+      lines.push(`${name}：平均${avg}，上價${d.upper.toFixed(1)}，下價${lower}，交易量${Math.round(d.totalQty)}公斤`);
+    }
+    return lines.join('\n');
+  }
 
   // === Build UI ===
   function createChatbotUI() {
@@ -70,10 +103,10 @@
         <div class="chat-msg bot">你好！我是菜價小幫手 &#x1F44B;<br>有任何關於本站操作或蔬菜價格的問題，都可以問我喔！</div>
       </div>
       <div class="quick-questions" id="quickQuestions">
+        <button class="quick-q">高麗菜現在多少？</button>
+        <button class="quick-q">今天什麼菜便宜？</button>
         <button class="quick-q">怎麼查菜價？</button>
-        <button class="quick-q">可以看歷史價格嗎？</button>
         <button class="quick-q">上價下價是什麼？</button>
-        <button class="quick-q">怎麼切換地區？</button>
       </div>
       <div class="chatbot-input">
         <input type="text" id="chatInput" placeholder="輸入你的問題..." autocomplete="off">
@@ -144,8 +177,17 @@
     // Show typing indicator
     const typingEl = showTyping();
 
-    // Build conversation
-    chatHistory.push({ role: 'user', parts: [{ text }] });
+    // Build conversation - inject price data when user asks about prices
+    const priceKeywords = ['多少','價格','價錢','菜價','貴','便宜','划算','當季','盛產','推薦','什麼菜','哪些菜','買什麼'];
+    const needsPrice = priceKeywords.some(kw => text.includes(kw));
+    let userMessage = text;
+    if (needsPrice) {
+      const priceSummary = getPriceSummary();
+      if (priceSummary) {
+        userMessage = `[參考資料 - 今日菜價]\n${priceSummary}\n\n[使用者問題] ${text}`;
+      }
+    }
+    chatHistory.push({ role: 'user', parts: [{ text: userMessage }] });
 
     try {
       const response = await fetch(PROXY_URL, {
