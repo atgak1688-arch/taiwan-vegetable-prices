@@ -191,7 +191,23 @@ let todayData = [];
 let allCropNames = [];
 let activeCategory = 'all';
 let activeRegion = 'all';
+let activeUnit = 'kg';
 let suggestionIndex = -1;
+
+// === Unit conversion ===
+const UNITS = {
+  kg:    { factor: 1,    label: '元/公斤', short: '公斤' },
+  catty: { factor: 0.6,  label: '元/台斤', short: '台斤' },
+  '100g': { factor: 0.1, label: '元/100g', short: '100克' },
+};
+
+function convertPrice(price) {
+  return price * UNITS[activeUnit].factor;
+}
+
+function getUnitLabel() {
+  return UNITS[activeUnit].label;
+}
 
 // === Date helpers (ROC calendar) ===
 function toROCDate(date) {
@@ -457,9 +473,9 @@ function renderTable(data) {
     const tr = document.createElement('tr');
     tr.innerHTML = `
       <td class="crop-name">${escapeHTML(item.CropName)}</td>
-      <td class="price-avg">${item.Avg_Price.toFixed(1)}</td>
-      <td>${item.Upper_Price.toFixed(1)}</td>
-      <td>${item.Lower_Price.toFixed(1)}</td>
+      <td class="price-avg">${convertPrice(item.Avg_Price).toFixed(1)}</td>
+      <td>${convertPrice(item.Upper_Price).toFixed(1)}</td>
+      <td>${convertPrice(item.Lower_Price).toFixed(1)}</td>
       <td>${numberFormat(item.Trans_Quantity)}</td>
     `;
     tr.addEventListener('click', () => navigateToDetail(item.CropName));
@@ -477,7 +493,19 @@ function numberFormat(n) {
   return Math.round(n).toLocaleString('zh-TW');
 }
 
+function updateTableHeaders() {
+  const unitLabel = UNITS[activeUnit].short;
+  const headers = document.querySelectorAll('th[data-sort]');
+  headers.forEach(th => {
+    const field = th.dataset.sort;
+    if (field === 'Avg_Price') th.innerHTML = `平均價(${unitLabel}) &#x25B2;&#x25BC;`;
+    else if (field === 'Upper_Price') th.innerHTML = `上價(${unitLabel}) &#x25B2;&#x25BC;`;
+    else if (field === 'Lower_Price') th.innerHTML = `下價(${unitLabel}) &#x25B2;&#x25BC;`;
+  });
+}
+
 function refreshTable() {
+  updateTableHeaders();
   const aggregated = filterAndAggregate(todayData);
   renderTable(aggregated);
 }
@@ -548,6 +576,17 @@ document.getElementById('regionTags').addEventListener('click', e => {
   refreshTable();
 });
 
+// Unit tags
+document.getElementById('unitTags').addEventListener('click', e => {
+  const tag = e.target.closest('.tag');
+  if (!tag) return;
+  document.querySelectorAll('#unitTags .tag').forEach(t => t.classList.remove('active'));
+  tag.classList.add('active');
+  activeUnit = tag.dataset.unit;
+  localStorage.setItem('unit', activeUnit);
+  refreshTable();
+});
+
 // Category tags
 document.getElementById('categoryTags').addEventListener('click', e => {
   const tag = e.target.closest('.tag');
@@ -577,6 +616,15 @@ const themeToggle = document.getElementById('themeToggle');
 function applyTheme(theme) {
   document.documentElement.setAttribute('data-theme', theme);
   themeToggle.checked = theme === 'dark';
+}
+
+// Restore saved unit
+const savedUnit = localStorage.getItem('unit');
+if (savedUnit && UNITS[savedUnit]) {
+  activeUnit = savedUnit;
+  document.querySelectorAll('#unitTags .tag').forEach(t => {
+    t.classList.toggle('active', t.dataset.unit === activeUnit);
+  });
 }
 
 const savedTheme = localStorage.getItem('theme');

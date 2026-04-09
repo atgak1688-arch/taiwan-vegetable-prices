@@ -68,6 +68,22 @@ const loadingEl = document.getElementById('loading');
 const noDataEl = document.getElementById('noData');
 
 let priceChart = null;
+let activeUnit = 'kg';
+let todayData = [];
+
+const UNITS = {
+  kg:    { factor: 1,    label: '元/公斤', short: '公斤' },
+  catty: { factor: 0.6,  label: '元/台斤', short: '台斤' },
+  '100g': { factor: 0.1, label: '元/100g', short: '100克' },
+};
+
+function convertPrice(price) {
+  return price * UNITS[activeUnit].factor;
+}
+
+function getUnitLabel() {
+  return UNITS[activeUnit].label;
+}
 
 // === Date helpers ===
 function toROCDate(date) {
@@ -174,10 +190,15 @@ function renderSummary(data) {
   const upperP = Math.max(...data.map(d => d.Upper_Price));
   const lowerP = Math.min(...data.map(d => d.Lower_Price));
 
-  avgPriceEl.textContent = avgP.toFixed(1);
-  upperPriceEl.textContent = upperP.toFixed(1);
-  lowerPriceEl.textContent = lowerP.toFixed(1);
+  avgPriceEl.textContent = convertPrice(avgP).toFixed(1);
+  upperPriceEl.textContent = convertPrice(upperP).toFixed(1);
+  lowerPriceEl.textContent = convertPrice(lowerP).toFixed(1);
   transQtyEl.textContent = numberFormat(totalQ);
+
+  // Update unit labels
+  document.querySelectorAll('.card-unit').forEach(el => {
+    if (el.textContent.includes('元')) el.textContent = getUnitLabel();
+  });
   detailDate.textContent = `交易日期：${rocToDisplay(data[0].TransDate)}`;
 }
 
@@ -193,15 +214,15 @@ function renderMarkets(data) {
       <div class="market-card-name">${escapeHTML(item.MarketName)}</div>
       <div class="market-card-row">
         <span class="market-card-label">平均價</span>
-        <span class="market-card-value price">${item.Avg_Price.toFixed(1)} 元</span>
+        <span class="market-card-value price">${convertPrice(item.Avg_Price).toFixed(1)} 元</span>
       </div>
       <div class="market-card-row">
         <span class="market-card-label">上價</span>
-        <span class="market-card-value">${item.Upper_Price.toFixed(1)} 元</span>
+        <span class="market-card-value">${convertPrice(item.Upper_Price).toFixed(1)} 元</span>
       </div>
       <div class="market-card-row">
         <span class="market-card-label">下價</span>
-        <span class="market-card-value">${item.Lower_Price.toFixed(1)} 元</span>
+        <span class="market-card-value">${convertPrice(item.Lower_Price).toFixed(1)} 元</span>
       </div>
       <div class="market-card-row">
         <span class="market-card-label">交易量</span>
@@ -230,9 +251,9 @@ async function renderChart(days) {
 
   const dates = Object.keys(byDate).sort();
   const labels = dates.map(rocToDisplay);
-  const avgPrices = dates.map(d => (byDate[d].weightedPrice / byDate[d].totalQty).toFixed(1));
-  const upperPrices = dates.map(d => byDate[d].upper.toFixed(1));
-  const lowerPrices = dates.map(d => byDate[d].lower.toFixed(1));
+  const avgPrices = dates.map(d => convertPrice(byDate[d].weightedPrice / byDate[d].totalQty).toFixed(1));
+  const upperPrices = dates.map(d => convertPrice(byDate[d].upper).toFixed(1));
+  const lowerPrices = dates.map(d => convertPrice(byDate[d].lower).toFixed(1));
 
   if (priceChart) priceChart.destroy();
 
@@ -281,13 +302,13 @@ async function renderChart(days) {
       plugins: {
         tooltip: {
           callbacks: {
-            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y} 元/公斤`,
+            label: ctx => `${ctx.dataset.label}: ${ctx.parsed.y} ${getUnitLabel()}`,
           },
         },
       },
       scales: {
         y: {
-          title: { display: true, text: '元/公斤' },
+          title: { display: true, text: getUnitLabel() },
           beginAtZero: false,
         },
         x: {
@@ -297,6 +318,30 @@ async function renderChart(days) {
     },
   });
 }
+
+// === Unit tags ===
+const savedUnit = localStorage.getItem('unit');
+if (savedUnit && UNITS[savedUnit]) {
+  activeUnit = savedUnit;
+  document.querySelectorAll('#unitTags .tag').forEach(t => {
+    t.classList.toggle('active', t.dataset.unit === activeUnit);
+  });
+}
+
+document.getElementById('unitTags').addEventListener('click', e => {
+  const tag = e.target.closest('.tag');
+  if (!tag) return;
+  document.querySelectorAll('#unitTags .tag').forEach(t => t.classList.remove('active'));
+  tag.classList.add('active');
+  activeUnit = tag.dataset.unit;
+  localStorage.setItem('unit', activeUnit);
+  if (todayData.length > 0) {
+    renderSummary(todayData);
+    renderMarkets(todayData);
+  }
+  const activeDays = document.querySelector('.range-btn.active')?.dataset.days || 7;
+  renderChart(parseInt(activeDays));
+});
 
 // === Range buttons ===
 document.querySelectorAll('.range-btn').forEach(btn => {
@@ -363,7 +408,7 @@ async function init() {
   updateBackLink();
 
   try {
-    const todayData = await fetchTodayForCrop(cropName);
+    todayData = await fetchTodayForCrop(cropName);
     loadingEl.classList.add('hidden');
 
     if (todayData.length === 0) {
