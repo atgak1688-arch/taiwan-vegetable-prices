@@ -608,7 +608,7 @@ function renderPagination(totalItems) {
     const btn = document.createElement('button');
     btn.className = 'show-all-btn';
     btn.textContent = '收合分頁';
-    btn.addEventListener('click', () => { showAll = false; currentPage = 1; refreshTable(); scrollToTable(); });
+    btn.addEventListener('click', () => { showAll = false; currentPage = 1; refreshTable(false); scrollToTable(); });
     paginationEl.appendChild(btn);
     return;
   }
@@ -619,7 +619,7 @@ function renderPagination(totalItems) {
   const prev = document.createElement('button');
   prev.textContent = '<';
   prev.disabled = currentPage === 1;
-  prev.addEventListener('click', () => { currentPage--; refreshTable(); scrollToTable(); });
+  prev.addEventListener('click', () => { currentPage--; refreshTable(false); scrollToTable(); });
   paginationEl.appendChild(prev);
 
   // Page buttons
@@ -634,7 +634,7 @@ function renderPagination(totalItems) {
       const btn = document.createElement('button');
       btn.textContent = p;
       btn.classList.toggle('active', p === currentPage);
-      btn.addEventListener('click', () => { currentPage = p; refreshTable(); scrollToTable(); });
+      btn.addEventListener('click', () => { currentPage = p; refreshTable(false); scrollToTable(); });
       paginationEl.appendChild(btn);
     }
   }
@@ -643,14 +643,14 @@ function renderPagination(totalItems) {
   const next = document.createElement('button');
   next.textContent = '>';
   next.disabled = currentPage === totalPages;
-  next.addEventListener('click', () => { currentPage++; refreshTable(); scrollToTable(); });
+  next.addEventListener('click', () => { currentPage++; refreshTable(false); scrollToTable(); });
   paginationEl.appendChild(next);
 
   // Show all button
   const allBtn = document.createElement('button');
   allBtn.className = 'show-all-btn';
   allBtn.textContent = '顯示全部';
-  allBtn.addEventListener('click', () => { showAll = true; refreshTable(); });
+  allBtn.addEventListener('click', () => { showAll = true; refreshTable(false); });
   paginationEl.appendChild(allBtn);
 }
 
