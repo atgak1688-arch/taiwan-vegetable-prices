@@ -282,6 +282,9 @@ let activeCategory = 'all';
 let activeRegion = 'all';
 let activeUnit = 'kg';
 let suggestionIndex = -1;
+let currentPage = 1;
+let showAll = false;
+const PAGE_SIZE = 20;
 
 // === Unit conversion ===
 const UNITS = {
@@ -559,11 +562,17 @@ function renderTable(data) {
 
   if (sorted.length === 0) {
     showNoData(true);
+    renderPagination(0);
     return;
   }
   showNoData(false);
 
-  for (const item of sorted) {
+  const totalPages = Math.ceil(sorted.length / PAGE_SIZE);
+  if (currentPage > totalPages) currentPage = 1;
+
+  const display = showAll ? sorted : sorted.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE);
+
+  for (const item of display) {
     const tr = document.createElement('tr');
     const season = getSeasonStatus(item.CropName);
     const seasonBadge = season === 'in-season'
@@ -581,6 +590,85 @@ function renderTable(data) {
     tr.addEventListener('click', () => navigateToDetail(item.CropName));
     priceTableBody.appendChild(tr);
   }
+
+  renderPagination(sorted.length);
+}
+
+function renderPagination(totalItems) {
+  const paginationEl = document.getElementById('pagination');
+  paginationEl.innerHTML = '';
+
+  if (totalItems <= PAGE_SIZE) {
+    paginationEl.classList.add('hidden');
+    return;
+  }
+  paginationEl.classList.remove('hidden');
+
+  if (showAll) {
+    const btn = document.createElement('button');
+    btn.className = 'show-all-btn';
+    btn.textContent = '收合分頁';
+    btn.addEventListener('click', () => { showAll = false; currentPage = 1; refreshTable(); scrollToTable(); });
+    paginationEl.appendChild(btn);
+    return;
+  }
+
+  const totalPages = Math.ceil(totalItems / PAGE_SIZE);
+
+  // Prev button
+  const prev = document.createElement('button');
+  prev.textContent = '<';
+  prev.disabled = currentPage === 1;
+  prev.addEventListener('click', () => { currentPage--; refreshTable(); scrollToTable(); });
+  paginationEl.appendChild(prev);
+
+  // Page buttons
+  const pages = getPageNumbers(currentPage, totalPages);
+  for (const p of pages) {
+    if (p === '...') {
+      const dots = document.createElement('span');
+      dots.className = 'page-dots';
+      dots.textContent = '...';
+      paginationEl.appendChild(dots);
+    } else {
+      const btn = document.createElement('button');
+      btn.textContent = p;
+      btn.classList.toggle('active', p === currentPage);
+      btn.addEventListener('click', () => { currentPage = p; refreshTable(); scrollToTable(); });
+      paginationEl.appendChild(btn);
+    }
+  }
+
+  // Next button
+  const next = document.createElement('button');
+  next.textContent = '>';
+  next.disabled = currentPage === totalPages;
+  next.addEventListener('click', () => { currentPage++; refreshTable(); scrollToTable(); });
+  paginationEl.appendChild(next);
+
+  // Show all button
+  const allBtn = document.createElement('button');
+  allBtn.className = 'show-all-btn';
+  allBtn.textContent = '顯示全部';
+  allBtn.addEventListener('click', () => { showAll = true; refreshTable(); });
+  paginationEl.appendChild(allBtn);
+}
+
+function getPageNumbers(current, total) {
+  if (total <= 7) return Array.from({ length: total }, (_, i) => i + 1);
+  const pages = [];
+  pages.push(1);
+  if (current > 3) pages.push('...');
+  for (let i = Math.max(2, current - 1); i <= Math.min(total - 1, current + 1); i++) {
+    pages.push(i);
+  }
+  if (current < total - 2) pages.push('...');
+  pages.push(total);
+  return pages;
+}
+
+function scrollToTable() {
+  document.getElementById('tableSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function escapeHTML(str) {
@@ -604,7 +692,8 @@ function updateTableHeaders() {
   });
 }
 
-function refreshTable() {
+function refreshTable(resetPage = true) {
+  if (resetPage) { currentPage = 1; showAll = false; }
   updateTableHeaders();
   const aggregated = filterAndAggregate(todayData);
   renderTable(aggregated);
