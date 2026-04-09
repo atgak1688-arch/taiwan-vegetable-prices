@@ -329,6 +329,7 @@ const noDataEl = document.getElementById('noData');
 let currentSort = { field: 'Avg_Price', desc: true };
 let todayData = [];
 let allCropNames = [];
+const dataCache = { veg: null, fruit: null };
 let activeCategory = 'all';
 let activeRegion = 'all';
 let activeUnit = 'kg';
@@ -816,7 +817,22 @@ document.getElementById('typeToggle').addEventListener('click', e => {
   btn.classList.add('active');
   activeType = btn.dataset.type;
   updateTypeUI();
-  init();
+  searchInput.value = '';
+  updateClearBtn();
+
+  // Use cache if available
+  if (dataCache[activeType]) {
+    todayData = dataCache[activeType];
+    buildCropNames(todayData);
+    if (todayData.length > 0) {
+      const rocDate = todayData[0].TransDate;
+      tableTitle.textContent = `${activeType === 'fruit' ? '水果' : '蔬菜'}價格一覽（${rocToDisplay(rocDate)}）`;
+      updateDataInfo(rocDate);
+    }
+    refreshTable();
+  } else {
+    init();
+  }
 });
 
 function updateTypeUI() {
@@ -950,8 +966,9 @@ async function init() {
   showLoading(true);
   try {
     todayData = await fetchTodayVegetables((partialData, rocDate) => {
-      // Static JSON loaded — show instantly
+      // Static JSON loaded — show instantly and cache
       todayData = partialData;
+      dataCache[activeType] = partialData;
       buildCropNames(partialData);
       tableTitle.textContent = `${activeType === 'fruit' ? '水果' : '蔬菜'}價格一覽（${rocToDisplay(rocDate)}）`;
       showDataInfo(rocDate, 'static');
@@ -959,7 +976,8 @@ async function init() {
       refreshTable();
     });
 
-    // Full API data ready
+    // Full API data ready — cache it
+    dataCache[activeType] = todayData;
     buildCropNames(todayData);
     if (todayData.length > 0) {
       const rocDate = todayData[0].TransDate;
