@@ -84,10 +84,10 @@
       qty: d.totalQty,
     }));
 
-    // Sort by avg price, only send top 30 cheapest + top 10 most expensive
+    // Sort by avg price, only send top 15 cheapest + top 5 most expensive
     const sorted = [...items].sort((a, b) => a.avg - b.avg);
-    const cheap = sorted.slice(0, 30);
-    const expensive = sorted.slice(-10);
+    const cheap = sorted.slice(0, 15);
+    const expensive = sorted.slice(-5);
     const selected = [...cheap, ...expensive.filter(e => !cheap.includes(e))];
 
     const date = todayData[0]?.TransDate || '';
@@ -187,14 +187,20 @@
     const typingEl = showTyping();
 
     // Build conversation - inject price data when user asks about prices
-    const priceKeywords = ['多少','價格','價錢','菜價','貴','便宜','划算','當季','盛產','推薦','什麼菜','哪些菜','買什麼'];
+    const priceKeywords = ['多少','價格','價錢','菜價','果價','貴','便宜','划算','當季','盛產','推薦','什麼菜','哪些菜','買什麼','什麼水果','哪些水果'];
     const needsPrice = priceKeywords.some(kw => text.includes(kw));
+    const typeLabel = (typeof activeType !== 'undefined' && activeType === 'fruit') ? '水果' : '蔬菜';
     let userMessage = text;
     if (needsPrice) {
       const priceSummary = getPriceSummary();
       if (priceSummary) {
-        userMessage = `[參考資料 - 今日菜價]\n${priceSummary}\n\n[使用者問題] ${text}`;
+        userMessage = `[目前模式：${typeLabel}]\n[參考資料 - 今日${typeLabel}價格]\n${priceSummary}\n\n[使用者問題] ${text}`;
       }
+    }
+
+    // Keep only last 10 messages to prevent request too large
+    if (chatHistory.length > 10) {
+      chatHistory = chatHistory.slice(-10);
     }
     chatHistory.push({ role: 'user', parts: [{ text: userMessage }] });
 
