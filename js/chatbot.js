@@ -41,7 +41,7 @@
   |---|---|---|---|
   |甘藍-初秋|10.5|15.0|7.0|
 - 表格上方或下方可以加一句簡短的說明（例如「今天高麗菜的批發價如下～」）
-- 如果有多種菜，全部放在同一個表格裡
+- 如果有多種菜，放在同一個表格裡，但最多列 10 筆就好
 - 價格數字後面不要加「元」或「元/公斤」，表格標題已經有了
 - 只列出使用者問的菜，不要列一大堆
 
@@ -76,13 +76,24 @@
       map[key].lower = Math.min(map[key].lower, item.Lower_Price);
     }
 
-    const lines = [];
+    const items = Object.entries(map).map(([name, d]) => ({
+      name,
+      avg: d.totalQty > 0 ? d.weightedPrice / d.totalQty : 0,
+      upper: d.upper,
+      lower: d.lower === Infinity ? 0 : d.lower,
+      qty: d.totalQty,
+    }));
+
+    // Sort by avg price, only send top 30 cheapest + top 10 most expensive
+    const sorted = [...items].sort((a, b) => a.avg - b.avg);
+    const cheap = sorted.slice(0, 30);
+    const expensive = sorted.slice(-10);
+    const selected = [...cheap, ...expensive.filter(e => !cheap.includes(e))];
+
     const date = todayData[0]?.TransDate || '';
-    lines.push(`今日菜價資料（日期：${date}，單位：元/公斤）：`);
-    for (const [name, d] of Object.entries(map)) {
-      const avg = d.totalQty > 0 ? (d.weightedPrice / d.totalQty).toFixed(1) : 0;
-      const lower = d.lower === Infinity ? 0 : d.lower.toFixed(1);
-      lines.push(`${name}：平均${avg}，上價${d.upper.toFixed(1)}，下價${lower}，交易量${Math.round(d.totalQty)}公斤`);
+    const lines = [`今日菜價（${date}，元/公斤，共${items.length}項，以下為部分摘要）：`];
+    for (const d of selected) {
+      lines.push(`${d.name}：平均${d.avg.toFixed(1)}，上價${d.upper.toFixed(1)}，下價${d.lower.toFixed(1)}`);
     }
     return lines.join('\n');
   }
@@ -196,7 +207,7 @@
           contents: chatHistory,
           generationConfig: {
             temperature: 0.7,
-            maxOutputTokens: 1024,
+            maxOutputTokens: 2048,
           },
         }),
       });
