@@ -287,12 +287,79 @@ const ALIASES = {
   '紅捲萵苣': '萵苣菜-紅捲', '綠捲萵苣': '萵苣菜-綠捲',
 };
 
+const FRUIT_ALIASES = {
+  // 芭樂 → 番石榴
+  '芭樂': '番石榴', '拔樂': '番石榴', '芭拉': '番石榴',
+  '珍珠芭樂': '番石榴-珍珠芭', '帝王芭樂': '番石榴-帝王芭',
+  '紅心芭樂': '番石榴-紅心', '水晶芭樂': '番石榴-水晶無子',
+  // 鳳梨
+  '鳳梨': '鳳梨-金鑽鳳梨', '旺來': '鳳梨', '菠蘿': '鳳梨',
+  '金鑽鳳梨': '鳳梨-金鑽鳳梨', '西瓜鳳梨': '鳳梨-西瓜鳳梨',
+  // 柳丁/柳橙
+  '柳丁': '甜橙-柳橙', '柳橙': '甜橙-柳橙', '橙子': '甜橙-柳橙',
+  // 橘子/柑橘
+  '橘子': '柑橘', '柑仔': '柑橘', '桶柑': '桶柑', '茂谷柑': '茂谷柑',
+  // 檸檬
+  '檸檬': '雜柑-檸檬', '無子檸檬': '雜柑-無子檸檬',
+  // 金桔/金棗
+  '金桔': '雜柑-金棗', '金棗': '雜柑-金棗',
+  // 芒果
+  '芒果': '芒果', '愛文': '芒果-愛文', '愛文芒果': '芒果-愛文',
+  '土芒果': '芒果-本島', '青芒果': '芒果-芒果青', '情人果': '芒果-芒果青',
+  // 西瓜
+  '西瓜': '西瓜', '大西瓜': '西瓜-大西瓜', '黃肉西瓜': '西瓜-黃肉',
+  // 香瓜/哈密瓜
+  '香瓜': '甜瓜-美濃', '美濃瓜': '甜瓜-美濃',
+  '哈密瓜': '洋香瓜', '洋香瓜': '洋香瓜', '網紋瓜': '洋香瓜-網狀綠肉',
+  // 葡萄
+  '葡萄': '葡萄', '巨峰': '葡萄-巨峰', '巨峰葡萄': '葡萄-巨峰',
+  // 草莓
+  '草莓': '草莓',
+  // 蘋果
+  '蘋果': '蘋果',
+  // 水梨
+  '水梨': '梨', '梨子': '梨',
+  // 桃子
+  '桃子': '桃子', '水蜜桃': '桃子-水蜜桃',
+  // 香蕉
+  '香蕉': '香蕉', '芭蕉': '香蕉-芭蕉紅芭蕉',
+  // 木瓜
+  '木瓜': '木瓜', '青木瓜': '木瓜-青木瓜',
+  // 釋迦
+  '釋迦': '釋迦', '鳳梨釋迦': '釋迦-鳳梨釋迦',
+  // 百香果
+  '百香果': '百香果',
+  // 蓮霧
+  '蓮霧': '蓮霧', '黑糖芭比': '蓮霧-黑糖芭比',
+  // 火龍果
+  '火龍果': '紅龍果-紅肉', '紅龍果': '紅龍果-紅肉',
+  // 棗子
+  '棗子': '棗子', '蜜棗': '棗子',
+  // 柚子
+  '柚子': '雜柑-其他', '文旦': '雜柑-其他',
+  // 其他
+  '奇異果': '奇異果-進口', '酪梨': '酪梨',
+  '葡萄柚': '葡萄柚-紅肉', '楊桃': '楊桃',
+  '藍莓': '藍莓-進口', '枇杷': '枇杷-茂木',
+  '李子': '李', '黃金果': '黃金果', '波羅蜜': '波蘿蜜',
+  '小番茄': '小番茄', '聖女番茄': '小番茄-聖女', '玉女番茄': '小番茄-玉女',
+};
+
 // Build reverse map: API name → list of aliases
-const REVERSE_ALIASES = {};
-for (const [alias, apiName] of Object.entries(ALIASES)) {
-  if (!REVERSE_ALIASES[apiName]) REVERSE_ALIASES[apiName] = [];
-  REVERSE_ALIASES[apiName].push(alias);
+function getActiveAliases() {
+  return activeType === 'fruit' ? FRUIT_ALIASES : ALIASES;
 }
+
+let REVERSE_ALIASES = {};
+function buildReverseAliases() {
+  REVERSE_ALIASES = {};
+  const aliases = getActiveAliases();
+  for (const [alias, apiName] of Object.entries(aliases)) {
+    if (!REVERSE_ALIASES[apiName]) REVERSE_ALIASES[apiName] = [];
+    REVERSE_ALIASES[apiName].push(alias);
+  }
+}
+buildReverseAliases();
 
 // Get display name with alias hint
 function getDisplayName(cropName) {
@@ -308,10 +375,11 @@ function getDisplayName(cropName) {
 
 // Resolve search query: if user types an alias, return the API name
 function resolveAlias(query) {
+  const aliases = getActiveAliases();
   // Exact alias match
-  if (ALIASES[query]) return ALIASES[query];
+  if (aliases[query]) return aliases[query];
   // Partial alias match
-  for (const [alias, apiName] of Object.entries(ALIASES)) {
+  for (const [alias, apiName] of Object.entries(aliases)) {
     if (alias.includes(query) || query.includes(alias)) return apiName;
   }
   return null;
@@ -836,6 +904,7 @@ document.getElementById('typeToggle').addEventListener('click', e => {
 });
 
 function updateTypeUI() {
+  buildReverseAliases();
   const isVeg = activeType === 'veg';
   searchInput.placeholder = isVeg
     ? '輸入蔬菜名稱，例如：高麗菜、空心菜...'
