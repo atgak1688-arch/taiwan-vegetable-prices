@@ -102,12 +102,6 @@
       <div class="chatbot-messages" id="chatMessages">
         <div class="chat-msg bot">你好！我是菜價小幫手 &#x1F44B;<br>有任何關於本站操作或蔬菜價格的問題，都可以問我喔！</div>
       </div>
-      <div class="quick-questions" id="quickQuestions">
-        <button class="quick-q">高麗菜現在多少？</button>
-        <button class="quick-q">今天什麼菜便宜？</button>
-        <button class="quick-q">怎麼查菜價？</button>
-        <button class="quick-q">上價下價是什麼？</button>
-      </div>
       <div class="chatbot-input">
         <input type="text" id="chatInput" placeholder="輸入你的問題..." autocomplete="off">
         <button id="chatSend" aria-label="送出">
@@ -136,13 +130,8 @@
       if (e.key === 'Enter' && !e.isComposing) sendMessage();
     });
 
-    // Quick questions
-    document.getElementById('quickQuestions').addEventListener('click', (e) => {
-      const btn = e.target.closest('.quick-q');
-      if (!btn) return;
-      chatInput.value = btn.textContent;
-      sendMessage();
-    });
+    // Show initial follow-up buttons
+    showFollowUp();
   }
 
   function addMessage(text, role) {
@@ -170,9 +159,8 @@
     input.value = '';
     sendBtn.disabled = true;
 
-    // Hide quick questions after first message
-    const quickQ = document.getElementById('quickQuestions');
-    if (quickQ) quickQ.style.display = 'none';
+    // Remove any existing follow-up buttons
+    document.querySelectorAll('.chat-followup').forEach(el => el.remove());
 
     // Show typing indicator
     const typingEl = showTyping();
@@ -214,13 +202,47 @@
 
       // Replace typing with actual reply
       typingEl.innerHTML = formatReply(reply);
+      showFollowUp();
     } catch (err) {
       console.error('Chatbot error:', err);
       typingEl.innerHTML = '抱歉，目前無法連線，請稍後再試。';
+      showFollowUp();
     } finally {
       sendBtn.disabled = false;
       document.getElementById('chatInput').focus();
     }
+  }
+
+  const QUICK_QUESTIONS = ['高麗菜現在多少？', '今天什麼菜便宜？', '怎麼查菜價？', '上價下價是什麼？'];
+
+  function showFollowUp() {
+    const messages = document.getElementById('chatMessages');
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-followup';
+    QUICK_QUESTIONS.forEach(q => {
+      const btn = document.createElement('button');
+      btn.className = 'followup-btn';
+      btn.textContent = q;
+      btn.addEventListener('click', () => {
+        document.getElementById('chatInput').value = q;
+        sendMessage();
+      });
+      wrap.appendChild(btn);
+    });
+    const resetBtn = document.createElement('button');
+    resetBtn.className = 'followup-btn reset-btn';
+    resetBtn.textContent = '重新開始';
+    resetBtn.addEventListener('click', resetChat);
+    wrap.appendChild(resetBtn);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function resetChat() {
+    chatHistory = [];
+    const messages = document.getElementById('chatMessages');
+    messages.innerHTML = '<div class="chat-msg bot">你好！我是菜價小幫手 &#x1F44B;<br>有任何關於本站操作或蔬菜價格的問題，都可以問我喔！</div>';
+    showFollowUp();
   }
 
   function formatReply(text) {

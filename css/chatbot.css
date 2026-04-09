@@ -148,30 +148,42 @@
   30% { transform: translateY(-6px); }
 }
 
-/* Quick questions */
-.quick-questions {
+/* Follow-up buttons (after bot reply) */
+.chat-followup {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.4rem;
-  padding: 0 1rem 0.6rem;
+  gap: 0.35rem;
+  align-self: flex-start;
+  max-width: 90%;
 }
 
-.quick-q {
-  padding: 0.35rem 0.7rem;
+.followup-btn {
+  padding: 0.3rem 0.65rem;
   border: 1px solid var(--border-strong);
-  border-radius: 16px;
+  border-radius: 14px;
   background: var(--card-bg);
   color: var(--text-secondary);
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
   white-space: nowrap;
 }
 
-.quick-q:hover {
+.followup-btn:hover {
   background: var(--tag-active-bg);
   color: white;
   border-color: var(--tag-active-bg);
+}
+
+.followup-btn.reset-btn {
+  border-style: dashed;
+  color: var(--muted);
+}
+
+.followup-btn.reset-btn:hover {
+  background: var(--muted);
+  color: white;
+  border-color: var(--muted);
 }
 
 /* Input area */
