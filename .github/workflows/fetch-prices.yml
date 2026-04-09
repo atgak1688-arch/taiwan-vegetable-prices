@@ -78,6 +78,43 @@ jobs:
 
           echo "history.json: $(wc -c < data/history.json) bytes"
 
+          # === Fetch fruit data (TcType=N05) ===
+          echo "Fetching fruit data..."
+          echo '{"RS":"OK","Data":[' > data/fruit_tmp.json
+          FIRST=true
+          for CODE in $MARKETS; do
+            echo "Fetching fruit market ${CODE}..."
+            RESULT=$(curl -s "https://data.moa.gov.tw/api/v1/AgriProductsTransType/?Start_time=${ROC_DATE}&End_time=${ROC_DATE}&TcType=N05&MarketCode=${CODE}" 2>/dev/null)
+            ITEMS=$(echo "$RESULT" | python3 -c "
+          import json, sys
+          try:
+            data = json.load(sys.stdin)
+            items = [i for i in data.get('Data', []) if i.get('CropName') != '休市']
+            for item in items:
+              print(json.dumps(item, ensure_ascii=False))
+          except: pass
+          " 2>/dev/null)
+            while IFS= read -r line; do
+              if [ -n "$line" ]; then
+                if [ "$FIRST" = true ]; then
+                  FIRST=false
+                else
+                  echo ',' >> data/fruit_tmp.json
+                fi
+                echo "$line" >> data/fruit_tmp.json
+              fi
+            done <<< "$ITEMS"
+          done
+          echo '],"Next":false}' >> data/fruit_tmp.json
+
+          if python3 -c "import json; json.load(open('data/fruit_tmp.json'))" 2>/dev/null; then
+            mv data/fruit_tmp.json data/today_fruit.json
+            echo "today_fruit.json: $(wc -c < data/today_fruit.json) bytes"
+          else
+            echo "Failed to create valid fruit JSON"
+            rm -f data/fruit_tmp.json
+          fi
+
       - name: Commit and push data
         run: |
           git config user.name "github-actions[bot]"

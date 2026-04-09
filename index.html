@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>台灣蔬菜即時價格查詢</title>
+  <title>台灣蔬果即時價格查詢</title>
   <link rel="stylesheet" href="css/style.css?v=10">
   <link rel="stylesheet" href="css/chatbot.css?v=10">
 </head>
@@ -17,11 +17,19 @@
         <span class="switch-thumb"></span>
       </span>
     </label>
-    <h1>台灣蔬菜即時價格查詢</h1>
+    <h1>台灣蔬果即時價格查詢</h1>
     <p class="subtitle">資料來源：農業部農糧署 批發市場交易行情</p>
   </header>
 
   <main>
+    <!-- Type toggle -->
+    <section class="type-toggle-section">
+      <div class="type-toggle" id="typeToggle">
+        <button class="type-btn active" data-type="veg">蔬菜</button>
+        <button class="type-btn" data-type="fruit">水果</button>
+      </div>
+    </section>
+
     <!-- Search -->
     <section class="search-section">
       <div class="search-wrapper">

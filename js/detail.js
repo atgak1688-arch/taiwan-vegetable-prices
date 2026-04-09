@@ -1,5 +1,6 @@
 const API_BASE = 'https://data.moa.gov.tw/api/v1/AgriProductsTransType/';
 const VEG_TYPE = 'N04';
+const FRUIT_TYPE = 'N05';
 
 // === Markets by region (same as app.js) ===
 const MARKETS = {
@@ -41,6 +42,7 @@ const REGION_NAMES = {
 const urlParams = new URLSearchParams(window.location.search);
 const cropName = urlParams.get('crop');
 const regionParam = urlParams.get('region'); // null = all
+const typeParam = urlParams.get('type') || 'veg';
 
 function getMarketCodes() {
   if (regionParam && MARKETS[regionParam]) {
@@ -130,7 +132,7 @@ async function fetchTodayForCrop(name) {
         Start_time: rocDate,
         End_time: rocDate,
         CropName: name,
-        TcType: VEG_TYPE,
+        TcType: typeParam === 'fruit' ? FRUIT_TYPE : VEG_TYPE,
         MarketCode: code,
       }).catch(() => [])
     );
@@ -150,7 +152,7 @@ async function fetchHistory(name, days) {
       Start_time: start,
       End_time: end,
       CropName: name,
-      TcType: VEG_TYPE,
+      TcType: typeParam === 'fruit' ? FRUIT_TYPE : VEG_TYPE,
     });
     const validMarkets = getMarketNames();
     return data.filter(d => validMarkets.includes(d.MarketName));
@@ -162,7 +164,7 @@ async function fetchHistory(name, days) {
         Start_time: start,
         End_time: end,
         CropName: name,
-        TcType: VEG_TYPE,
+        TcType: typeParam === 'fruit' ? FRUIT_TYPE : VEG_TYPE,
         MarketCode: code,
       }).catch(() => [])
     );

@@ -1,5 +1,7 @@
 const API_BASE = 'https://data.moa.gov.tw/api/v1/AgriProductsTransType/';
 const VEG_TYPE = 'N04';
+const FRUIT_TYPE = 'N05';
+let activeType = 'veg'; // 'veg' or 'fruit'
 
 // === All 17 markets grouped by region ===
 const MARKETS = {
@@ -92,8 +94,17 @@ const CATEGORIES = {
   },
 };
 
+const FRUIT_CATEGORIES = {
+  citrus: { label: '柑橘', keywords: ['柳橙','橘子','柑','柚','檸檬','葡萄柚','金桔','桶柑','茂谷'] },
+  tropical: { label: '熱帶', keywords: ['香蕉','鳳梨','芒果','木瓜','百香果','荔枝','龍眼','釋迦','椰子','芭樂','紅毛丹','榴槤','蓮霧'] },
+  temperate: { label: '溫帶', keywords: ['蘋果','水梨','梨','桃','李','櫻桃','柿','棗','梅','枇杷','奇異果'] },
+  melon: { label: '瓜果', keywords: ['西瓜','哈密瓜','香瓜','美濃瓜','洋香瓜'] },
+  berry: { label: '莓果', keywords: ['葡萄','草莓','藍莓','桑椹'] },
+};
+
 function classifyCrop(cropName) {
-  for (const [cat, { keywords }] of Object.entries(CATEGORIES)) {
+  const cats = activeType === 'fruit' ? FRUIT_CATEGORIES : CATEGORIES;
+  for (const [cat, { keywords }] of Object.entries(cats)) {
     if (keywords.some(kw => cropName.includes(kw))) return cat;
   }
   return 'other';
@@ -176,9 +187,45 @@ const SEASONAL_DATA = {
   '落花生':   [5,6,7,8,9,10],
 };
 
+const FRUIT_SEASONAL = {
+  '香蕉':     [1,2,3,4,5,6,7,8,9,10,11,12],
+  '鳳梨':     [3,4,5,6,7,8],
+  '芒果':     [5,6,7,8],
+  '木瓜':     [1,2,3,4,5,6,7,8,9,10,11,12],
+  '百香果':   [6,7,8,9,10,11,12],
+  '荔枝':     [5,6,7],
+  '龍眼':     [7,8,9],
+  '釋迦':     [8,9,10,11,12,1,2],
+  '芭樂':     [1,2,3,4,5,6,7,8,9,10,11,12],
+  '蓮霧':     [12,1,2,3,4,5],
+  '柳橙':     [11,12,1,2,3],
+  '橘子':     [10,11,12,1,2],
+  '柑':       [10,11,12,1,2,3],
+  '柚':       [8,9,10],
+  '檸檬':     [7,8,9,10,11,12],
+  '葡萄柚':   [10,11,12,1,2,3],
+  '西瓜':     [4,5,6,7,8],
+  '香瓜':     [4,5,6,7,8,9],
+  '哈密瓜':   [5,6,7,8],
+  '洋香瓜':   [4,5,6,7,8,9],
+  '葡萄':     [6,7,8,9,10],
+  '草莓':     [12,1,2,3,4],
+  '水梨':     [7,8,9,10],
+  '梨':       [7,8,9,10],
+  '桃':       [5,6,7,8],
+  '李':       [5,6,7],
+  '柿':       [9,10,11,12],
+  '棗':       [12,1,2,3],
+  '梅':       [3,4,5],
+  '枇杷':     [2,3,4],
+  '椰子':     [6,7,8,9,10],
+  '玉米':     [5,6,7,8,9,10],
+};
+
 function getSeasonStatus(cropName) {
-  const month = new Date().getMonth() + 1; // 1-12
-  for (const [keyword, months] of Object.entries(SEASONAL_DATA)) {
+  const month = new Date().getMonth() + 1;
+  const data = activeType === 'fruit' ? FRUIT_SEASONAL : SEASONAL_DATA;
+  for (const [keyword, months] of Object.entries(data)) {
     if (cropName.includes(keyword)) {
       return months.includes(month) ? 'in-season' : 'off-season';
     }
@@ -348,7 +395,7 @@ async function fetchMarketBatch(rocDate, codes) {
     fetchAPI({
       Start_time: rocDate,
       End_time: rocDate,
-      TcType: VEG_TYPE,
+      TcType: activeType === 'fruit' ? FRUIT_TYPE : VEG_TYPE,
       MarketCode: code,
     }).catch(() => [])
   );
@@ -366,7 +413,7 @@ async function findLatestDate() {
     const test = await fetchAPI({
       Start_time: rocDate,
       End_time: rocDate,
-      TcType: VEG_TYPE,
+      TcType: activeType === 'fruit' ? FRUIT_TYPE : VEG_TYPE,
       MarketCode: 109,
     }).catch(() => []);
     if (test.length > 0) return rocDate;
@@ -378,7 +425,8 @@ async function fetchTodayVegetables(onPartialData) {
   // Strategy: static JSON first (fast), then API in background (complete)
 
   // Phase 1: Try static JSON for instant display
-  const staticData = await fetchStaticJSON('today.json');
+  const staticFile = activeType === 'fruit' ? 'today_fruit.json' : 'today.json';
+  const staticData = await fetchStaticJSON(staticFile);
   if (staticData && staticData.length > 0 && onPartialData) {
     onPartialData(staticData, staticData[0].TransDate);
   }
@@ -486,7 +534,8 @@ function selectSuggestion(name) {
 
 function navigateToDetail(cropName) {
   const regionParam = activeRegion !== 'all' ? `&region=${activeRegion}` : '';
-  window.location.href = `detail.html?crop=${encodeURIComponent(cropName)}${regionParam}`;
+  const typeParam = activeType !== 'veg' ? `&type=${activeType}` : '';
+  window.location.href = `detail.html?crop=${encodeURIComponent(cropName)}${regionParam}${typeParam}`;
 }
 
 // === Rendering ===
@@ -759,6 +808,40 @@ searchInput.addEventListener('blur', () => {
   setTimeout(hideSuggestions, 150);
 });
 
+// Type toggle (蔬菜/水果)
+document.getElementById('typeToggle').addEventListener('click', e => {
+  const btn = e.target.closest('.type-btn');
+  if (!btn || btn.dataset.type === activeType) return;
+  document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeType = btn.dataset.type;
+  updateTypeUI();
+  init();
+});
+
+function updateTypeUI() {
+  const isVeg = activeType === 'veg';
+  searchInput.placeholder = isVeg
+    ? '輸入蔬菜名稱，例如：高麗菜、空心菜...'
+    : '輸入水果名稱，例如：香蕉、芒果...';
+
+  // Update category buttons
+  const catContainer = document.getElementById('categoryTags');
+  const cats = isVeg ? CATEGORIES : FRUIT_CATEGORIES;
+  catContainer.innerHTML = '<button class="tag active" data-category="all">全部</button>';
+  for (const [key, { label }] of Object.entries(cats)) {
+    catContainer.innerHTML += `<button class="tag" data-category="${key}">${label}</button>`;
+  }
+  catContainer.innerHTML += '<button class="tag" data-category="other">其他</button>';
+  activeCategory = 'all';
+
+  // Show/hide season filter (keep for both)
+  activeSeason = 'all';
+  document.querySelectorAll('#seasonTags .tag').forEach(t => {
+    t.classList.toggle('active', t.dataset.season === 'all');
+  });
+}
+
 // Region tags
 document.getElementById('regionTags').addEventListener('click', e => {
   const tag = e.target.closest('.tag');
@@ -870,7 +953,7 @@ async function init() {
       // Static JSON loaded — show instantly
       todayData = partialData;
       buildCropNames(partialData);
-      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(rocDate)}）`;
+      tableTitle.textContent = `${activeType === 'fruit' ? '水果' : '蔬菜'}價格一覽（${rocToDisplay(rocDate)}）`;
       showDataInfo(rocDate, 'static');
       showLoading(false);
       refreshTable();
@@ -880,7 +963,7 @@ async function init() {
     buildCropNames(todayData);
     if (todayData.length > 0) {
       const rocDate = todayData[0].TransDate;
-      tableTitle.textContent = `蔬菜價格一覽（${rocToDisplay(rocDate)}）`;
+      tableTitle.textContent = `${activeType === 'fruit' ? '水果' : '蔬菜'}價格一覽（${rocToDisplay(rocDate)}）`;
       updateDataInfo(rocDate);
     }
     refreshTable();
