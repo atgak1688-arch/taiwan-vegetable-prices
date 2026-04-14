@@ -102,11 +102,12 @@
   border-radius: 10px;
   padding: 1rem;
   box-shadow: 0 2px 8px var(--card-shadow);
-  transition: transform 0.15s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .market-card:hover {
-  transform: translateY(-2px);
+  transform: perspective(800px) rotateY(3deg) translateY(-3px);
+  box-shadow: 0 8px 24px var(--card-shadow), 4px 0 12px rgba(0,0,0,0.04);
 }
 
 .market-card-name {

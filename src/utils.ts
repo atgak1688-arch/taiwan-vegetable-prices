@@ -117,6 +117,24 @@ export function resolveAlias(query: string, activeType: ActiveType): string | nu
   return null
 }
 
+// === Animation ===
+export function animateValue(el: HTMLElement, target: number, duration = 600, decimals = 1): void {
+  const start = performance.now()
+  const isInteger = decimals === 0
+  const format = (v: number) => isInteger ? Math.round(v).toLocaleString('zh-TW') : v.toFixed(decimals)
+
+  function tick(now: number) {
+    const elapsed = now - start
+    const progress = Math.min(elapsed / duration, 1)
+    const ease = 1 - Math.pow(1 - progress, 3) // ease-out cubic
+    const current = target * ease
+    el.textContent = format(current)
+    if (progress < 1) requestAnimationFrame(tick)
+  }
+
+  requestAnimationFrame(tick)
+}
+
 // === DOM helpers ===
 export function escapeHTML(str: string): string {
   const div = document.createElement('div')

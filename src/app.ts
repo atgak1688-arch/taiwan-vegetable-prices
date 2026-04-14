@@ -268,8 +268,11 @@ function renderTable(data: AggregatedPrice[]) {
 
   const display = showAll ? sorted : sorted.slice((currentPage - 1) * PAGE_SIZE, currentPage * PAGE_SIZE)
 
-  for (const item of display) {
+  for (let i = 0; i < display.length; i++) {
+    const item = display[i]
     const tr = document.createElement('tr')
+    tr.className = 'anim-row'
+    tr.style.setProperty('--row-idx', String(i))
     const season = getSeasonStatus(item.CropName, activeType)
     const seasonBadge = season === 'in-season'
       ? ' <span class="season-badge in-season">當季</span>'
@@ -461,10 +464,17 @@ function updateTypeUI() {
   catContainer.innerHTML += '<button class="tag" data-category="other">其他</button>'
   activeCategory = 'all'
 
+  // Re-add indicator to rebuilt category tags
+  const catIndicator = document.createElement('span')
+  catIndicator.className = 'tag-indicator'
+  catContainer.appendChild(catIndicator)
+  updateTagIndicator(catContainer)
+
   activeSeason = 'all'
   document.querySelectorAll('#seasonTags .tag').forEach(t => {
     (t as HTMLElement).classList.toggle('active', (t as HTMLElement).dataset.season === 'all')
   })
+  updateTagIndicator(document.getElementById('seasonTags')!)
 }
 
 document.getElementById('typeToggle')!.addEventListener('click', e => {
@@ -493,6 +503,28 @@ document.getElementById('typeToggle')!.addEventListener('click', e => {
   }
 })
 
+// === Tag Sliding Indicator ===
+function initTagIndicators() {
+  document.querySelectorAll('.filter-tags').forEach(container => {
+    const indicator = document.createElement('span')
+    indicator.className = 'tag-indicator'
+    container.appendChild(indicator)
+    updateTagIndicator(container as HTMLElement)
+  })
+}
+
+function updateTagIndicator(container: HTMLElement) {
+  const indicator = container.querySelector('.tag-indicator') as HTMLElement
+  const activeTag = container.querySelector('.tag.active') as HTMLElement
+  if (!indicator || !activeTag) return
+  const containerRect = container.getBoundingClientRect()
+  const tagRect = activeTag.getBoundingClientRect()
+  indicator.style.width = `${tagRect.width}px`
+  indicator.style.transform = `translateX(${tagRect.left - containerRect.left}px)`
+  indicator.style.top = `${tagRect.top - containerRect.top}px`
+  indicator.style.height = `${tagRect.height}px`
+}
+
 // Region tags
 document.getElementById('regionTags')!.addEventListener('click', e => {
   const tag = (e.target as HTMLElement).closest('.tag') as HTMLElement | null
@@ -500,6 +532,7 @@ document.getElementById('regionTags')!.addEventListener('click', e => {
   document.querySelectorAll('#regionTags .tag').forEach(t => t.classList.remove('active'))
   tag.classList.add('active')
   activeRegion = tag.dataset.region!
+  updateTagIndicator(document.getElementById('regionTags')!)
   refreshTable()
 })
 
@@ -511,6 +544,7 @@ document.getElementById('unitTags')!.addEventListener('click', e => {
   tag.classList.add('active')
   activeUnit = tag.dataset.unit as UnitKey
   localStorage.setItem('unit', activeUnit)
+  updateTagIndicator(document.getElementById('unitTags')!)
   refreshTable()
 })
 
@@ -521,6 +555,7 @@ document.getElementById('seasonTags')!.addEventListener('click', e => {
   document.querySelectorAll('#seasonTags .tag').forEach(t => t.classList.remove('active'))
   tag.classList.add('active')
   activeSeason = tag.dataset.season!
+  updateTagIndicator(document.getElementById('seasonTags')!)
   refreshTable()
 })
 
@@ -531,6 +566,7 @@ document.getElementById('categoryTags')!.addEventListener('click', e => {
   document.querySelectorAll('#categoryTags .tag').forEach(t => t.classList.remove('active'))
   tag.classList.add('active')
   activeCategory = tag.dataset.category!
+  updateTagIndicator(document.getElementById('categoryTags')!)
   refreshTable()
 })
 
@@ -558,6 +594,23 @@ if (savedUnit && savedUnit in UNITS) {
 
 // === Theme ===
 initTheme()
+
+// === Init tag indicators ===
+initTagIndicators()
+
+// === Scroll Reveal ===
+const scrollObserver = new IntersectionObserver(
+  (entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible')
+        scrollObserver.unobserve(entry.target)
+      }
+    })
+  },
+  { threshold: 0.1 }
+)
+document.querySelectorAll('.scroll-reveal').forEach(el => scrollObserver.observe(el))
 
 // === Data info ===
 const dataInfo = document.getElementById('dataInfo')!

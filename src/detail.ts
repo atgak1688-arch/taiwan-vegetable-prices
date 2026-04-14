@@ -4,7 +4,7 @@ import type { PriceRecord, UnitKey } from './types'
 import { MARKETS, REGION_NAMES, UNITS, VEG_TYPE, FRUIT_TYPE, FISH_MARKETS } from './constants'
 import {
   convertPrice, getUnitLabel, toROCDate, rocToDisplay, getDateRange,
-  fetchAPI, escapeHTML, numberFormat, initTheme,
+  fetchAPI, escapeHTML, numberFormat, animateValue, initTheme,
 } from './utils'
 import { fetchTodayFish, fetchFishHistory } from './fishAdapter'
 import Chart from 'chart.js/auto'
@@ -119,10 +119,10 @@ function renderSummary(data: PriceRecord[]) {
   const upperP = Math.max(...data.map(d => d.Upper_Price))
   const lowerP = Math.min(...data.map(d => d.Lower_Price))
 
-  avgPriceEl.textContent = convertPrice(avgP, activeUnit).toFixed(1)
-  upperPriceEl.textContent = convertPrice(upperP, activeUnit).toFixed(1)
-  lowerPriceEl.textContent = convertPrice(lowerP, activeUnit).toFixed(1)
-  transQtyEl.textContent = numberFormat(totalQ)
+  animateValue(avgPriceEl, convertPrice(avgP, activeUnit), 600, 1)
+  animateValue(upperPriceEl, convertPrice(upperP, activeUnit), 600, 1)
+  animateValue(lowerPriceEl, convertPrice(lowerP, activeUnit), 600, 1)
+  animateValue(transQtyEl, totalQ, 600, 0)
 
   document.querySelectorAll('.card-unit').forEach(el => {
     if (el.textContent!.includes('元')) el.textContent = getUnitLabel(activeUnit)
