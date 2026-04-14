@@ -29,7 +29,7 @@ jobs:
           MARKETS="109 104 220 241 260 338 400 420 512 514 540 648 800 830 900 930 950"
 
           # Fetch each market and merge into one JSON
-          echo '{"RS":"OK","Data":[' > data/today_tmp.json
+          echo '{"RS":"OK","Data":[' > public/data/today_tmp.json
           FIRST=true
           for CODE in $MARKETS; do
             echo "Fetching market ${CODE}..."
@@ -48,21 +48,21 @@ jobs:
                 if [ "$FIRST" = true ]; then
                   FIRST=false
                 else
-                  echo ',' >> data/today_tmp.json
+                  echo ',' >> public/data/today_tmp.json
                 fi
-                echo "$line" >> data/today_tmp.json
+                echo "$line" >> public/data/today_tmp.json
               fi
             done <<< "$ITEMS"
           done
-          echo '],"Next":false}' >> data/today_tmp.json
+          echo '],"Next":false}' >> public/data/today_tmp.json
 
           # Validate and move
-          if python3 -c "import json; json.load(open('data/today_tmp.json'))" 2>/dev/null; then
-            mv data/today_tmp.json data/today.json
-            echo "today.json: $(wc -c < data/today.json) bytes"
+          if python3 -c "import json; json.load(open('public/data/today_tmp.json'))" 2>/dev/null; then
+            mv public/data/today_tmp.json public/data/today.json
+            echo "today.json: $(wc -c < public/data/today.json) bytes"
           else
             echo "Failed to create valid JSON, keeping old file"
-            rm -f data/today_tmp.json
+            rm -f public/data/today_tmp.json
           fi
 
           # Fetch last 30 days history (single request, for chart)
@@ -74,13 +74,13 @@ jobs:
 
           echo "Fetching history from ${ROC_START} to ${ROC_DATE}"
           curl -s "https://data.moa.gov.tw/api/v1/AgriProductsTransType/?Start_time=${ROC_START}&End_time=${ROC_DATE}&TcType=N04" \
-            -o data/history.json
+            -o public/data/history.json
 
-          echo "history.json: $(wc -c < data/history.json) bytes"
+          echo "history.json: $(wc -c < public/data/history.json) bytes"
 
           # === Fetch fruit data (TcType=N05) ===
           echo "Fetching fruit data..."
-          echo '{"RS":"OK","Data":[' > data/fruit_tmp.json
+          echo '{"RS":"OK","Data":[' > public/data/fruit_tmp.json
           FIRST=true
           for CODE in $MARKETS; do
             echo "Fetching fruit market ${CODE}..."
@@ -99,27 +99,27 @@ jobs:
                 if [ "$FIRST" = true ]; then
                   FIRST=false
                 else
-                  echo ',' >> data/fruit_tmp.json
+                  echo ',' >> public/data/fruit_tmp.json
                 fi
-                echo "$line" >> data/fruit_tmp.json
+                echo "$line" >> public/data/fruit_tmp.json
               fi
             done <<< "$ITEMS"
           done
-          echo '],"Next":false}' >> data/fruit_tmp.json
+          echo '],"Next":false}' >> public/data/fruit_tmp.json
 
-          if python3 -c "import json; json.load(open('data/fruit_tmp.json'))" 2>/dev/null; then
-            mv data/fruit_tmp.json data/today_fruit.json
-            echo "today_fruit.json: $(wc -c < data/today_fruit.json) bytes"
+          if python3 -c "import json; json.load(open('public/data/fruit_tmp.json'))" 2>/dev/null; then
+            mv public/data/fruit_tmp.json public/data/today_fruit.json
+            echo "today_fruit.json: $(wc -c < public/data/today_fruit.json) bytes"
           else
             echo "Failed to create valid fruit JSON"
-            rm -f data/fruit_tmp.json
+            rm -f public/data/fruit_tmp.json
           fi
 
       - name: Commit and push data
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/
+          git add public/data/
           if git diff --staged --quiet; then
             echo "No data changes"
           else
