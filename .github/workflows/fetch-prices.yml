@@ -115,6 +115,44 @@ jobs:
             rm -f public/data/fruit_tmp.json
           fi
 
+      - name: Fetch today's fishery prices
+        run: |
+          YEAR=$(date -u +%Y -d '+8 hours')
+          ROC_YEAR=$((YEAR - 1911))
+          TODAY=$(date -u +'%m%d' -d '+8 hours')
+          ROC_DATE="${ROC_YEAR}${TODAY}"
+
+          echo "Fetching fish data for ROC date: ${ROC_DATE}"
+
+          curl -s "https://data.moa.gov.tw/Service/OpenData/FromM/AquaticTransData.aspx?StartDate=${ROC_DATE}&EndDate=${ROC_DATE}" \
+            -o public/data/fish_raw.json
+
+          python3 -c "
+          import json
+          with open('public/data/fish_raw.json') as f:
+            raw = json.load(f)
+          records = []
+          for r in raw:
+            d = r['交易日期']
+            y = d[:-4]
+            m = d[-4:-2]
+            day = d[-2:]
+            records.append({
+              'CropName': r['魚貨名稱'],
+              'MarketName': r['市場名稱'],
+              'TransDate': f'{y}.{m}.{day}',
+              'Avg_Price': r['平均價'],
+              'Upper_Price': r['上價'],
+              'Lower_Price': r['下價'],
+              'Trans_Quantity': r['交易量'],
+            })
+          with open('public/data/today_fish.json', 'w') as f:
+            json.dump({'RS': 'OK', 'Data': records}, f, ensure_ascii=False)
+          print(f'today_fish.json: {len(records)} records')
+          "
+
+          rm -f public/data/fish_raw.json
+
       - name: Commit and push data
         run: |
           git config user.name "github-actions[bot]"

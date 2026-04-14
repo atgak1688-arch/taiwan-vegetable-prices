@@ -1,8 +1,10 @@
 import type { ActiveType, PriceRecord, SeasonStatus, UnitKey } from './types'
 import {
   API_BASE, VEG_TYPE, FRUIT_TYPE, MARKETS, UNITS,
-  CATEGORIES, FRUIT_CATEGORIES, SEASONAL_DATA, FRUIT_SEASONAL,
-  ALIASES, FRUIT_ALIASES,
+  CATEGORIES, FRUIT_CATEGORIES, FISH_CATEGORIES,
+  SEASONAL_DATA, FRUIT_SEASONAL, FISH_SEASONAL,
+  ALIASES, FRUIT_ALIASES, FISH_ALIASES,
+  FISH_MARKETS,
 } from './constants'
 
 // === Unit conversion ===
@@ -48,7 +50,13 @@ export async function fetchAPI(params: Record<string, string | number>): Promise
 }
 
 // === Region helpers ===
-export function getRegion(marketName: string): string | null {
+export function getRegion(marketName: string, activeType?: ActiveType): string | null {
+  if (activeType === 'fish') {
+    for (const [region, names] of Object.entries(FISH_MARKETS)) {
+      if (names.includes(marketName)) return region
+    }
+    return null
+  }
   for (const [region, markets] of Object.entries(MARKETS)) {
     if (markets.some(m => m.name === marketName)) return region
   }
@@ -57,7 +65,7 @@ export function getRegion(marketName: string): string | null {
 
 // === Category classification ===
 export function classifyCrop(cropName: string, activeType: ActiveType): string {
-  const cats = activeType === 'fruit' ? FRUIT_CATEGORIES : CATEGORIES
+  const cats = activeType === 'fish' ? FISH_CATEGORIES : activeType === 'fruit' ? FRUIT_CATEGORIES : CATEGORIES
   for (const [cat, { keywords }] of Object.entries(cats)) {
     if (keywords.some(kw => cropName.includes(kw))) return cat
   }
@@ -67,7 +75,7 @@ export function classifyCrop(cropName: string, activeType: ActiveType): string {
 // === Seasonal ===
 export function getSeasonStatus(cropName: string, activeType: ActiveType): SeasonStatus {
   const month = new Date().getMonth() + 1
-  const data = activeType === 'fruit' ? FRUIT_SEASONAL : SEASONAL_DATA
+  const data = activeType === 'fish' ? FISH_SEASONAL : activeType === 'fruit' ? FRUIT_SEASONAL : SEASONAL_DATA
   for (const [keyword, months] of Object.entries(data)) {
     if (cropName.includes(keyword)) {
       return months.includes(month) ? 'in-season' : 'off-season'
@@ -78,7 +86,7 @@ export function getSeasonStatus(cropName: string, activeType: ActiveType): Seaso
 
 // === Aliases ===
 export function getActiveAliases(activeType: ActiveType): Record<string, string> {
-  return activeType === 'fruit' ? FRUIT_ALIASES : ALIASES
+  return activeType === 'fish' ? FISH_ALIASES : activeType === 'fruit' ? FRUIT_ALIASES : ALIASES
 }
 
 export function buildReverseAliases(activeType: ActiveType): Record<string, string[]> {

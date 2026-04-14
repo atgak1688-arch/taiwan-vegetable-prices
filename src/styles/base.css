@@ -247,12 +247,15 @@ main {
   gap: 0.8rem;
   margin-bottom: 1rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 50;
 }
 
 .search-wrapper {
   flex: 1;
   min-width: 250px;
   position: relative;
+  z-index: 100;
 }
 
 .search-wrapper input {

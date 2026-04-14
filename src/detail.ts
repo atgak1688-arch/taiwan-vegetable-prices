@@ -1,11 +1,12 @@
 import './styles/main.css'
 import './styles/detail.css'
 import type { PriceRecord, UnitKey } from './types'
-import { MARKETS, REGION_NAMES, UNITS, VEG_TYPE, FRUIT_TYPE } from './constants'
+import { MARKETS, REGION_NAMES, UNITS, VEG_TYPE, FRUIT_TYPE, FISH_MARKETS } from './constants'
 import {
   convertPrice, getUnitLabel, toROCDate, rocToDisplay, getDateRange,
   fetchAPI, escapeHTML, numberFormat, initTheme,
 } from './utils'
+import { fetchTodayFish, fetchFishHistory } from './fishAdapter'
 import Chart from 'chart.js/auto'
 
 // Get params from URL
@@ -22,6 +23,12 @@ function getMarketCodes(): number[] {
 }
 
 function getMarketNames(): string[] {
+  if (typeParam === 'fish') {
+    if (regionParam && FISH_MARKETS[regionParam]) {
+      return FISH_MARKETS[regionParam]
+    }
+    return Object.values(FISH_MARKETS).flat()
+  }
   if (regionParam && MARKETS[regionParam]) {
     return MARKETS[regionParam].map(m => m.name)
   }
@@ -45,6 +52,11 @@ let todayData: PriceRecord[] = []
 
 // === API ===
 async function fetchTodayForCrop(name: string): Promise<PriceRecord[]> {
+  if (typeParam === 'fish') {
+    const allFish = await fetchTodayFish()
+    const validMarkets = getMarketNames()
+    return allFish.filter(d => d.CropName === name && validMarkets.includes(d.MarketName))
+  }
   const codes = getMarketCodes()
   for (let offset = 0; offset < 5; offset++) {
     const date = new Date()
@@ -67,6 +79,11 @@ async function fetchTodayForCrop(name: string): Promise<PriceRecord[]> {
 }
 
 async function fetchHistory(name: string, days: number): Promise<PriceRecord[]> {
+  if (typeParam === 'fish') {
+    const data = await fetchFishHistory(name, days)
+    const validMarkets = getMarketNames()
+    return data.filter(d => validMarkets.includes(d.MarketName))
+  }
   const { start, end } = getDateRange(days)
   try {
     const data = await fetchAPI({

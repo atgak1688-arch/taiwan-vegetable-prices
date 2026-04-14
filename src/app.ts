@@ -2,7 +2,7 @@ import './styles/main.css'
 import type { ActiveType, AggregatedPrice, PriceRecord, UnitKey } from './types'
 import {
   MARKETS, ALL_MARKET_CODES, UNITS, VEG_TYPE, FRUIT_TYPE,
-  CATEGORIES, FRUIT_CATEGORIES,
+  CATEGORIES, FRUIT_CATEGORIES, FISH_CATEGORIES, FISH_MARKETS,
 } from './constants'
 import {
   convertPrice, getUnitLabel, toROCDate, rocToDisplay,
@@ -10,13 +10,14 @@ import {
   buildReverseAliases, resolveAlias, escapeHTML, numberFormat,
   initTheme,
 } from './utils'
+import { fetchTodayFish } from './fishAdapter'
 
 // === State ===
 let activeType: ActiveType = 'veg'
 let currentSort = { field: 'Avg_Price', desc: true }
 let todayData: PriceRecord[] = []
 let allCropNames: string[] = []
-const dataCache: Record<string, PriceRecord[] | null> = { veg: null, fruit: null }
+const dataCache: Record<string, PriceRecord[] | null> = { veg: null, fruit: null, fish: null }
 let activeCategory = 'all'
 let activeRegion = 'all'
 let activeUnit: UnitKey = 'kg'
@@ -195,7 +196,9 @@ function filterAndAggregate(data: PriceRecord[]): AggregatedPrice[] {
   let filtered = data
 
   if (activeRegion !== 'all') {
-    const regionMarkets = MARKETS[activeRegion].map(m => m.name)
+    const regionMarkets = activeType === 'fish'
+      ? FISH_MARKETS[activeRegion]
+      : MARKETS[activeRegion].map(m => m.name)
     filtered = filtered.filter(d => regionMarkets.includes(d.MarketName))
   }
 
@@ -436,15 +439,21 @@ searchInput.addEventListener('blur', () => {
 })
 
 // Type toggle
+function getTypeLabel(): string {
+  return activeType === 'fish' ? '漁產品' : activeType === 'fruit' ? '水果' : '蔬菜'
+}
+
 function updateTypeUI() {
   REVERSE_ALIASES = buildReverseAliases(activeType)
-  const isVeg = activeType === 'veg'
-  searchInput.placeholder = isVeg
-    ? '輸入蔬菜名稱，例如：高麗菜、空心菜...'
-    : '輸入水果名稱，例如：香蕉、芒果...'
+  const placeholders: Record<string, string> = {
+    veg: '輸入蔬菜名稱，例如：高麗菜、空心菜...',
+    fruit: '輸入水果名稱，例如：香蕉、芒果...',
+    fish: '輸入漁產品名稱，例如：白鯧、蝦...',
+  }
+  searchInput.placeholder = placeholders[activeType]
 
   const catContainer = document.getElementById('categoryTags')!
-  const cats = isVeg ? CATEGORIES : FRUIT_CATEGORIES
+  const cats = activeType === 'fish' ? FISH_CATEGORIES : activeType === 'fruit' ? FRUIT_CATEGORIES : CATEGORIES
   catContainer.innerHTML = '<button class="tag active" data-category="all">全部</button>'
   for (const [key, { label }] of Object.entries(cats)) {
     catContainer.innerHTML += `<button class="tag" data-category="${key}">${label}</button>`
@@ -475,7 +484,7 @@ document.getElementById('typeToggle')!.addEventListener('click', e => {
     buildCropNames(todayData)
     if (todayData.length > 0) {
       const rocDate = todayData[0].TransDate
-      tableTitle.textContent = `${activeType === 'fruit' ? '水果' : '蔬菜'}價格一覽（${rocToDisplay(rocDate)}）`
+      tableTitle.textContent = `${getTypeLabel()}價格一覽（${rocToDisplay(rocDate)}）`
       updateDataInfo(rocDate)
     }
     refreshTable()
@@ -571,23 +580,42 @@ function updateDataInfo(rocDate: string) {
 async function init() {
   showLoading(true)
   try {
-    todayData = await fetchTodayVegetables((partialData, rocDate) => {
-      todayData = partialData
-      ;(window as any).todayData = todayData
-      dataCache[activeType] = partialData
-      buildCropNames(partialData)
-      tableTitle.textContent = `${activeType === 'fruit' ? '水果' : '蔬菜'}價格一覽（${rocToDisplay(rocDate)}）`
-      showDataInfo(rocDate, 'static')
-      showLoading(false)
-      refreshTable()
-    })
+    if (activeType === 'fish') {
+      // Fish: try static first, then live API
+      const staticData = await fetchStaticJSON('today_fish.json')
+      if (staticData && staticData.length > 0) {
+        todayData = staticData
+        ;(window as any).todayData = todayData
+        dataCache[activeType] = staticData
+        buildCropNames(staticData)
+        tableTitle.textContent = `${getTypeLabel()}價格一覽（${rocToDisplay(staticData[0].TransDate)}）`
+        showDataInfo(staticData[0].TransDate, 'static')
+        showLoading(false)
+        refreshTable()
+      }
+      const liveData = await fetchTodayFish()
+      if (liveData.length > 0) {
+        todayData = liveData
+      }
+    } else {
+      todayData = await fetchTodayVegetables((partialData, rocDate) => {
+        todayData = partialData
+        ;(window as any).todayData = todayData
+        dataCache[activeType] = partialData
+        buildCropNames(partialData)
+        tableTitle.textContent = `${getTypeLabel()}價格一覽（${rocToDisplay(rocDate)}）`
+        showDataInfo(rocDate, 'static')
+        showLoading(false)
+        refreshTable()
+      })
+    }
 
     dataCache[activeType] = todayData
     ;(window as any).todayData = todayData
     buildCropNames(todayData)
     if (todayData.length > 0) {
       const rocDate = todayData[0].TransDate
-      tableTitle.textContent = `${activeType === 'fruit' ? '水果' : '蔬菜'}價格一覽（${rocToDisplay(rocDate)}）`
+      tableTitle.textContent = `${getTypeLabel()}價格一覽（${rocToDisplay(rocDate)}）`
       updateDataInfo(rocDate)
     }
     refreshTable()

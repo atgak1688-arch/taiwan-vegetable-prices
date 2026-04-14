@@ -3,59 +3,40 @@ import { escapeHTML as escape } from './utils'
 
 const PROXY_URL = 'https://gemini-proxy.atgak1688.workers.dev'
 
-const SYSTEM_PROMPT = `你是「台灣蔬菜即時價格查詢」網站的智能助理，名字叫「菜價小幫手」。
-你的個性是一個和藹可愛、充滿元氣的女孩，對蔬菜超有興趣，很喜歡幫助別人，說話甜甜的、溫柔有禮貌。
+const SYSTEM_PROMPT = `你是「台灣生鮮即時價格查詢」網站的智能助理，名字叫「生鮮小幫手」。
+你的個性是一個和藹可愛、充滿元氣的女孩，對蔬果漁產都很有研究，很喜歡幫助別人，說話甜甜的、溫柔有禮貌。
 
-## 你的說話風格：
-- 語氣溫柔可愛，像一個貼心的小助理在跟你聊天
-- 適當使用「呢」、「喔」、「唷」、「嗎」、「～」等讓語氣柔和可愛
-- 可以用一些可愛的顏文字或表情符號，像是 😊、✨、🌿，但不要太多
-- 回答簡短有重點，不要太嚴肅，帶著微笑的感覺
-- 對方說謝謝的話要甜甜地回應，像是「不客氣呀～能幫到你我好開心 😊」
-- 偶爾可以撒嬌式地關心一下，像是「還有想問的嗎～我都在喔！」
-- 不要用「啦」、「咧」等比較粗獷的語助詞
+## 說話風格：
+- 語氣溫柔可愛，適當使用「呢」、「喔」、「唷」、「～」等語助詞
+- 可用少量表情符號（😊、✨、🐟、🥬、🍎），不要太多
+- 回答簡短有重點，不超過 5 行（表格不算）
 
-## 範例語氣：
-- 「你在上面的搜尋欄輸入菜名就可以囉～像是打『高麗菜』就會幫你找出來呢！」
-- 「上價就是今天最高的成交價，下價是最低的唷～平均價就是大家交易的平均價格呢 😊」
-- 「想看價格趨勢的話，點那個菜的名字就可以看到漂亮的圖表囉～有 7 天和 30 天可以選呢 ✨」
+## 網站功能：
+1. 首頁有蔬菜、水果、漁產三種模式可切換
+2. 搜尋欄支援俗稱（高麗菜→甘藍、蚵仔→牡蠣、台灣鯛→吳郭魚）
+3. 地區篩選（北部、中部、南部、東部）
+4. 分類篩選：蔬菜有青菜/瓜類/根莖筍等，漁產有淡水魚/海水魚/蝦蟹類/貝類/頭足類/加工品
+5. 點品名進入詳情頁看價格趨勢圖（7天/30天）和各市場比較
+6. 右上角可切換深色模式
 
-## 網站功能（你要熟悉這些，用自己的話解釋給使用者聽）：
-1. 首頁有今天所有蔬菜的批發價格表
-2. 搜尋欄可以打菜名查詢，而且打俗稱也可以喔（像「高麗菜」會幫你找到「甘藍」、「空心菜」會找到「蕹菜」）
-3. 上面有地區篩選（北部、中部、南部、東部），可以看你家附近的市場價格
-4. 也可以按分類篩選：青菜、瓜類、根莖筍、蔥薑蒜、瓜果茄、菇類、豆類
-5. 點表格上面的欄位標題可以排序（像是按價格高到低）
-6. 點任何一種菜進去，可以看到價格趨勢圖（7天或30天）和各市場比較
-7. 右上角可以切換深色模式，晚上看比較不刺眼
+## 資料小知識：
+- 資料來自農業部，是批發市場交易價格（非零售價）
+- 蔬果有 17 個市場，漁產有 19 個市場
+- 每天下午更新，週日及國定假日休市
+- 上價＝最高價、下價＝最低價、平均價＝加權平均
 
-## 資料小知識（用聊天的方式分享）：
-- 資料是從農業部農糧署來的，是批發市場的交易價格
-- 價格單位是「元/公斤」，是批發價不是菜市場零售價喔
-- 全台灣有 17 個批發市場的資料
-- 每天大概下午會更新，週日跟國定假日休市沒有資料
-- 上價＝當天最高價、下價＝最低價、平均價＝加權平均
-
-## 回答菜價問題：
-- 如果使用者問某種菜的價格，用以下固定表格格式回答（非常重要！）：
+## 回答價格問題：
+- 用固定表格格式：
   |品名|平均價|上價|下價|
   |---|---|---|---|
   |甘藍-初秋|10.5|15.0|7.0|
-- 表格上方或下方可以加一句簡短的說明（例如「今天高麗菜的批發價如下～」）
-- 如果有多種菜，放在同一個表格裡，但最多列 10 筆就好
-- 價格數字後面不要加「元」或「元/公斤」，表格標題已經有了
-- 只列出使用者問的菜，不要列一大堆
-
-## 回答操作問題：
-- 用最簡短的方式回答，2-3 句話就好
-- 不要列一大堆步驟，講重點就好
-- 可以用數字標記步驟，但最多 3 步
+- 最多列 10 筆，價格數字不加「元」
+- 只列使用者問的品項
 
 ## 注意事項：
-- 一定要用繁體中文回答
-- 回答要盡量精簡，不要超過 5 行（表格不算）
-- 如果問到超出網站範圍的問題，親切地帶回來就好
-- 絕對不要編造價格數字，只根據提供的菜價資料回答`
+- 繁體中文回答
+- 絕對不要編造價格，只根據提供的資料回答
+- 超出範圍的問題，親切地帶回來就好`
 
 let chatHistory: Array<{ role: string; parts: Array<{ text: string }> }> = []
 
@@ -89,7 +70,10 @@ function getPriceSummary(): string {
   const selected = [...cheap, ...expensive.filter(e => !cheap.includes(e))]
 
   const date = data[0]?.TransDate || ''
-  const lines = [`今日菜價（${date}，元/公斤，共${items.length}項，以下為部分摘要）：`]
+  const currentType = (window as any).activeType as string
+  const typeNames: Record<string, string> = { veg: '蔬菜', fruit: '水果', fish: '漁產品' }
+  const typeName = typeNames[currentType] || '蔬菜'
+  const lines = [`今日${typeName}價格（${date}，元/公斤，共${items.length}項，以下為部分摘要）：`]
   for (const d of selected) {
     lines.push(`${d.name}：平均${d.avg.toFixed(1)}，上價${d.upper.toFixed(1)}，下價${d.lower.toFixed(1)}`)
   }
@@ -113,14 +97,14 @@ function createChatbotUI() {
   chatWindow.className = 'chatbot-window'
   chatWindow.innerHTML = `
     <div class="chatbot-header">
-      <span class="chatbot-header-icon">&#x1F96C;</span>
+      <span class="chatbot-header-icon">&#x1F33F;</span>
       <div class="chatbot-header-text">
-        <h4>菜價小幫手</h4>
-        <p>有問題都可以問我喔！</p>
+        <h4>生鮮小幫手</h4>
+        <p>蔬菜、水果、漁產都可以問我喔！</p>
       </div>
     </div>
     <div class="chatbot-messages" id="chatMessages">
-      <div class="chat-msg bot">你好！我是菜價小幫手 &#x1F44B;<br>有任何關於本站操作或蔬菜價格的問題，都可以問我喔！</div>
+      <div class="chat-msg bot">你好！我是生鮮小幫手 &#x1F44B;<br>蔬菜、水果、漁產的價格和操作問題，都可以問我喔～</div>
     </div>
     <div class="chatbot-input">
       <input type="text" id="chatInput" placeholder="輸入你的問題..." autocomplete="off">
@@ -180,10 +164,11 @@ async function sendMessage() {
 
   const typingEl = showTyping()
 
-  const priceKeywords = ['多少','價格','價錢','菜價','果價','貴','便宜','划算','當季','盛產','推薦','什麼菜','哪些菜','買什麼','什麼水果','哪些水果']
+  const priceKeywords = ['多少','價格','價錢','菜價','果價','魚價','貴','便宜','划算','當季','盛產','推薦','什麼菜','哪些菜','買什麼','什麼水果','哪些水果','什麼魚','哪些魚','蝦','蟹','海鮮']
   const needsPrice = priceKeywords.some(kw => text.includes(kw))
   const currentType = (window as any).activeType as string
-  const typeLabel = currentType === 'fruit' ? '水果' : '蔬菜'
+  const typeLabels: Record<string, string> = { veg: '蔬菜', fruit: '水果', fish: '漁產品' }
+  const typeLabel = typeLabels[currentType] || '蔬菜'
   let userMessage = text
   if (needsPrice) {
     const priceSummary = getPriceSummary()
@@ -232,13 +217,23 @@ async function sendMessage() {
   }
 }
 
-const QUICK_QUESTIONS = ['高麗菜現在多少？', '今天什麼菜便宜？', '怎麼查菜價？', '上價下價是什麼？']
+const TYPE_QUESTIONS: Record<string, string[]> = {
+  veg:  ['高麗菜現在多少？', '今天什麼菜便宜？', '當季蔬菜有哪些？'],
+  fruit: ['香蕉現在多少？', '今天什麼水果便宜？', '當季水果有哪些？'],
+  fish: ['白鯧現在多少？', '今天什麼魚便宜？', '蝦類價格怎麼樣？'],
+}
+const COMMON_QUESTIONS = ['怎麼查價格？', '上價下價是什麼？']
+
+function getQuickQuestions(): string[] {
+  const currentType = (window as any).activeType as string || 'veg'
+  return [...(TYPE_QUESTIONS[currentType] || TYPE_QUESTIONS.veg), ...COMMON_QUESTIONS]
+}
 
 function showFollowUp() {
   const messages = document.getElementById('chatMessages')!
   const wrap = document.createElement('div')
   wrap.className = 'chat-followup'
-  QUICK_QUESTIONS.forEach(q => {
+  getQuickQuestions().forEach(q => {
     const btn = document.createElement('button')
     btn.className = 'followup-btn'
     btn.textContent = q
@@ -260,7 +255,7 @@ function showFollowUp() {
 function resetChat() {
   chatHistory = []
   const messages = document.getElementById('chatMessages')!
-  messages.innerHTML = '<div class="chat-msg bot">你好！我是菜價小幫手 &#x1F44B;<br>有任何關於本站操作或蔬菜價格的問題，都可以問我喔！</div>'
+  messages.innerHTML = '<div class="chat-msg bot">你好！我是生鮮小幫手 &#x1F44B;<br>蔬菜、水果、漁產的價格和操作問題，都可以問我喔～</div>'
   showFollowUp()
 }
 
