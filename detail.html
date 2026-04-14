@@ -4,10 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>價格詳情 - 台灣蔬果即時價格查詢</title>
-  <link rel="stylesheet" href="css/style.css?v=10">
-  <link rel="stylesheet" href="css/detail.css?v=10">
-  <link rel="stylesheet" href="css/chatbot.css?v=10">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+  <!-- Styles and Chart.js are imported via TypeScript modules -->
 </head>
 <body>
   <header>
@@ -20,7 +17,7 @@
       </span>
     </label>
     <h1 id="cropTitle">載入中...</h1>
-    <p class="subtitle"><a href="index.html" class="back-link">< 返回價格總覽</a></p>
+    <p class="subtitle"><a href="index.html" class="back-link">&lt; 返回價格總覽</a></p>
   </header>
 
   <main>
@@ -92,7 +89,7 @@
        本站僅供參考，實際價格以市場公告為準</p>
   </footer>
 
-  <script src="js/detail.js?v=11"></script>
-  <script src="js/chatbot.js?v=11"></script>
+  <script type="module" src="/src/detail.ts"></script>
+  <script type="module" src="/src/chatbot.ts"></script>
 </body>
 </html>

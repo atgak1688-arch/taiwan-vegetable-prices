@@ -1,2 +1,4 @@
 js/config.js
 .wrangler/
+node_modules/
+dist/

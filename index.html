@@ -4,8 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>台灣蔬果即時價格查詢</title>
-  <link rel="stylesheet" href="css/style.css?v=10">
-  <link rel="stylesheet" href="css/chatbot.css?v=10">
+  <!-- Styles are imported via TypeScript modules -->
 </head>
 <body>
   <header>
@@ -17,13 +16,21 @@
         <span class="switch-thumb"></span>
       </span>
     </label>
-    <h1>台灣蔬果即時價格查詢</h1>
-    <p class="subtitle">資料來源：農業部農糧署 批發市場交易行情</p>
+    <!-- Falling produce animation -->
+    <div class="falling-produce" id="fallingProduce" aria-hidden="true">
+      <span class="fall-item" style="--x: 12%; --delay: 0s;">🥬</span>
+      <span class="fall-item" style="--x: 35%; --delay: 0.15s;">🥕</span>
+      <span class="fall-item" style="--x: 55%; --delay: 0.08s;">🌽</span>
+      <span class="fall-item" style="--x: 75%; --delay: 0.22s;">🍅</span>
+      <span class="fall-item" style="--x: 90%; --delay: 0.12s;">🥦</span>
+    </div>
+    <h1 class="anim-fade-in" style="--fade-delay: 0.55s;">台灣蔬果即時價格查詢</h1>
+    <p class="subtitle anim-fade-in" style="--fade-delay: 0.7s;">資料來源：農業部農糧署 批發市場交易行情</p>
   </header>
 
   <main>
     <!-- Type toggle -->
-    <section class="type-toggle-section">
+    <section class="type-toggle-section anim-fade-in" style="--fade-delay: 0.8s;">
       <div class="type-toggle" id="typeToggle">
         <button class="type-btn active" data-type="veg">蔬菜</button>
         <button class="type-btn" data-type="fruit">水果</button>
@@ -31,7 +38,7 @@
     </section>
 
     <!-- Search -->
-    <section class="search-section">
+    <section class="search-section anim-fade-in" style="--fade-delay: 0.9s;">
       <div class="search-wrapper">
         <input type="text" id="searchInput" placeholder="輸入蔬菜名稱，例如：高麗菜、空心菜..." autocomplete="off">
         <button id="clearSearch" class="clear-btn hidden" aria-label="清除搜尋">&times;</button>
@@ -40,7 +47,7 @@
     </section>
 
     <!-- Region tags -->
-    <section class="filter-section">
+    <section class="filter-section anim-fade-in" style="--fade-delay: 1.0s;">
       <div class="filter-group">
         <span class="filter-label">地區</span>
         <div class="filter-tags" id="regionTags">
@@ -87,7 +94,7 @@
     <div id="dataInfo" class="data-info hidden"></div>
 
     <!-- Table -->
-    <section id="tableSection" class="table-section">
+    <section id="tableSection" class="table-section anim-fade-in" style="--fade-delay: 1.1s;">
       <div class="table-header">
         <h3 id="tableTitle">今日蔬菜價格一覽</h3>
         <span id="resultCount" class="result-count"></span>
@@ -118,7 +125,7 @@
        本站僅供參考，實際價格以市場公告為準</p>
   </footer>
 
-  <script src="js/app.js?v=11"></script>
-  <script src="js/chatbot.js?v=11"></script>
+  <script type="module" src="/src/app.ts"></script>
+  <script type="module" src="/src/chatbot.ts"></script>
 </body>
 </html>
