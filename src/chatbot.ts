@@ -229,6 +229,11 @@ function getQuickQuestions(): string[] {
   return [...(TYPE_QUESTIONS[currentType] || TYPE_QUESTIONS.veg), ...COMMON_QUESTIONS]
 }
 
+function refreshFollowUp() {
+  document.querySelectorAll('.chat-followup').forEach(el => el.remove())
+  showFollowUp()
+}
+
 function showFollowUp() {
   const messages = document.getElementById('chatMessages')!
   const wrap = document.createElement('div')
@@ -324,7 +329,15 @@ function buildTable(headers: string[], rows: string[][]): string {
 
 // Init
 if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', createChatbotUI)
+  document.addEventListener('DOMContentLoaded', init)
 } else {
+  init()
+}
+
+function init() {
   createChatbotUI()
+  // Refresh quick questions when user switches type
+  document.getElementById('typeToggle')?.addEventListener('click', () => {
+    setTimeout(refreshFollowUp, 50)
+  })
 }
