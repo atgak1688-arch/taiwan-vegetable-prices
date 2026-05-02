@@ -2,6 +2,32 @@
   "RS": "OK",
   "Data": [
     {
+      "TransDate": "115.05.02",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "423",
+      "MarketName": "東勢鎮",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
+      "TransDate": "115.05.02",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "600",
+      "MarketName": "嘉義市",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
       "TransDate": "115.04.30",
       "TcType": "N04",
       "CropCode": "FA0",
@@ -12974,32 +13000,6 @@
       "Lower_Price": 11.7,
       "Avg_Price": 17.6,
       "Trans_Quantity": 2032.0
-    },
-    {
-      "TransDate": "115.04.30",
-      "TcType": "N04",
-      "CropCode": "LC1",
-      "CropName": "包心白-包白",
-      "MarketCode": "400",
-      "MarketName": "台中市",
-      "Upper_Price": 25.0,
-      "Middle_Price": 17.7,
-      "Lower_Price": 13.0,
-      "Avg_Price": 19.8,
-      "Trans_Quantity": 330.0
-    },
-    {
-      "TransDate": "115.04.30",
-      "TcType": "N04",
-      "CropCode": "LC3",
-      "CropName": "包心白-包頭蓮",
-      "MarketCode": "400",
-      "MarketName": "台中市",
-      "Upper_Price": 17.5,
-      "Middle_Price": 16.0,
-      "Lower_Price": 12.5,
-      "Avg_Price": 14.0,
-      "Trans_Quantity": 2530.0
     }
   ],
   "Next": true
