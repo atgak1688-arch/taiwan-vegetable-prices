@@ -2,6 +2,19 @@
   "RS": "OK",
   "Data": [
     {
+      "TransDate": "115.05.10",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "423",
+      "MarketName": "東勢鎮",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
       "TransDate": "115.05.08",
       "TcType": "N04",
       "CropCode": "FA0",
@@ -12987,19 +13000,6 @@
       "Lower_Price": 35.0,
       "Avg_Price": 36.4,
       "Trans_Quantity": 44.0
-    },
-    {
-      "TransDate": "115.05.08",
-      "TcType": "N04",
-      "CropCode": "FJ3",
-      "CropName": "番茄-牛番茄",
-      "MarketCode": "400",
-      "MarketName": "台中市",
-      "Upper_Price": 69.8,
-      "Middle_Price": 44.6,
-      "Lower_Price": 21.2,
-      "Avg_Price": 44.1,
-      "Trans_Quantity": 5429.0
     }
   ],
   "Next": true
