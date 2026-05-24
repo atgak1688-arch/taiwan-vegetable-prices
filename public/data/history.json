@@ -2,6 +2,19 @@
   "RS": "OK",
   "Data": [
     {
+      "TransDate": "115.05.24",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "423",
+      "MarketName": "東勢鎮",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
       "TransDate": "115.05.22",
       "TcType": "N04",
       "CropCode": "FA1",
@@ -12987,19 +13000,6 @@
       "Lower_Price": 45.0,
       "Avg_Price": 45.0,
       "Trans_Quantity": 42.0
-    },
-    {
-      "TransDate": "115.05.22",
-      "TcType": "N04",
-      "CropCode": "SU9",
-      "CropName": "薯蕷-進口",
-      "MarketCode": "338",
-      "MarketName": "桃農",
-      "Upper_Price": 135.0,
-      "Middle_Price": 132.9,
-      "Lower_Price": 45.0,
-      "Avg_Price": 115.7,
-      "Trans_Quantity": 140.0
     }
   ],
   "Next": true
