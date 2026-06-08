@@ -1,2 +1,49 @@
 {"RS":"OK","Data":[
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FB1", "CropName": "花椰菜-青梗", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 30.9, "Middle_Price": 24.9, "Lower_Price": 8.1, "Avg_Price": 22.8, "Trans_Quantity": 9642.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FD1", "CropName": "花胡瓜", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 60.0, "Middle_Price": 60.0, "Lower_Price": 60.0, "Avg_Price": 60.0, "Trans_Quantity": 55.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FE1", "CropName": "冬瓜-白皮", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 30.0, "Middle_Price": 30.0, "Lower_Price": 30.0, "Avg_Price": 30.0, "Trans_Quantity": 120.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FF1", "CropName": "絲瓜", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 35.0, "Middle_Price": 30.0, "Lower_Price": 20.0, "Avg_Price": 29.0, "Trans_Quantity": 315.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FG1", "CropName": "苦瓜-白大米", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 39.8, "Middle_Price": 31.3, "Lower_Price": 19.3, "Avg_Price": 30.6, "Trans_Quantity": 1037.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FG2", "CropName": "苦瓜-青大米", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 30.0, "Middle_Price": 30.0, "Lower_Price": 30.0, "Avg_Price": 30.0, "Trans_Quantity": 40.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FG3", "CropName": "苦瓜-山苦瓜", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 66.7, "Middle_Price": 66.7, "Lower_Price": 66.7, "Avg_Price": 66.7, "Trans_Quantity": 60.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FH3", "CropName": "扁蒲-花蒲", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 13.2, "Middle_Price": 6.7, "Lower_Price": 6.7, "Avg_Price": 8.0, "Trans_Quantity": 159.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FI2", "CropName": "茄子-麻荸茄", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 30.0, "Middle_Price": 30.0, "Lower_Price": 30.0, "Avg_Price": 30.0, "Trans_Quantity": 66.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "FM1", "CropName": "菜豆-白色", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 40.0, "Middle_Price": 39.8, "Lower_Price": 30.0, "Avg_Price": 37.9, "Trans_Quantity": 95.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LA1", "CropName": "甘藍-初秋", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 30.0, "Middle_Price": 21.5, "Lower_Price": 15.0, "Avg_Price": 21.9, "Trans_Quantity": 2800.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LA7", "CropName": "甘藍-改良尖", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 30.0, "Middle_Price": 21.5, "Lower_Price": 15.0, "Avg_Price": 21.9, "Trans_Quantity": 3100.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LB1", "CropName": "小白菜-土白菜", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 21.8, "Middle_Price": 17.5, "Lower_Price": 10.0, "Avg_Price": 16.9, "Trans_Quantity": 901.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LC1", "CropName": "包心白-包白", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 13.9, "Middle_Price": 8.8, "Lower_Price": 5.0, "Avg_Price": 9.0, "Trans_Quantity": 5166.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LD1", "CropName": "青江白菜-小梗", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 20.0, "Middle_Price": 15.0, "Lower_Price": 10.0, "Avg_Price": 15.0, "Trans_Quantity": 900.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LF2", "CropName": "蕹菜-小葉", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 26.4, "Middle_Price": 16.4, "Lower_Price": 6.7, "Avg_Price": 16.5, "Trans_Quantity": 799.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LG2", "CropName": "芹菜-白梗", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 71.0, "Middle_Price": 50.0, "Lower_Price": 26.7, "Avg_Price": 49.5, "Trans_Quantity": 699.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LK2", "CropName": "芥藍菜", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 20.0, "Middle_Price": 15.0, "Lower_Price": 10.0, "Avg_Price": 15.0, "Trans_Quantity": 900.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "LN1", "CropName": "油菜", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 17.0, "Middle_Price": 12.5, "Lower_Price": 7.5, "Avg_Price": 12.4, "Trans_Quantity": 952.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "SA32", "CropName": "蘿蔔-矸仔", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 10.0, "Middle_Price": 8.9, "Lower_Price": 7.0, "Avg_Price": 8.7, "Trans_Quantity": 5799.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "SB1", "CropName": "胡蘿蔔-未洗", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 23.5, "Middle_Price": 18.0, "Lower_Price": 13.0, "Avg_Price": 18.1, "Trans_Quantity": 719.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "SD1", "CropName": "洋蔥-本產", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 20.0, "Middle_Price": 15.0, "Lower_Price": 10.0, "Avg_Price": 15.0, "Trans_Quantity": 600.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "SO0", "CropName": "甘薯-其他", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 23.4, "Middle_Price": 20.0, "Lower_Price": 14.7, "Avg_Price": 19.6, "Trans_Quantity": 804.0}
+,
+{"TransDate": "115.06.08", "TcType": "N04", "CropCode": "SX1", "CropName": "芽菜類-綠豆芽", "MarketCode": "514", "MarketName": "溪湖鎮", "Upper_Price": 13.0, "Middle_Price": 13.0, "Lower_Price": 13.0, "Avg_Price": 13.0, "Trans_Quantity": 710.0}
 ],"Next":false}
