@@ -2,6 +2,45 @@
   "RS": "OK",
   "Data": [
     {
+      "TransDate": "115.06.19",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "423",
+      "MarketName": "東勢鎮",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
+      "TransDate": "115.06.19",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "600",
+      "MarketName": "嘉義市",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
+      "TransDate": "115.06.19",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "830",
+      "MarketName": "鳳山區",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
       "TransDate": "115.06.17",
       "TcType": "N04",
       "CropCode": "FA1",
@@ -12961,45 +13000,6 @@
       "Lower_Price": 25.0,
       "Avg_Price": 38.2,
       "Trans_Quantity": 686.0
-    },
-    {
-      "TransDate": "115.06.17",
-      "TcType": "N04",
-      "CropCode": "MD1",
-      "CropName": "濕香菇",
-      "MarketCode": "400",
-      "MarketName": "台中市",
-      "Upper_Price": 110.0,
-      "Middle_Price": 77.5,
-      "Lower_Price": 45.0,
-      "Avg_Price": 66.7,
-      "Trans_Quantity": 90.0
-    },
-    {
-      "TransDate": "115.06.17",
-      "TcType": "N04",
-      "CropCode": "ME1",
-      "CropName": "金絲菇-金針菇",
-      "MarketCode": "400",
-      "MarketName": "台中市",
-      "Upper_Price": 35.0,
-      "Middle_Price": 30.0,
-      "Lower_Price": 7.0,
-      "Avg_Price": 17.2,
-      "Trans_Quantity": 160.0
-    },
-    {
-      "TransDate": "115.06.17",
-      "TcType": "N04",
-      "CropCode": "MF1",
-      "CropName": "蠔菇-鮑魚菇",
-      "MarketCode": "400",
-      "MarketName": "台中市",
-      "Upper_Price": 65.0,
-      "Middle_Price": 65.0,
-      "Lower_Price": 65.0,
-      "Avg_Price": 65.0,
-      "Trans_Quantity": 18.0
     }
   ],
   "Next": true
