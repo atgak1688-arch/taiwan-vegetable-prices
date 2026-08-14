@@ -2,6 +2,19 @@
   "RS": "OK",
   "Data": [
     {
+      "TransDate": "115.08.14",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "600",
+      "MarketName": "嘉義市",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
       "TransDate": "115.08.13",
       "TcType": "N04",
       "CropCode": "FA0",
@@ -12987,19 +13000,6 @@
       "Lower_Price": 25.4,
       "Avg_Price": 33.4,
       "Trans_Quantity": 1280.0
-    },
-    {
-      "TransDate": "115.08.13",
-      "TcType": "N04",
-      "CropCode": "FT91",
-      "CropName": "南瓜-進口 木瓜型",
-      "MarketCode": "420",
-      "MarketName": "豐原區",
-      "Upper_Price": 10.0,
-      "Middle_Price": 10.0,
-      "Lower_Price": 10.0,
-      "Avg_Price": 10.0,
-      "Trans_Quantity": 140.0
     }
   ],
   "Next": true
