@@ -1,2 +1,679 @@
 {"RS":"OK","Data":[
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "11", "CropName": "椰子", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 23.5, "Middle_Price": 20.1, "Lower_Price": 17.7, "Avg_Price": 20.3, "Trans_Quantity": 1697.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "12", "CropName": "椰子-剝殼", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 36.7, "Middle_Price": 20.1, "Lower_Price": 15.0, "Avg_Price": 22.4, "Trans_Quantity": 240.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "31", "CropName": "釋迦", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 85.7, "Middle_Price": 67.6, "Lower_Price": 48.1, "Avg_Price": 67.3, "Trans_Quantity": 2916.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "459", "CropName": "草莓-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 200.0, "Middle_Price": 200.0, "Lower_Price": 200.0, "Avg_Price": 200.0, "Trans_Quantity": 40.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "469", "CropName": "藍莓-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 283.5, "Middle_Price": 222.2, "Lower_Price": 221.8, "Avg_Price": 234.4, "Trans_Quantity": 4418.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "50", "CropName": "百香果-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 130.8, "Middle_Price": 76.0, "Lower_Price": 48.8, "Avg_Price": 81.5, "Trans_Quantity": 951.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "51", "CropName": "百香果-改良種", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 120.2, "Middle_Price": 84.2, "Lower_Price": 62.3, "Avg_Price": 87.0, "Trans_Quantity": 6001.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "61", "CropName": "甘蔗-帶皮", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 13.0, "Middle_Price": 10.6, "Lower_Price": 8.0, "Avg_Price": 10.5, "Trans_Quantity": 2550.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "70", "CropName": "小番茄-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 142.0, "Middle_Price": 142.0, "Lower_Price": 142.0, "Avg_Price": 142.0, "Trans_Quantity": 50.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "72", "CropName": "小番茄-聖女", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 148.4, "Middle_Price": 113.5, "Lower_Price": 70.3, "Avg_Price": 111.8, "Trans_Quantity": 7836.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "74", "CropName": "小番茄-玉女", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 443.8, "Middle_Price": 365.9, "Lower_Price": 156.4, "Avg_Price": 339.6, "Trans_Quantity": 186.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "811", "CropName": "紅龍果-白肉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 73.2, "Middle_Price": 38.8, "Lower_Price": 20.1, "Avg_Price": 42.0, "Trans_Quantity": 4877.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "812", "CropName": "紅龍果-紅肉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 66.6, "Middle_Price": 29.9, "Lower_Price": 16.5, "Avg_Price": 34.5, "Trans_Quantity": 11662.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "813", "CropName": "紅龍果-雙色紅龍果", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 147.4, "Middle_Price": 66.4, "Lower_Price": 34.1, "Avg_Price": 76.2, "Trans_Quantity": 1395.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "839", "CropName": "櫻桃-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 226.7, "Middle_Price": 190.1, "Lower_Price": 149.2, "Avg_Price": 189.2, "Trans_Quantity": 4307.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "859", "CropName": "榴槤-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 80.0, "Middle_Price": 80.0, "Lower_Price": 80.0, "Avg_Price": 80.0, "Trans_Quantity": 800.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "87", "CropName": "紅毛丹", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 119.0, "Middle_Price": 85.6, "Lower_Price": 54.4, "Avg_Price": 86.0, "Trans_Quantity": 811.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "91", "CropName": "其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 90.0, "Middle_Price": 51.0, "Lower_Price": 18.7, "Avg_Price": 52.3, "Trans_Quantity": 504.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "919", "CropName": "其他-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 109.9, "Middle_Price": 88.9, "Lower_Price": 88.9, "Avg_Price": 93.1, "Trans_Quantity": 540.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A0", "CropName": "香蕉-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 14.5, "Middle_Price": 10.0, "Lower_Price": 10.0, "Avg_Price": 10.9, "Trans_Quantity": 144.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A1", "CropName": "香蕉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 48.8, "Middle_Price": 29.7, "Lower_Price": 17.8, "Avg_Price": 31.1, "Trans_Quantity": 12631.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A2", "CropName": "香蕉-芭蕉紅芭蕉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 56.3, "Middle_Price": 28.5, "Lower_Price": 12.6, "Avg_Price": 30.9, "Trans_Quantity": 2948.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A4", "CropName": "香蕉-越旦", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 31.8, "Middle_Price": 24.7, "Lower_Price": 19.1, "Avg_Price": 25.0, "Trans_Quantity": 947.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B2", "CropName": "鳳梨-金鑽鳳梨", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 49.2, "Middle_Price": 38.6, "Lower_Price": 18.3, "Avg_Price": 36.6, "Trans_Quantity": 13088.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B7", "CropName": "鳳梨-牛奶鳳梨", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 41.0, "Middle_Price": 35.0, "Lower_Price": 25.4, "Avg_Price": 34.3, "Trans_Quantity": 2645.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B8", "CropName": "鳳梨-西瓜鳳梨", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 40.3, "Middle_Price": 35.3, "Lower_Price": 25.9, "Avg_Price": 34.4, "Trans_Quantity": 1199.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "C9", "CropName": "柑橘-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 72.8, "Middle_Price": 40.1, "Lower_Price": 29.6, "Avg_Price": 44.5, "Trans_Quantity": 5985.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "E9", "CropName": "甜橙-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 62.4, "Middle_Price": 40.9, "Lower_Price": 37.5, "Avg_Price": 44.5, "Trans_Quantity": 5872.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F1", "CropName": "雜柑-檸檬", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 45.6, "Middle_Price": 33.9, "Lower_Price": 20.9, "Avg_Price": 33.7, "Trans_Quantity": 1855.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F4", "CropName": "雜柑-桔子", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 90.2, "Middle_Price": 62.6, "Lower_Price": 44.2, "Avg_Price": 64.4, "Trans_Quantity": 552.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F5", "CropName": "雜柑-無子檸檬", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 35.7, "Middle_Price": 27.7, "Lower_Price": 16.4, "Avg_Price": 27.0, "Trans_Quantity": 4266.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F6", "CropName": "雜柑-黃金檸檬", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 21.1, "Middle_Price": 16.4, "Lower_Price": 10.7, "Avg_Price": 16.2, "Trans_Quantity": 363.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G2", "CropName": "黃金果", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 64.0, "Middle_Price": 52.7, "Lower_Price": 35.7, "Avg_Price": 51.6, "Trans_Quantity": 1021.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G3", "CropName": "酪梨", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 72.8, "Middle_Price": 56.7, "Lower_Price": 43.8, "Avg_Price": 57.4, "Trans_Quantity": 12038.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G39", "CropName": "酪梨-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 146.7, "Middle_Price": 146.7, "Lower_Price": 146.7, "Avg_Price": 146.7, "Trans_Quantity": 200.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G49", "CropName": "奇異果-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 113.9, "Middle_Price": 96.5, "Lower_Price": 81.2, "Avg_Price": 96.9, "Trans_Quantity": 4264.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G7", "CropName": "橄欖", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 40.0, "Middle_Price": 35.6, "Lower_Price": 15.0, "Avg_Price": 32.4, "Trans_Quantity": 72.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G9", "CropName": "波蘿蜜", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 35.5, "Middle_Price": 17.9, "Lower_Price": 10.0, "Avg_Price": 19.9, "Trans_Quantity": 257.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G91", "CropName": "榴槤蜜", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 41.6, "Middle_Price": 20.8, "Lower_Price": 13.1, "Avg_Price": 23.4, "Trans_Quantity": 3062.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H1", "CropName": "柚子-文旦", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 31.1, "Middle_Price": 17.6, "Lower_Price": 15.0, "Avg_Price": 19.8, "Trans_Quantity": 2679.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H49", "CropName": "葡萄柚-紅肉進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 48.7, "Middle_Price": 40.0, "Lower_Price": 40.0, "Avg_Price": 41.7, "Trans_Quantity": 600.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H5", "CropName": "葡萄柚-白肉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 23.0, "Middle_Price": 23.0, "Lower_Price": 23.0, "Avg_Price": 23.0, "Trans_Quantity": 54.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I1", "CropName": "木瓜-網室紅肉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 46.0, "Middle_Price": 31.9, "Lower_Price": 23.2, "Avg_Price": 33.0, "Trans_Quantity": 29089.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I3", "CropName": "木瓜-日昇種", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 99.4, "Middle_Price": 59.2, "Lower_Price": 41.7, "Avg_Price": 63.7, "Trans_Quantity": 856.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I4", "CropName": "木瓜-青木瓜", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 16.3, "Middle_Price": 12.2, "Lower_Price": 5.5, "Avg_Price": 11.7, "Trans_Quantity": 1892.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "K3", "CropName": "龍眼-粉殼", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 76.7, "Middle_Price": 43.5, "Lower_Price": 26.6, "Avg_Price": 46.8, "Trans_Quantity": 20883.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "K4", "CropName": "龍眼-龍眼乾帶殼", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 200.0, "Middle_Price": 200.0, "Lower_Price": 200.0, "Avg_Price": 200.0, "Trans_Quantity": 9.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "M2", "CropName": "楊桃-紅龍", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 25.0, "Middle_Price": 25.0, "Lower_Price": 25.0, "Avg_Price": 25.0, "Trans_Quantity": 504.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "N0", "CropName": "李-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 95.0, "Middle_Price": 95.0, "Lower_Price": 95.0, "Avg_Price": 95.0, "Trans_Quantity": 18.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "N9", "CropName": "李-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 218.0, "Middle_Price": 134.7, "Lower_Price": 63.7, "Avg_Price": 137.2, "Trans_Quantity": 1110.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O0", "CropName": "梨-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 64.8, "Middle_Price": 55.0, "Lower_Price": 33.3, "Avg_Price": 52.6, "Trans_Quantity": 546.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O10", "CropName": "梨-寶島甘露梨", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 74.6, "Middle_Price": 47.5, "Lower_Price": 20.5, "Avg_Price": 47.5, "Trans_Quantity": 36968.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O3", "CropName": "梨-世紀梨", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 45.0, "Middle_Price": 35.6, "Lower_Price": 23.7, "Avg_Price": 35.1, "Trans_Quantity": 2344.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O4", "CropName": "梨-新興梨", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 51.6, "Middle_Price": 37.2, "Lower_Price": 34.0, "Avg_Price": 39.5, "Trans_Quantity": 5850.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P1", "CropName": "番石榴-珍珠芭", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 126.3, "Middle_Price": 91.6, "Lower_Price": 44.1, "Avg_Price": 89.0, "Trans_Quantity": 20236.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P2", "CropName": "番石榴-紅心", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 108.4, "Middle_Price": 61.3, "Lower_Price": 23.5, "Avg_Price": 63.2, "Trans_Quantity": 1475.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P3", "CropName": "番石榴-帝王芭", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 145.4, "Middle_Price": 75.4, "Lower_Price": 34.0, "Avg_Price": 81.1, "Trans_Quantity": 2295.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P5", "CropName": "番石榴-水晶無子", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 278.8, "Middle_Price": 101.4, "Lower_Price": 44.3, "Avg_Price": 125.4, "Trans_Quantity": 301.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Q1", "CropName": "蓮霧-紅蓮霧", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 405.3, "Middle_Price": 322.6, "Lower_Price": 219.7, "Avg_Price": 318.6, "Trans_Quantity": 307.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Q2", "CropName": "蓮霧-子彈型", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 79.3, "Middle_Price": 63.2, "Lower_Price": 43.4, "Avg_Price": 62.4, "Trans_Quantity": 215.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Q5", "CropName": "蓮霧-黑糖芭比", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 190.0, "Middle_Price": 190.0, "Lower_Price": 190.0, "Avg_Price": 190.0, "Trans_Quantity": 109.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R0", "CropName": "芒果-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 100.0, "Middle_Price": 65.4, "Lower_Price": 41.2, "Avg_Price": 67.5, "Trans_Quantity": 1371.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R1", "CropName": "芒果-愛文", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 169.5, "Middle_Price": 109.5, "Lower_Price": 52.2, "Avg_Price": 110.1, "Trans_Quantity": 7446.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R10", "CropName": "芒果-西施", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 185.5, "Middle_Price": 93.6, "Lower_Price": 52.0, "Avg_Price": 103.7, "Trans_Quantity": 890.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R2", "CropName": "芒果-玉文", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 45.0, "Middle_Price": 42.1, "Lower_Price": 30.9, "Avg_Price": 40.4, "Trans_Quantity": 99.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R31", "CropName": "芒果-夏雪", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 253.8, "Middle_Price": 120.1, "Lower_Price": 60.8, "Avg_Price": 135.0, "Trans_Quantity": 78.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R4", "CropName": "芒果-凱特", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 66.3, "Middle_Price": 45.9, "Lower_Price": 32.8, "Avg_Price": 47.4, "Trans_Quantity": 3291.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R5", "CropName": "芒果-黑香金興", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 75.0, "Middle_Price": 70.0, "Lower_Price": 70.0, "Avg_Price": 71.0, "Trans_Quantity": 60.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R6", "CropName": "芒果-金煌", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 85.0, "Middle_Price": 68.2, "Lower_Price": 35.0, "Avg_Price": 64.9, "Trans_Quantity": 288.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R8", "CropName": "芒果-芒果青", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 82.2, "Middle_Price": 71.8, "Lower_Price": 53.8, "Avg_Price": 70.3, "Trans_Quantity": 1448.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S0", "CropName": "葡萄-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 150.0, "Middle_Price": 139.2, "Lower_Price": 121.7, "Avg_Price": 137.9, "Trans_Quantity": 126.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S1", "CropName": "葡萄-巨峰", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 154.2, "Middle_Price": 78.2, "Lower_Price": 54.4, "Avg_Price": 88.6, "Trans_Quantity": 2215.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S9", "CropName": "葡萄-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 376.2, "Middle_Price": 174.4, "Lower_Price": 104.6, "Avg_Price": 200.8, "Trans_Quantity": 5890.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T0", "CropName": "西瓜-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 88.3, "Middle_Price": 35.1, "Lower_Price": 19.5, "Avg_Price": 42.6, "Trans_Quantity": 1091.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T1", "CropName": "西瓜-大西瓜", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 17.5, "Middle_Price": 13.0, "Lower_Price": 13.0, "Avg_Price": 13.9, "Trans_Quantity": 4030.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T5", "CropName": "西瓜-黃肉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 17.8, "Middle_Price": 14.1, "Lower_Price": 11.7, "Avg_Price": 14.4, "Trans_Quantity": 20157.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T8", "CropName": "西瓜-甜美人", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 20.6, "Middle_Price": 16.0, "Lower_Price": 11.8, "Avg_Price": 16.0, "Trans_Quantity": 11057.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V0", "CropName": "甜瓜-其他", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 80.0, "Middle_Price": 80.0, "Lower_Price": 80.0, "Avg_Price": 80.0, "Trans_Quantity": 120.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V1", "CropName": "甜瓜-美濃", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 40.6, "Middle_Price": 27.5, "Lower_Price": 13.8, "Avg_Price": 27.4, "Trans_Quantity": 15355.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V2", "CropName": "甜瓜-溫室吊瓜", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 213.4, "Middle_Price": 149.2, "Lower_Price": 83.3, "Avg_Price": 148.9, "Trans_Quantity": 1698.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W1", "CropName": "洋香瓜-網狀紅肉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 70.1, "Middle_Price": 52.4, "Lower_Price": 44.6, "Avg_Price": 54.4, "Trans_Quantity": 1438.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W2", "CropName": "洋香瓜-網狀綠肉", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 35.0, "Middle_Price": 24.7, "Lower_Price": 15.8, "Avg_Price": 25.0, "Trans_Quantity": 1627.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W4", "CropName": "洋香瓜-新疆", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 67.0, "Middle_Price": 57.3, "Lower_Price": 41.0, "Avg_Price": 56.0, "Trans_Quantity": 74.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W8", "CropName": "洋香瓜-阿露斯", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 101.0, "Middle_Price": 81.4, "Lower_Price": 47.7, "Avg_Price": 78.6, "Trans_Quantity": 571.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W9", "CropName": "洋香瓜-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 86.9, "Middle_Price": 66.7, "Lower_Price": 66.7, "Avg_Price": 70.7, "Trans_Quantity": 1732.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X3", "CropName": "蘋果-惠", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 50.0, "Middle_Price": 41.7, "Lower_Price": 30.0, "Avg_Price": 41.0, "Trans_Quantity": 234.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X59", "CropName": "蘋果-紅玉進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 100.0, "Middle_Price": 100.0, "Lower_Price": 100.0, "Avg_Price": 100.0, "Trans_Quantity": 240.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X69", "CropName": "蘋果-富士進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 116.3, "Middle_Price": 60.9, "Lower_Price": 43.8, "Avg_Price": 68.6, "Trans_Quantity": 13137.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y1", "CropName": "桃子-水蜜桃", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 123.8, "Middle_Price": 80.4, "Lower_Price": 44.9, "Avg_Price": 82.0, "Trans_Quantity": 698.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y39", "CropName": "桃子-甜桃進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 95.2, "Middle_Price": 95.2, "Lower_Price": 95.2, "Avg_Price": 95.2, "Trans_Quantity": 420.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y9", "CropName": "桃子-進口", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 533.3, "Middle_Price": 310.8, "Lower_Price": 166.7, "Avg_Price": 326.5, "Trans_Quantity": 788.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Z1", "CropName": "柿子-紅柿", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 42.2, "Middle_Price": 28.0, "Lower_Price": 24.0, "Avg_Price": 30.0, "Trans_Quantity": 2986.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Z4", "CropName": "柿子-甜柿", "MarketCode": "109", "MarketName": "台北一", "Upper_Price": 106.4, "Middle_Price": 73.6, "Lower_Price": 48.3, "Avg_Price": 75.1, "Trans_Quantity": 2996.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "11", "CropName": "椰子", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 28.5, "Middle_Price": 19.1, "Lower_Price": 14.1, "Avg_Price": 20.0, "Trans_Quantity": 1647.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "129", "CropName": "椰子-剝殼進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 40.0, "Middle_Price": 40.0, "Lower_Price": 40.0, "Avg_Price": 40.0, "Trans_Quantity": 200.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "31", "CropName": "釋迦", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 75.7, "Middle_Price": 62.6, "Lower_Price": 49.0, "Avg_Price": 62.5, "Trans_Quantity": 2900.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "469", "CropName": "藍莓-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 280.6, "Middle_Price": 182.9, "Lower_Price": 109.2, "Avg_Price": 187.7, "Trans_Quantity": 1630.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "50", "CropName": "百香果-其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 150.8, "Middle_Price": 90.9, "Lower_Price": 68.3, "Avg_Price": 98.3, "Trans_Quantity": 839.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "51", "CropName": "百香果-改良種", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 119.0, "Middle_Price": 75.5, "Lower_Price": 55.7, "Avg_Price": 80.2, "Trans_Quantity": 4985.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "70", "CropName": "小番茄-其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 35.0, "Middle_Price": 35.0, "Lower_Price": 35.0, "Avg_Price": 35.0, "Trans_Quantity": 18.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "72", "CropName": "小番茄-聖女", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 135.8, "Middle_Price": 105.6, "Lower_Price": 76.8, "Avg_Price": 105.9, "Trans_Quantity": 2630.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "74", "CropName": "小番茄-玉女", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 442.2, "Middle_Price": 326.7, "Lower_Price": 122.8, "Avg_Price": 309.0, "Trans_Quantity": 270.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "811", "CropName": "紅龍果-白肉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 72.5, "Middle_Price": 39.4, "Lower_Price": 20.4, "Avg_Price": 42.2, "Trans_Quantity": 5133.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "812", "CropName": "紅龍果-紅肉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 90.7, "Middle_Price": 44.1, "Lower_Price": 16.8, "Avg_Price": 48.0, "Trans_Quantity": 7931.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "813", "CropName": "紅龍果-雙色紅龍果", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 107.5, "Middle_Price": 50.3, "Lower_Price": 16.7, "Avg_Price": 55.0, "Trans_Quantity": 1032.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "839", "CropName": "櫻桃-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 306.7, "Middle_Price": 208.2, "Lower_Price": 159.9, "Avg_Price": 218.2, "Trans_Quantity": 855.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "859", "CropName": "榴槤-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 159.2, "Middle_Price": 97.9, "Lower_Price": 80.0, "Avg_Price": 106.6, "Trans_Quantity": 730.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "86", "CropName": "山竹", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 65.0, "Middle_Price": 47.7, "Lower_Price": 40.0, "Avg_Price": 49.6, "Trans_Quantity": 54.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "87", "CropName": "紅毛丹", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 118.8, "Middle_Price": 79.9, "Lower_Price": 59.0, "Avg_Price": 83.5, "Trans_Quantity": 580.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "91", "CropName": "其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 301.5, "Middle_Price": 26.2, "Lower_Price": 15.0, "Avg_Price": 79.0, "Trans_Quantity": 137.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "919", "CropName": "其他-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 186.7, "Middle_Price": 186.7, "Lower_Price": 186.7, "Avg_Price": 186.7, "Trans_Quantity": 10.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A0", "CropName": "香蕉-其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 20.0, "Middle_Price": 20.0, "Lower_Price": 18.2, "Avg_Price": 19.6, "Trans_Quantity": 81.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A1", "CropName": "香蕉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 53.7, "Middle_Price": 42.2, "Lower_Price": 22.2, "Avg_Price": 40.5, "Trans_Quantity": 7773.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A2", "CropName": "香蕉-芭蕉紅芭蕉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 48.0, "Middle_Price": 31.5, "Lower_Price": 22.5, "Avg_Price": 33.0, "Trans_Quantity": 2834.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A3", "CropName": "香蕉-旦蕉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 22.0, "Middle_Price": 21.9, "Lower_Price": 21.0, "Avg_Price": 21.8, "Trans_Quantity": 108.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A4", "CropName": "香蕉-越旦", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 39.5, "Middle_Price": 24.7, "Lower_Price": 20.0, "Avg_Price": 26.7, "Trans_Quantity": 702.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B2", "CropName": "鳳梨-金鑽鳳梨", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 62.6, "Middle_Price": 46.6, "Lower_Price": 22.4, "Avg_Price": 45.0, "Trans_Quantity": 5243.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B7", "CropName": "鳳梨-牛奶鳳梨", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 47.5, "Middle_Price": 40.8, "Lower_Price": 33.1, "Avg_Price": 40.6, "Trans_Quantity": 534.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "C9", "CropName": "柑橘-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 101.2, "Middle_Price": 40.8, "Lower_Price": 26.2, "Avg_Price": 50.0, "Trans_Quantity": 1882.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "E9", "CropName": "甜橙-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 109.9, "Middle_Price": 40.0, "Lower_Price": 17.8, "Avg_Price": 49.6, "Trans_Quantity": 622.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F1", "CropName": "雜柑-檸檬", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 48.0, "Middle_Price": 42.2, "Lower_Price": 24.8, "Avg_Price": 39.9, "Trans_Quantity": 182.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F4", "CropName": "雜柑-桔子", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 88.1, "Middle_Price": 51.4, "Lower_Price": 30.5, "Avg_Price": 54.6, "Trans_Quantity": 296.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F5", "CropName": "雜柑-無子檸檬", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 36.4, "Middle_Price": 23.2, "Lower_Price": 14.4, "Avg_Price": 24.1, "Trans_Quantity": 3305.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F6", "CropName": "雜柑-黃金檸檬", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 30.0, "Middle_Price": 28.4, "Lower_Price": 28.0, "Avg_Price": 28.7, "Trans_Quantity": 60.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G2", "CropName": "黃金果", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 73.3, "Middle_Price": 49.6, "Lower_Price": 40.3, "Avg_Price": 52.5, "Trans_Quantity": 1172.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G3", "CropName": "酪梨", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 66.7, "Middle_Price": 50.5, "Lower_Price": 37.6, "Avg_Price": 51.2, "Trans_Quantity": 10643.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G39", "CropName": "酪梨-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 213.4, "Middle_Price": 213.4, "Lower_Price": 213.4, "Avg_Price": 213.4, "Trans_Quantity": 5.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G49", "CropName": "奇異果-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 118.0, "Middle_Price": 86.0, "Lower_Price": 51.4, "Avg_Price": 85.5, "Trans_Quantity": 1937.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G7", "CropName": "橄欖", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 20.0, "Middle_Price": 18.5, "Lower_Price": 12.0, "Avg_Price": 17.5, "Trans_Quantity": 73.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G9", "CropName": "波蘿蜜", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 27.3, "Middle_Price": 17.7, "Lower_Price": 8.9, "Avg_Price": 17.9, "Trans_Quantity": 92.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G91", "CropName": "榴槤蜜", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 29.1, "Middle_Price": 20.3, "Lower_Price": 16.1, "Avg_Price": 21.2, "Trans_Quantity": 1633.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H1", "CropName": "柚子-文旦", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 21.5, "Middle_Price": 16.3, "Lower_Price": 14.0, "Avg_Price": 16.9, "Trans_Quantity": 768.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H49", "CropName": "葡萄柚-紅肉進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 68.1, "Middle_Price": 60.4, "Lower_Price": 60.0, "Avg_Price": 61.9, "Trans_Quantity": 80.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H5", "CropName": "葡萄柚-白肉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 22.0, "Middle_Price": 22.0, "Lower_Price": 22.0, "Avg_Price": 22.0, "Trans_Quantity": 90.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I1", "CropName": "木瓜-網室紅肉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 44.6, "Middle_Price": 29.2, "Lower_Price": 23.6, "Avg_Price": 31.2, "Trans_Quantity": 15988.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I3", "CropName": "木瓜-日昇種", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 162.1, "Middle_Price": 81.9, "Lower_Price": 45.2, "Avg_Price": 90.6, "Trans_Quantity": 756.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I4", "CropName": "木瓜-青木瓜", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 18.5, "Middle_Price": 7.7, "Lower_Price": 5.4, "Avg_Price": 9.4, "Trans_Quantity": 1782.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "K3", "CropName": "龍眼-粉殼", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 65.7, "Middle_Price": 41.7, "Lower_Price": 27.2, "Avg_Price": 43.6, "Trans_Quantity": 15060.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "M3", "CropName": "楊桃-馬來亞種", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 37.2, "Middle_Price": 18.0, "Lower_Price": 10.0, "Avg_Price": 20.3, "Trans_Quantity": 207.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "N0", "CropName": "李-其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 50.0, "Middle_Price": 50.0, "Lower_Price": 50.0, "Avg_Price": 50.0, "Trans_Quantity": 96.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "N9", "CropName": "李-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 200.0, "Middle_Price": 170.0, "Lower_Price": 73.1, "Avg_Price": 156.6, "Trans_Quantity": 785.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O0", "CropName": "梨-其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 30.9, "Middle_Price": 21.6, "Lower_Price": 12.0, "Avg_Price": 21.6, "Trans_Quantity": 603.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O10", "CropName": "梨-寶島甘露梨", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 71.5, "Middle_Price": 46.0, "Lower_Price": 22.4, "Avg_Price": 46.4, "Trans_Quantity": 28189.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O3", "CropName": "梨-世紀梨", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 50.0, "Middle_Price": 43.7, "Lower_Price": 40.0, "Avg_Price": 44.2, "Trans_Quantity": 95.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O4", "CropName": "梨-新興梨", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 80.0, "Middle_Price": 77.8, "Lower_Price": 39.7, "Avg_Price": 70.6, "Trans_Quantity": 987.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P1", "CropName": "番石榴-珍珠芭", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 114.4, "Middle_Price": 76.6, "Lower_Price": 29.4, "Avg_Price": 74.7, "Trans_Quantity": 10170.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P2", "CropName": "番石榴-紅心", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 111.3, "Middle_Price": 64.6, "Lower_Price": 29.0, "Avg_Price": 66.8, "Trans_Quantity": 380.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P3", "CropName": "番石榴-帝王芭", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 136.3, "Middle_Price": 79.5, "Lower_Price": 19.0, "Avg_Price": 78.8, "Trans_Quantity": 1693.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Q2", "CropName": "蓮霧-子彈型", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 64.5, "Middle_Price": 43.0, "Lower_Price": 33.0, "Avg_Price": 45.3, "Trans_Quantity": 157.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Q5", "CropName": "蓮霧-黑糖芭比", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 485.0, "Middle_Price": 425.0, "Lower_Price": 365.0, "Avg_Price": 425.0, "Trans_Quantity": 100.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R0", "CropName": "芒果-其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 126.7, "Middle_Price": 51.0, "Lower_Price": 28.5, "Avg_Price": 61.7, "Trans_Quantity": 1274.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R1", "CropName": "芒果-愛文", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 173.9, "Middle_Price": 86.5, "Lower_Price": 42.0, "Avg_Price": 95.1, "Trans_Quantity": 4466.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R10", "CropName": "芒果-西施", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 124.2, "Middle_Price": 83.6, "Lower_Price": 43.5, "Avg_Price": 83.7, "Trans_Quantity": 822.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R4", "CropName": "芒果-凱特", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 71.5, "Middle_Price": 54.0, "Lower_Price": 31.7, "Avg_Price": 53.0, "Trans_Quantity": 984.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R6", "CropName": "芒果-金煌", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 70.4, "Middle_Price": 43.2, "Lower_Price": 23.9, "Avg_Price": 44.8, "Trans_Quantity": 304.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R8", "CropName": "芒果-芒果青", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 76.5, "Middle_Price": 52.6, "Lower_Price": 36.2, "Avg_Price": 54.1, "Trans_Quantity": 1235.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S0", "CropName": "葡萄-其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 270.0, "Middle_Price": 270.0, "Lower_Price": 270.0, "Avg_Price": 270.0, "Trans_Quantity": 70.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S1", "CropName": "葡萄-巨峰", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 134.7, "Middle_Price": 66.8, "Lower_Price": 46.5, "Avg_Price": 76.3, "Trans_Quantity": 2714.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S49", "CropName": "葡萄-無子進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 204.4, "Middle_Price": 146.2, "Lower_Price": 108.3, "Avg_Price": 150.3, "Trans_Quantity": 448.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S9", "CropName": "葡萄-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 607.7, "Middle_Price": 275.7, "Lower_Price": 180.6, "Avg_Price": 323.1, "Trans_Quantity": 1235.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T0", "CropName": "西瓜-其他", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 63.9, "Middle_Price": 45.2, "Lower_Price": 22.6, "Avg_Price": 44.4, "Trans_Quantity": 223.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T1", "CropName": "西瓜-大西瓜", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 22.0, "Middle_Price": 15.7, "Lower_Price": 11.2, "Avg_Price": 16.0, "Trans_Quantity": 1907.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T5", "CropName": "西瓜-黃肉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 19.3, "Middle_Price": 14.9, "Lower_Price": 9.7, "Avg_Price": 14.7, "Trans_Quantity": 19566.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T8", "CropName": "西瓜-甜美人", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 21.7, "Middle_Price": 16.9, "Lower_Price": 12.8, "Avg_Price": 17.0, "Trans_Quantity": 10611.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V1", "CropName": "甜瓜-美濃", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 36.4, "Middle_Price": 26.5, "Lower_Price": 17.2, "Avg_Price": 26.7, "Trans_Quantity": 10692.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V2", "CropName": "甜瓜-溫室吊瓜", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 178.2, "Middle_Price": 126.3, "Lower_Price": 82.0, "Avg_Price": 127.9, "Trans_Quantity": 596.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W1", "CropName": "洋香瓜-網狀紅肉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 32.0, "Middle_Price": 27.2, "Lower_Price": 20.8, "Avg_Price": 26.9, "Trans_Quantity": 957.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W2", "CropName": "洋香瓜-網狀綠肉", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 45.0, "Middle_Price": 36.4, "Lower_Price": 28.6, "Avg_Price": 36.6, "Trans_Quantity": 533.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W4", "CropName": "洋香瓜-新疆", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 44.2, "Middle_Price": 32.5, "Lower_Price": 20.1, "Avg_Price": 32.4, "Trans_Quantity": 731.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W8", "CropName": "洋香瓜-阿露斯", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 167.9, "Middle_Price": 161.4, "Lower_Price": 71.5, "Avg_Price": 144.7, "Trans_Quantity": 656.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W9", "CropName": "洋香瓜-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 166.7, "Middle_Price": 127.2, "Lower_Price": 100.0, "Avg_Price": 129.6, "Trans_Quantity": 36.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X3", "CropName": "蘋果-惠", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 65.0, "Middle_Price": 61.6, "Lower_Price": 55.0, "Avg_Price": 60.9, "Trans_Quantity": 217.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X59", "CropName": "蘋果-紅玉進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 250.0, "Middle_Price": 250.0, "Lower_Price": 235.0, "Avg_Price": 247.0, "Trans_Quantity": 100.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X69", "CropName": "蘋果-富士進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 108.0, "Middle_Price": 68.7, "Lower_Price": 47.8, "Avg_Price": 72.4, "Trans_Quantity": 9505.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y1", "CropName": "桃子-水蜜桃", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 290.0, "Middle_Price": 290.0, "Lower_Price": 290.0, "Avg_Price": 290.0, "Trans_Quantity": 30.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y39", "CropName": "桃子-甜桃進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 80.0, "Middle_Price": 75.5, "Lower_Price": 73.3, "Avg_Price": 76.0, "Trans_Quantity": 2000.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y9", "CropName": "桃子-進口", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 529.2, "Middle_Price": 501.9, "Lower_Price": 204.1, "Avg_Price": 447.8, "Trans_Quantity": 325.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Z1", "CropName": "柿子-紅柿", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 37.0, "Middle_Price": 28.8, "Lower_Price": 26.8, "Avg_Price": 30.1, "Trans_Quantity": 1962.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Z4", "CropName": "柿子-甜柿", "MarketCode": "104", "MarketName": "台北二", "Upper_Price": 140.0, "Middle_Price": 74.3, "Lower_Price": 41.8, "Avg_Price": 80.9, "Trans_Quantity": 2950.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "11", "CropName": "椰子", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 22.2, "Middle_Price": 19.3, "Lower_Price": 19.0, "Avg_Price": 19.8, "Trans_Quantity": 1695.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "129", "CropName": "椰子-剝殼進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 100.0, "Middle_Price": 100.0, "Lower_Price": 78.7, "Avg_Price": 95.7, "Trans_Quantity": 564.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "31", "CropName": "釋迦", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 64.8, "Middle_Price": 51.2, "Lower_Price": 49.7, "Avg_Price": 53.6, "Trans_Quantity": 4947.5}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "469", "CropName": "藍莓-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 300.0, "Middle_Price": 300.0, "Lower_Price": 300.0, "Avg_Price": 300.0, "Trans_Quantity": 1566.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "50", "CropName": "百香果-其他", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 112.3, "Middle_Price": 82.6, "Lower_Price": 55.3, "Avg_Price": 83.0, "Trans_Quantity": 430.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "51", "CropName": "百香果-改良種", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 105.9, "Middle_Price": 70.9, "Lower_Price": 59.2, "Avg_Price": 75.6, "Trans_Quantity": 7810.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "61", "CropName": "甘蔗-帶皮", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 9.0, "Middle_Price": 9.0, "Lower_Price": 9.0, "Avg_Price": 9.0, "Trans_Quantity": 32.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "72", "CropName": "小番茄-聖女", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 100.7, "Middle_Price": 80.0, "Lower_Price": 80.0, "Avg_Price": 84.2, "Trans_Quantity": 1486.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "74", "CropName": "小番茄-玉女", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 50.0, "Middle_Price": 50.0, "Lower_Price": 46.3, "Avg_Price": 49.3, "Trans_Quantity": 340.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "811", "CropName": "紅龍果-白肉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 63.2, "Middle_Price": 27.7, "Lower_Price": 20.3, "Avg_Price": 33.4, "Trans_Quantity": 5752.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "812", "CropName": "紅龍果-紅肉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 76.5, "Middle_Price": 34.2, "Lower_Price": 17.6, "Avg_Price": 39.3, "Trans_Quantity": 16426.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "813", "CropName": "紅龍果-雙色紅龍果", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 74.2, "Middle_Price": 36.5, "Lower_Price": 27.8, "Avg_Price": 42.3, "Trans_Quantity": 412.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "839", "CropName": "櫻桃-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 320.0, "Middle_Price": 301.3, "Lower_Price": 213.4, "Avg_Price": 287.5, "Trans_Quantity": 4224.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "859", "CropName": "榴槤-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 150.3, "Middle_Price": 131.0, "Lower_Price": 100.0, "Avg_Price": 128.7, "Trans_Quantity": 2850.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "869", "CropName": "山竹-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 533.3, "Middle_Price": 533.3, "Lower_Price": 533.3, "Avg_Price": 533.3, "Trans_Quantity": 30.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "87", "CropName": "紅毛丹", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 97.2, "Middle_Price": 80.0, "Lower_Price": 68.4, "Avg_Price": 81.1, "Trans_Quantity": 1151.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "91", "CropName": "其他", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 310.2, "Middle_Price": 35.8, "Lower_Price": 20.0, "Avg_Price": 87.5, "Trans_Quantity": 69.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "919", "CropName": "其他-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 160.0, "Middle_Price": 160.0, "Lower_Price": 160.0, "Avg_Price": 160.0, "Trans_Quantity": 5.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A0", "CropName": "香蕉-其他", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 10.0, "Middle_Price": 10.0, "Lower_Price": 10.0, "Avg_Price": 10.0, "Trans_Quantity": 144.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A1", "CropName": "香蕉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 43.2, "Middle_Price": 32.8, "Lower_Price": 25.1, "Avg_Price": 33.3, "Trans_Quantity": 10003.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A2", "CropName": "香蕉-芭蕉紅芭蕉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 57.8, "Middle_Price": 29.9, "Lower_Price": 15.0, "Avg_Price": 32.5, "Trans_Quantity": 2018.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A3", "CropName": "香蕉-旦蕉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 62.0, "Middle_Price": 58.4, "Lower_Price": 39.1, "Avg_Price": 55.3, "Trans_Quantity": 51.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A4", "CropName": "香蕉-越旦", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 37.3, "Middle_Price": 26.2, "Lower_Price": 13.9, "Avg_Price": 26.0, "Trans_Quantity": 352.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B2", "CropName": "鳳梨-金鑽鳳梨", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 46.9, "Middle_Price": 36.0, "Lower_Price": 28.0, "Avg_Price": 36.6, "Trans_Quantity": 5721.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B7", "CropName": "鳳梨-牛奶鳳梨", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 44.0, "Middle_Price": 31.6, "Lower_Price": 15.3, "Avg_Price": 30.8, "Trans_Quantity": 2727.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "C9", "CropName": "柑橘-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 166.3, "Middle_Price": 57.8, "Lower_Price": 50.0, "Avg_Price": 77.9, "Trans_Quantity": 3885.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "E9", "CropName": "甜橙-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 50.0, "Middle_Price": 50.0, "Lower_Price": 50.0, "Avg_Price": 50.0, "Trans_Quantity": 5320.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F1", "CropName": "雜柑-檸檬", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 39.7, "Middle_Price": 22.8, "Lower_Price": 18.9, "Avg_Price": 25.4, "Trans_Quantity": 2089.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F4", "CropName": "雜柑-桔子", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 57.3, "Middle_Price": 31.2, "Lower_Price": 26.3, "Avg_Price": 35.4, "Trans_Quantity": 342.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F5", "CropName": "雜柑-無子檸檬", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 38.7, "Middle_Price": 24.7, "Lower_Price": 9.5, "Avg_Price": 24.5, "Trans_Quantity": 2046.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F6", "CropName": "雜柑-黃金檸檬", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 30.5, "Middle_Price": 23.5, "Lower_Price": 11.9, "Avg_Price": 22.6, "Trans_Quantity": 738.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G2", "CropName": "黃金果", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 67.0, "Middle_Price": 38.0, "Lower_Price": 37.1, "Avg_Price": 43.6, "Trans_Quantity": 891.5}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G3", "CropName": "酪梨", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 66.1, "Middle_Price": 46.1, "Lower_Price": 33.1, "Avg_Price": 47.5, "Trans_Quantity": 9554.5}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G39", "CropName": "酪梨-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 200.0, "Middle_Price": 200.0, "Lower_Price": 200.0, "Avg_Price": 200.0, "Trans_Quantity": 10.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G49", "CropName": "奇異果-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 120.0, "Middle_Price": 102.3, "Lower_Price": 80.0, "Avg_Price": 101.4, "Trans_Quantity": 5065.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G7", "CropName": "橄欖", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 35.0, "Middle_Price": 35.0, "Lower_Price": 35.0, "Avg_Price": 35.0, "Trans_Quantity": 23.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G9", "CropName": "波蘿蜜", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 31.7, "Middle_Price": 25.0, "Lower_Price": 23.9, "Avg_Price": 26.1, "Trans_Quantity": 268.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G91", "CropName": "榴槤蜜", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 30.2, "Middle_Price": 18.2, "Lower_Price": 14.7, "Avg_Price": 19.9, "Trans_Quantity": 1202.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H1", "CropName": "柚子-文旦", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 18.4, "Middle_Price": 14.0, "Lower_Price": 11.8, "Avg_Price": 14.4, "Trans_Quantity": 5479.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H49", "CropName": "葡萄柚-紅肉進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 50.0, "Middle_Price": 50.0, "Lower_Price": 50.0, "Avg_Price": 50.0, "Trans_Quantity": 760.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H9", "CropName": "柚子-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 60.0, "Middle_Price": 60.0, "Lower_Price": 60.0, "Avg_Price": 60.0, "Trans_Quantity": 10.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I1", "CropName": "木瓜-網室紅肉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 33.4, "Middle_Price": 23.0, "Lower_Price": 20.7, "Avg_Price": 24.6, "Trans_Quantity": 19586.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I3", "CropName": "木瓜-日昇種", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 12.0, "Middle_Price": 12.0, "Lower_Price": 12.0, "Avg_Price": 12.0, "Trans_Quantity": 1090.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I4", "CropName": "木瓜-青木瓜", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 13.1, "Middle_Price": 9.2, "Lower_Price": 7.0, "Avg_Price": 9.5, "Trans_Quantity": 170.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "K3", "CropName": "龍眼-粉殼", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 39.3, "Middle_Price": 34.0, "Lower_Price": 32.4, "Avg_Price": 34.7, "Trans_Quantity": 32913.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "K4", "CropName": "龍眼-龍眼乾帶殼", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 90.0, "Middle_Price": 90.0, "Lower_Price": 90.0, "Avg_Price": 90.0, "Trans_Quantity": 9.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "M2", "CropName": "楊桃-紅龍", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 24.0, "Middle_Price": 24.0, "Lower_Price": 24.0, "Avg_Price": 24.0, "Trans_Quantity": 70.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "M3", "CropName": "楊桃-馬來亞種", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 28.9, "Middle_Price": 18.3, "Lower_Price": 15.5, "Avg_Price": 19.8, "Trans_Quantity": 492.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "N9", "CropName": "李-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 206.0, "Middle_Price": 140.0, "Lower_Price": 135.5, "Avg_Price": 152.3, "Trans_Quantity": 2000.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O0", "CropName": "梨-其他", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 20.0, "Middle_Price": 17.1, "Lower_Price": 15.0, "Avg_Price": 17.3, "Trans_Quantity": 60.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O10", "CropName": "梨-寶島甘露梨", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 45.8, "Middle_Price": 27.0, "Lower_Price": 21.2, "Avg_Price": 29.6, "Trans_Quantity": 49869.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O3", "CropName": "梨-世紀梨", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 22.0, "Middle_Price": 22.0, "Lower_Price": 22.0, "Avg_Price": 22.0, "Trans_Quantity": 95.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O4", "CropName": "梨-新興梨", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 10.0, "Middle_Price": 10.0, "Lower_Price": 10.0, "Avg_Price": 10.0, "Trans_Quantity": 3126.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O99", "CropName": "梨-西洋梨進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 100.0, "Middle_Price": 100.0, "Lower_Price": 100.0, "Avg_Price": 100.0, "Trans_Quantity": 670.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P0", "CropName": "番石榴-其他", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 64.7, "Middle_Price": 57.0, "Lower_Price": 45.0, "Avg_Price": 56.1, "Trans_Quantity": 75.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P1", "CropName": "番石榴-珍珠芭", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 108.0, "Middle_Price": 57.3, "Lower_Price": 40.3, "Avg_Price": 64.0, "Trans_Quantity": 15247.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P2", "CropName": "番石榴-紅心", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 118.0, "Middle_Price": 47.4, "Lower_Price": 24.7, "Avg_Price": 57.0, "Trans_Quantity": 300.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P3", "CropName": "番石榴-帝王芭", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 122.7, "Middle_Price": 71.1, "Lower_Price": 47.8, "Avg_Price": 76.7, "Trans_Quantity": 695.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P5", "CropName": "番石榴-水晶無子", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 95.0, "Middle_Price": 73.8, "Lower_Price": 71.0, "Avg_Price": 77.5, "Trans_Quantity": 300.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Q1", "CropName": "蓮霧-紅蓮霧", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 45.0, "Middle_Price": 45.0, "Lower_Price": 45.0, "Avg_Price": 45.0, "Trans_Quantity": 3094.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Q4", "CropName": "蓮霧-巴掌蓮霧", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 18.0, "Middle_Price": 18.0, "Lower_Price": 18.0, "Avg_Price": 18.0, "Trans_Quantity": 572.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R0", "CropName": "芒果-其他", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 23.0, "Middle_Price": 23.0, "Lower_Price": 23.0, "Avg_Price": 23.0, "Trans_Quantity": 1332.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R1", "CropName": "芒果-愛文", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 98.3, "Middle_Price": 57.9, "Lower_Price": 40.6, "Avg_Price": 62.5, "Trans_Quantity": 6546.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R10", "CropName": "芒果-西施", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 119.5, "Middle_Price": 68.2, "Lower_Price": 52.9, "Avg_Price": 75.4, "Trans_Quantity": 1716.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R2", "CropName": "芒果-玉文", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 47.0, "Middle_Price": 42.4, "Lower_Price": 26.8, "Avg_Price": 40.2, "Trans_Quantity": 84.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R4", "CropName": "芒果-凱特", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 57.9, "Middle_Price": 37.5, "Lower_Price": 29.3, "Avg_Price": 39.9, "Trans_Quantity": 3191.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R6", "CropName": "芒果-金煌", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 52.3, "Middle_Price": 42.0, "Lower_Price": 38.1, "Avg_Price": 43.3, "Trans_Quantity": 6091.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R8", "CropName": "芒果-芒果青", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 69.1, "Middle_Price": 56.2, "Lower_Price": 39.3, "Avg_Price": 55.4, "Trans_Quantity": 1329.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S1", "CropName": "葡萄-巨峰", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 38.2, "Middle_Price": 34.0, "Lower_Price": 34.0, "Avg_Price": 34.9, "Trans_Quantity": 5709.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S9", "CropName": "葡萄-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 681.2, "Middle_Price": 249.2, "Lower_Price": 174.2, "Avg_Price": 320.6, "Trans_Quantity": 6845.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T0", "CropName": "西瓜-其他", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 82.6, "Middle_Price": 60.0, "Lower_Price": 57.5, "Avg_Price": 64.0, "Trans_Quantity": 2203.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T1", "CropName": "西瓜-大西瓜", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 21.0, "Middle_Price": 21.0, "Lower_Price": 17.4, "Avg_Price": 20.3, "Trans_Quantity": 6287.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T5", "CropName": "西瓜-黃肉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 16.1, "Middle_Price": 13.1, "Lower_Price": 11.3, "Avg_Price": 13.4, "Trans_Quantity": 33457.5}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T8", "CropName": "西瓜-甜美人", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 18.7, "Middle_Price": 14.0, "Lower_Price": 8.1, "Avg_Price": 13.8, "Trans_Quantity": 13492.5}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V1", "CropName": "甜瓜-美濃", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 24.5, "Middle_Price": 21.0, "Lower_Price": 19.2, "Avg_Price": 21.3, "Trans_Quantity": 23270.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V2", "CropName": "甜瓜-溫室吊瓜", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 58.5, "Middle_Price": 54.0, "Lower_Price": 52.9, "Avg_Price": 54.7, "Trans_Quantity": 3503.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W1", "CropName": "洋香瓜-網狀紅肉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 41.4, "Middle_Price": 40.0, "Lower_Price": 40.0, "Avg_Price": 40.3, "Trans_Quantity": 1275.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W2", "CropName": "洋香瓜-網狀綠肉", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 60.0, "Middle_Price": 42.5, "Lower_Price": 18.2, "Avg_Price": 41.2, "Trans_Quantity": 1338.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W4", "CropName": "洋香瓜-新疆", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 71.7, "Middle_Price": 61.0, "Lower_Price": 41.8, "Avg_Price": 59.3, "Trans_Quantity": 1201.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W8", "CropName": "洋香瓜-阿露斯", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 114.9, "Middle_Price": 52.4, "Lower_Price": 30.0, "Avg_Price": 60.4, "Trans_Quantity": 644.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W9", "CropName": "洋香瓜-進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 101.4, "Middle_Price": 100.0, "Lower_Price": 98.7, "Avg_Price": 100.0, "Trans_Quantity": 2543.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X0", "CropName": "蘋果-其他", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 23.0, "Middle_Price": 23.0, "Lower_Price": 23.0, "Avg_Price": 23.0, "Trans_Quantity": 775.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X09", "CropName": "蘋果-其他進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 230.0, "Middle_Price": 230.0, "Lower_Price": 230.0, "Avg_Price": 230.0, "Trans_Quantity": 20.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X69", "CropName": "蘋果-富士進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 113.7, "Middle_Price": 71.7, "Lower_Price": 69.5, "Avg_Price": 79.6, "Trans_Quantity": 22360.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y1", "CropName": "桃子-水蜜桃", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 93.4, "Middle_Price": 50.0, "Lower_Price": 50.0, "Avg_Price": 58.7, "Trans_Quantity": 990.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y19", "CropName": "桃子-水蜜桃進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 816.5, "Middle_Price": 308.0, "Lower_Price": 300.0, "Avg_Price": 408.1, "Trans_Quantity": 972.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y39", "CropName": "桃子-甜桃進口", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 120.0, "Middle_Price": 120.0, "Lower_Price": 120.0, "Avg_Price": 120.0, "Trans_Quantity": 3250.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Z1", "CropName": "柿子-紅柿", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 34.0, "Middle_Price": 34.0, "Lower_Price": 23.9, "Avg_Price": 32.0, "Trans_Quantity": 2643.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Z4", "CropName": "柿子-甜柿", "MarketCode": "241", "MarketName": "三重區", "Upper_Price": 62.3, "Middle_Price": 39.0, "Lower_Price": 34.2, "Avg_Price": 42.7, "Trans_Quantity": 5146.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "31", "CropName": "釋迦", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 90.0, "Middle_Price": 69.9, "Lower_Price": 55.0, "Avg_Price": 70.92, "Trans_Quantity": 456.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "469", "CropName": "藍莓-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 450.0, "Middle_Price": 416.7, "Lower_Price": 400.0, "Avg_Price": 420.0, "Trans_Quantity": 50.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "50", "CropName": "百香果-其他", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 120.0, "Middle_Price": 92.3, "Lower_Price": 80.0, "Avg_Price": 95.38, "Trans_Quantity": 156.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "51", "CropName": "百香果-改良種", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 131.6, "Middle_Price": 73.2, "Lower_Price": 49.5, "Avg_Price": 80.12, "Trans_Quantity": 1555.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "72", "CropName": "小番茄-聖女", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 120.5, "Middle_Price": 99.2, "Lower_Price": 90.0, "Avg_Price": 101.6, "Trans_Quantity": 500.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "74", "CropName": "小番茄-玉女", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 175.0, "Middle_Price": 175.0, "Lower_Price": 175.0, "Avg_Price": 175.0, "Trans_Quantity": 6.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "811", "CropName": "紅龍果-白肉", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 29.6, "Middle_Price": 20.8, "Lower_Price": 13.0, "Avg_Price": 20.99, "Trans_Quantity": 977.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "812", "CropName": "紅龍果-紅肉", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 47.3, "Middle_Price": 25.9, "Lower_Price": 18.7, "Avg_Price": 28.75, "Trans_Quantity": 5147.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "839", "CropName": "櫻桃-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 584.0, "Middle_Price": 445.3, "Lower_Price": 360.0, "Avg_Price": 456.0, "Trans_Quantity": 625.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "859", "CropName": "榴槤-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 208.3, "Middle_Price": 182.8, "Lower_Price": 122.2, "Avg_Price": 175.8, "Trans_Quantity": 1314.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A1", "CropName": "香蕉", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 55.0, "Middle_Price": 34.5, "Lower_Price": 20.0, "Avg_Price": 35.71, "Trans_Quantity": 1800.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B2", "CropName": "鳳梨-金鑽鳳梨", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 55.0, "Middle_Price": 50.0, "Lower_Price": 45.0, "Avg_Price": 50.0, "Trans_Quantity": 2000.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B7", "CropName": "鳳梨-牛奶鳳梨", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 40.0, "Middle_Price": 34.5, "Lower_Price": 30.0, "Avg_Price": 34.71, "Trans_Quantity": 340.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "C9", "CropName": "柑橘-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 120.0, "Middle_Price": 77.1, "Lower_Price": 70.0, "Avg_Price": 84.29, "Trans_Quantity": 700.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "E9", "CropName": "甜橙-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 83.3, "Middle_Price": 83.3, "Lower_Price": 83.3, "Avg_Price": 83.3, "Trans_Quantity": 180.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F1", "CropName": "雜柑-檸檬", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 45.0, "Middle_Price": 28.3, "Lower_Price": 20.0, "Avg_Price": 29.98, "Trans_Quantity": 1031.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F4", "CropName": "雜柑-桔子", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 100.0, "Middle_Price": 65.2, "Lower_Price": 35.0, "Avg_Price": 66.09, "Trans_Quantity": 550.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F5", "CropName": "雜柑-無子檸檬", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 40.0, "Middle_Price": 32.5, "Lower_Price": 25.0, "Avg_Price": 32.5, "Trans_Quantity": 20.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G2", "CropName": "黃金果", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 45.7, "Middle_Price": 35.1, "Lower_Price": 35.0, "Avg_Price": 37.21, "Trans_Quantity": 204.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G3", "CropName": "酪梨", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 55.0, "Middle_Price": 47.9, "Lower_Price": 45.0, "Avg_Price": 48.72, "Trans_Quantity": 870.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G49", "CropName": "奇異果-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 176.8, "Middle_Price": 163.1, "Lower_Price": 127.9, "Avg_Price": 158.82, "Trans_Quantity": 1360.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H1", "CropName": "柚子-文旦", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 20.0, "Middle_Price": 17.0, "Lower_Price": 15.0, "Avg_Price": 17.18, "Trans_Quantity": 390.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H5", "CropName": "葡萄柚-白肉", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 20.0, "Middle_Price": 20.0, "Lower_Price": 18.3, "Avg_Price": 19.65, "Trans_Quantity": 201.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I1", "CropName": "木瓜-網室紅肉", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 44.5, "Middle_Price": 30.2, "Lower_Price": 25.0, "Avg_Price": 32.01, "Trans_Quantity": 3342.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "K3", "CropName": "龍眼-粉殼", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 52.4, "Middle_Price": 36.4, "Lower_Price": 30.0, "Avg_Price": 38.3, "Trans_Quantity": 5570.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "N9", "CropName": "李-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 318.2, "Middle_Price": 150.6, "Lower_Price": 130.0, "Avg_Price": 180.0, "Trans_Quantity": 275.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O0", "CropName": "梨-其他", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 64.7, "Middle_Price": 48.4, "Lower_Price": 22.7, "Avg_Price": 46.55, "Trans_Quantity": 58.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O10", "CropName": "梨-寶島甘露梨", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 113.5, "Middle_Price": 82.1, "Lower_Price": 61.6, "Avg_Price": 84.31, "Trans_Quantity": 12434.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O4", "CropName": "梨-新興梨", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 60.0, "Middle_Price": 52.2, "Lower_Price": 50.0, "Avg_Price": 53.33, "Trans_Quantity": 96.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "P1", "CropName": "番石榴-珍珠芭", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 70.0, "Middle_Price": 47.1, "Lower_Price": 40.0, "Avg_Price": 50.27, "Trans_Quantity": 555.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Q2", "CropName": "蓮霧-子彈型", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 65.0, "Middle_Price": 60.0, "Lower_Price": 55.0, "Avg_Price": 60.0, "Trans_Quantity": 216.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R1", "CropName": "芒果-愛文", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 108.8, "Middle_Price": 89.8, "Lower_Price": 75.0, "Avg_Price": 90.66, "Trans_Quantity": 678.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R6", "CropName": "芒果-金煌", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 75.0, "Middle_Price": 64.0, "Lower_Price": 49.3, "Avg_Price": 63.28, "Trans_Quantity": 1740.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S1", "CropName": "葡萄-巨峰", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 135.0, "Middle_Price": 116.6, "Lower_Price": 67.7, "Avg_Price": 110.48, "Trans_Quantity": 950.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S9", "CropName": "葡萄-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 378.0, "Middle_Price": 224.8, "Lower_Price": 184.4, "Avg_Price": 247.34, "Trans_Quantity": 1280.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T1", "CropName": "西瓜-大西瓜", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 35.0, "Middle_Price": 20.0, "Lower_Price": 15.0, "Avg_Price": 22.01, "Trans_Quantity": 7190.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T5", "CropName": "西瓜-黃肉", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 26.0, "Middle_Price": 22.0, "Lower_Price": 20.0, "Avg_Price": 22.39, "Trans_Quantity": 6440.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T8", "CropName": "西瓜-甜美人", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 25.0, "Middle_Price": 21.1, "Lower_Price": 20.0, "Avg_Price": 21.67, "Trans_Quantity": 720.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V1", "CropName": "甜瓜-美濃", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 55.3, "Middle_Price": 28.4, "Lower_Price": 20.0, "Avg_Price": 32.1, "Trans_Quantity": 2617.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W2", "CropName": "洋香瓜-網狀綠肉", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 30.0, "Middle_Price": 30.0, "Lower_Price": 30.0, "Avg_Price": 30.0, "Trans_Quantity": 90.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W9", "CropName": "洋香瓜-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 120.0, "Middle_Price": 119.6, "Lower_Price": 110.0, "Avg_Price": 117.78, "Trans_Quantity": 900.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "X69", "CropName": "蘋果-富士進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 99.1, "Middle_Price": 80.6, "Lower_Price": 67.4, "Avg_Price": 81.69, "Trans_Quantity": 7700.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y1", "CropName": "桃子-水蜜桃", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 120.0, "Middle_Price": 120.0, "Lower_Price": 120.0, "Avg_Price": 120.0, "Trans_Quantity": 84.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y39", "CropName": "桃子-甜桃進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 100.0, "Middle_Price": 90.0, "Lower_Price": 80.0, "Avg_Price": 90.0, "Trans_Quantity": 400.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Y9", "CropName": "桃子-進口", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 506.2, "Middle_Price": 416.1, "Lower_Price": 347.1, "Avg_Price": 420.32, "Trans_Quantity": 945.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Z1", "CropName": "柿子-紅柿", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 50.0, "Middle_Price": 42.9, "Lower_Price": 40.0, "Avg_Price": 43.75, "Trans_Quantity": 144.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "Z4", "CropName": "柿子-甜柿", "MarketCode": "800", "MarketName": "高雄市", "Upper_Price": 124.9, "Middle_Price": 94.4, "Lower_Price": 77.3, "Avg_Price": 97.08, "Trans_Quantity": 897.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "11", "CropName": "椰子", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 22.0, "Middle_Price": 18.4, "Lower_Price": 12.2, "Avg_Price": 18.4, "Trans_Quantity": 970.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "31", "CropName": "釋迦", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 77.7, "Middle_Price": 59.8, "Lower_Price": 40.1, "Avg_Price": 59.8, "Trans_Quantity": 670.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "51", "CropName": "百香果-改良種", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 108.4, "Middle_Price": 72.3, "Lower_Price": 46.2, "Avg_Price": 72.3, "Trans_Quantity": 810.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "72", "CropName": "小番茄-聖女", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 120.0, "Middle_Price": 99.4, "Lower_Price": 80.7, "Avg_Price": 99.4, "Trans_Quantity": 210.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "812", "CropName": "紅龍果-紅肉", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 45.0, "Middle_Price": 18.2, "Lower_Price": 11.0, "Avg_Price": 18.2, "Trans_Quantity": 10700.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "A1", "CropName": "香蕉", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 42.4, "Middle_Price": 26.7, "Lower_Price": 18.0, "Avg_Price": 26.7, "Trans_Quantity": 7200.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B2", "CropName": "鳳梨-金鑽鳳梨", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 53.3, "Middle_Price": 26.4, "Lower_Price": 18.0, "Avg_Price": 26.4, "Trans_Quantity": 5460.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B7", "CropName": "鳳梨-牛奶鳳梨", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 35.3, "Middle_Price": 29.9, "Lower_Price": 24.1, "Avg_Price": 29.9, "Trans_Quantity": 1710.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "B8", "CropName": "鳳梨-西瓜鳳梨", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 30.2, "Middle_Price": 30.2, "Lower_Price": 30.2, "Avg_Price": 30.2, "Trans_Quantity": 530.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "F1", "CropName": "雜柑-檸檬", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 35.4, "Middle_Price": 27.6, "Lower_Price": 20.2, "Avg_Price": 27.6, "Trans_Quantity": 390.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G2", "CropName": "黃金果", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 61.5, "Middle_Price": 46.7, "Lower_Price": 30.5, "Avg_Price": 46.7, "Trans_Quantity": 460.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "G3", "CropName": "酪梨", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 60.0, "Middle_Price": 40.6, "Lower_Price": 33.1, "Avg_Price": 40.6, "Trans_Quantity": 3610.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "H1", "CropName": "柚子-文旦", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 23.1, "Middle_Price": 15.9, "Lower_Price": 13.0, "Avg_Price": 15.9, "Trans_Quantity": 9030.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "I1", "CropName": "木瓜-網室紅肉", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 46.5, "Middle_Price": 28.1, "Lower_Price": 20.0, "Avg_Price": 28.1, "Trans_Quantity": 11540.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "K3", "CropName": "龍眼-粉殼", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 58.7, "Middle_Price": 36.3, "Lower_Price": 28.0, "Avg_Price": 36.3, "Trans_Quantity": 4560.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "O10", "CropName": "梨-寶島甘露梨", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 105.3, "Middle_Price": 51.1, "Lower_Price": 21.0, "Avg_Price": 51.1, "Trans_Quantity": 11580.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R0", "CropName": "芒果-其他", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 45.3, "Middle_Price": 45.3, "Lower_Price": 45.3, "Avg_Price": 45.3, "Trans_Quantity": 490.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "R6", "CropName": "芒果-金煌", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 50.6, "Middle_Price": 50.5, "Lower_Price": 50.0, "Avg_Price": 50.5, "Trans_Quantity": 210.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "S1", "CropName": "葡萄-巨峰", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 111.0, "Middle_Price": 65.3, "Lower_Price": 40.4, "Avg_Price": 65.3, "Trans_Quantity": 340.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T1", "CropName": "西瓜-大西瓜", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 33.3, "Middle_Price": 18.0, "Lower_Price": 12.0, "Avg_Price": 18.0, "Trans_Quantity": 29040.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T5", "CropName": "西瓜-黃肉", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 20.0, "Middle_Price": 14.1, "Lower_Price": 9.0, "Avg_Price": 14.1, "Trans_Quantity": 8480.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "T8", "CropName": "西瓜-甜美人", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 22.0, "Middle_Price": 16.8, "Lower_Price": 12.0, "Avg_Price": 16.8, "Trans_Quantity": 3310.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "V1", "CropName": "甜瓜-美濃", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 40.0, "Middle_Price": 22.8, "Lower_Price": 13.1, "Avg_Price": 22.8, "Trans_Quantity": 3070.0}
+,
+{"TransDate": "115.08.19", "TcType": "N05", "CropCode": "W1", "CropName": "洋香瓜-網狀紅肉", "MarketCode": "830", "MarketName": "鳳山區", "Upper_Price": 74.7, "Middle_Price": 54.8, "Lower_Price": 43.4, "Avg_Price": 54.8, "Trans_Quantity": 330.0}
 ],"Next":false}
