@@ -1,1 +1,1 @@
-{"RS": "OK", "Data": []}
+{"RS": "OK", "Data": [{"CropName": "什魚(凍)", "MarketName": "基隆", "TransDate": "115.08.24", "Avg_Price": 100.0, "Upper_Price": 250.0, "Lower_Price": 30.0, "Trans_Quantity": 17910.0}, {"CropName": "透抽(凍)", "MarketName": "基隆", "TransDate": "115.08.24", "Avg_Price": 200.0, "Upper_Price": 350.0, "Lower_Price": 40.0, "Trans_Quantity": 22840.0}, {"CropName": "下雜魚(凍)", "MarketName": "基隆", "TransDate": "115.08.24", "Avg_Price": 12.0, "Upper_Price": 12.0, "Lower_Price": 0.0, "Trans_Quantity": 25410.0}]}
