@@ -2,6 +2,32 @@
   "RS": "OK",
   "Data": [
     {
+      "TransDate": "115.08.30",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "423",
+      "MarketName": "東勢鎮",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
+      "TransDate": "115.08.30",
+      "TcType": "N04",
+      "CropCode": "-",
+      "CropName": "休市",
+      "MarketCode": "930",
+      "MarketName": "台東市",
+      "Upper_Price": 0.0,
+      "Middle_Price": 0.0,
+      "Lower_Price": 0.0,
+      "Avg_Price": 0.0,
+      "Trans_Quantity": 0.0
+    },
+    {
       "TransDate": "115.08.29",
       "TcType": "N04",
       "CropCode": "-",
@@ -12974,32 +13000,6 @@
       "Lower_Price": 20.0,
       "Avg_Price": 20.0,
       "Trans_Quantity": 18.0
-    },
-    {
-      "TransDate": "115.08.27",
-      "TcType": "N04",
-      "CropCode": "LA6",
-      "CropName": "甘藍-甘藍芽",
-      "MarketCode": "400",
-      "MarketName": "台中市",
-      "Upper_Price": 66.0,
-      "Middle_Price": 66.0,
-      "Lower_Price": 66.0,
-      "Avg_Price": 66.0,
-      "Trans_Quantity": 5.0
-    },
-    {
-      "TransDate": "115.08.27",
-      "TcType": "N04",
-      "CropCode": "LA7",
-      "CropName": "甘藍-改良尖",
-      "MarketCode": "400",
-      "MarketName": "台中市",
-      "Upper_Price": 15.0,
-      "Middle_Price": 15.0,
-      "Lower_Price": 15.0,
-      "Avg_Price": 15.0,
-      "Trans_Quantity": 120.0
     }
   ],
   "Next": true
